@@ -16,7 +16,7 @@ def plot_bacterial_parameters(bac_params):
     fig.savefig("bacterial_parameters.png")
 
 
-def plot_cycles(sol_cycles, bac_params, sim_params):
+def plot_cycles(sol_cycles, bac_params, ab_params, sim_params):
     species = sol_cycles[0]
     substrate = sol_cycles[1]
     time = sol_cycles[2]
@@ -44,7 +44,11 @@ def plot_cycles(sol_cycles, bac_params, sim_params):
         ax_c.set(title=f"cycle #{c}", yscale="linear")
     
     fig.tight_layout(rect=(0,0,1,0.95))    
-    ax[2].legend(loc='upper center', bbox_to_anchor=(0.5, 1.5),
-                  ncol=5, fancybox=True, shadow=True)
+    # ax[2].legend(loc='upper center', bbox_to_anchor=(0.5, 1.5),
+    #               ncol=5, fancybox=True, shadow=True)
 
-    fig.savefig("feast-famine_cycles.png")    
+    T0 = ab_params['T0']
+    T  = ab_params['T']
+    p  = ab_params['p']
+
+    fig.savefig(f"figs/feast-famine_cycles-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.png")    
