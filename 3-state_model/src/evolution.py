@@ -128,9 +128,9 @@ def solve_cycle(p_t, r, bac_params, ab_params, sim_params):
         n_dead += remove_extinct_species(p_t, mask_alive, N)[0]
 
     # sort output of solve_ivp for plotting
-    if r < p:
-        sol_cycle = [sol_cycle_1, sol_cycle_2, sol_cycle]
-    [time, species, substrate] = sort_sol_cycle(sol_cycle)
+    # if r < p:
+    #     sol_cycle = [sol_cycle_1, sol_cycle_2, sol_cycle]
+    [time, species, substrate] = [0,0,0] # sort_sol_cycle(sol_cycle)
         
     return p_t, n_dead, [time, species, substrate]
 
