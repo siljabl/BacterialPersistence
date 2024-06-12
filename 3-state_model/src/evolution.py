@@ -166,9 +166,9 @@ def evolve_system(p_t, bac_params, ab_params, sim_params):
     # looping through cycles
     for ic in range(tot_cycles):
         p_t, n_dead, sol_cycle = solve_cycle(p_t, r_arr[ic], bac_params, ab_params, sim_params)
-        substrate.append(sol_cycle[2])
-        species.append(sol_cycle[1][:N] + sol_cycle[1][N:2*N] + sol_cycle[1][2*N:3*N])
-        time.append(sol_cycle[0])
+        # substrate.append(sol_cycle[2])
+        # species.append(sol_cycle[1][:N] + sol_cycle[1][N:2*N] + sol_cycle[1][2*N:3*N])
+        # time.append(sol_cycle[0])
         
         d_t = p_t[:N]
         # if all species go extinct
