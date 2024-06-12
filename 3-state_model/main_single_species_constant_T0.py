@@ -81,7 +81,7 @@ for p in p_arr:
         fitness = analytical_fitness(eq_params, ab_params)
         optimal_params = transform_fitness_to_bac_parameters(fitness, bac_params)
         
-        F_max[i,j] = optimal_params[0]
+        F_max[i,j]  = optimal_params[0]
         λd_opt[i,j] = optimal_params[1][0]
         λr_opt[i,j] = optimal_params[2][0]
         δ_opt[i,j]  = optimal_params[3][0]

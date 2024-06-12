@@ -1,5 +1,5 @@
 import numpy as np
-from tqdm import tqdm
+# from tqdm import tqdm
 from scipy.integrate import solve_ivp
 
 from differential_equations import S0, f, p_min, dt_max, Ts_max
@@ -164,7 +164,7 @@ def evolve_system(p_t, bac_params, ab_params, sim_params):
     time = []
 
     # looping through cycles
-    for ic in tqdm(range(tot_cycles)):
+    for ic in range(tot_cycles):
         p_t, n_dead, sol_cycle = solve_cycle(p_t, r_arr[ic], bac_params, ab_params, sim_params)
         substrate.append(sol_cycle[2])
         species.append(sol_cycle[1][:N] + sol_cycle[1][N:2*N] + sol_cycle[1][2*N:3*N])
@@ -183,5 +183,7 @@ def evolve_system(p_t, bac_params, ab_params, sim_params):
         n_extinct[ic]  = n_dead
         p_dists[ic]    = d_t / sum(d_t)
         
+        print(ic / tot_cycles)
+
     return λd_avrg, λr_avrg, δ_avrg, p_dominant, n_extinct, p_dists, [species, substrate, time]
    

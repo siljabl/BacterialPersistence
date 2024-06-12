@@ -5,7 +5,7 @@ import numpy as np
 sys.path.append('src')
 from initialization import initialize_bacterial_parameter_arrays, initialise_system
 from evolution import evolve_system
-from test_plots import *
+# from test_plots import *
 
 parser = argparse.ArgumentParser(description='Competition between N species for tot_cycles cycles.')
 parser.add_argument('p',   type=float, help='frequency of antibiotics.')
@@ -55,7 +55,7 @@ bac_params['Ɛ'] = Ɛ
 
 populations = initialise_system(bac_params, sim_params)
 λd, λr, δ, p_dominant, n_extinct, p_dists, cycles = evolve_system(populations, bac_params, ab_params, sim_params)
-plot_cycles(cycles, bac_params, ab_params, sim_params)
+# plot_cycles(cycles, bac_params, ab_params, sim_params)
 
 np.savetxt(f"data/competition_average/average_λd-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt", λd)
 np.savetxt(f"data/competition_average/average_λr-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt", λr)
