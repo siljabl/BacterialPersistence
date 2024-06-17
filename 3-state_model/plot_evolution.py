@@ -65,7 +65,7 @@ ax_param[1].set(ylim=[0, 1.1],     yscale="linear")
 ax_param[2].set(ylim=[0, δ_max], yscale="linear")
 
 fig_param.tight_layout()
-fig_param.savefig(f"figs/competition_average/average_parameters-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.png")
+fig_param.savefig(f"figs/competition_average/average_parameters-T0_{T0:0.0f}-T_{T:0.0f}.png")
 
 # fig_pop.tight_layout()
 # fig_pop.savefig(f"figs/competition_average/populations-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.png")
