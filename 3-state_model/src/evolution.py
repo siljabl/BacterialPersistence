@@ -77,7 +77,7 @@ def sort_sol_cycle(sol_cycle):
 
 
 
-def solve_cycle(p_t, r, bac_params, ab_params, sim_params):
+def solve_cycle(p_t, r, bac_params, ab_params, sim_params, save_sol_cycle):
     '''
     Performing one feast-famine cycle. The final (sub)populations are found with solve_ivp.
     The number of species that have gone extinct are counted after every antibiotic or dillusion event.
@@ -127,11 +127,14 @@ def solve_cycle(p_t, r, bac_params, ab_params, sim_params):
     if check_extinction == True:
         n_dead += remove_extinct_species(p_t, mask_alive, N)[0]
 
-    # sort output of solve_ivp for plotting
-    # if r < p:
-    #     sol_cycle = [sol_cycle_1, sol_cycle_2, sol_cycle]
-    [time, species, substrate] = [0,0,0] # sort_sol_cycle(sol_cycle)
-        
+    if save_sol_cycle == True:
+        # sort output of solve_ivp for plotting
+        if r < p:
+            sol_cycle = [sol_cycle_1, sol_cycle_2, sol_cycle]
+        [time, species, substrate] = sort_sol_cycle(sol_cycle)
+    else:
+        [time, species, substrate] = [0,0,0]
+
     return p_t, n_dead, [time, species, substrate]
 
 
@@ -165,10 +168,17 @@ def evolve_system(p_t, bac_params, ab_params, sim_params):
 
     # looping through cycles
     for ic in range(tot_cycles):
-        p_t, n_dead, sol_cycle = solve_cycle(p_t, r_arr[ic], bac_params, ab_params, sim_params)
-        # substrate.append(sol_cycle[2])
-        # species.append(sol_cycle[1][:N] + sol_cycle[1][N:2*N] + sol_cycle[1][2*N:3*N])
-        # time.append(sol_cycle[0])
+        if ic % (tot_cycles/10) == 0:
+            save_sol_cycle = True
+            p_t, n_dead, sol_cycle = solve_cycle(p_t, r_arr[ic], bac_params, ab_params, sim_params, save_sol_cycle)
+
+            substrate.append(sol_cycle[2])
+            species.append(sol_cycle[1][:N] + sol_cycle[1][N:2*N] + sol_cycle[1][2*N:3*N])
+            time.append(sol_cycle[0])
+
+        else:
+            save_sol_cycle = False
+            p_t, n_dead, _= solve_cycle(p_t, r_arr[ic], bac_params, ab_params, sim_params, save_sol_cycle)
         
         d_t = p_t[:N]
         # if all species go extinct

@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
-def plot_bacterial_parameters(bac_params):
+def plot_bacterial_parameters(bac_params, folder):
     fig, ax = plt.subplots(1,3, figsize=(9,3))
     ax[0].plot(bac_params['λd'], '.-')
     ax[1].plot(bac_params['λr'], '.-')
@@ -13,10 +13,10 @@ def plot_bacterial_parameters(bac_params):
     ax[2].set(title="δ")
 
     fig.tight_layout()
-    fig.savefig("bacterial_parameters.png")
+    fig.savefig(f"{folder}/bacterial_parameters.png")
 
 
-def plot_cycles(sol_cycles, bac_params, ab_params, sim_params):
+def plot_cycles(sol_cycles, bac_params, ab_params, sim_params, folder):
     species = sol_cycles[0]
     substrate = sol_cycles[1]
     time = sol_cycles[2]
@@ -51,4 +51,4 @@ def plot_cycles(sol_cycles, bac_params, ab_params, sim_params):
     T  = ab_params['T']
     p  = ab_params['p']
 
-    fig.savefig(f"figs/feast-famine_cycles-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.png")    
+    fig.savefig(f"{folder}/feast-famine_cycles-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.png")    

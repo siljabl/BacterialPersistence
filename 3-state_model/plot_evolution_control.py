@@ -2,12 +2,10 @@ import sys
 import pickle
 import argparse
 import numpy as np
-from datetime import datetime
 
 sys.path.append('src')
 from initialization import initialize_bacterial_parameter_arrays, initialise_system
-from evolution import evolve_system
-# from test_plots import *
+from test_plots import *
 
 parser = argparse.ArgumentParser(description='Competition between N species for tot_cycles cycles.')
 parser.add_argument('folder',          type=str, help="Folder for saving data.")
@@ -40,34 +38,29 @@ Tab    = args.Tab
 T      = T0 + Tab
 T0_max = 12
 
-
 ab_params = {'p':p, 'T0':T0, 'Tab':Tab, 'T':T0+Tab, 'T0_max':T0_max}
 
+
+##########################
+## Bacterial parameters ##
+##########################
 dλ = 1                  	# wake up rate from dormancy
 dδ = 0.001               	# rate of spontaneous persistence
 Ɛ = 10**(-3)
-
-################
-## Simulation ##
-################
-r_arr = np.random.rand(sim_params['tot_cycles'])
-sim_params['r_arr'] = r_arr
 
 bac_params = initialize_bacterial_parameter_arrays(ab_params, dλ, dδ)
 bac_params['Ɛ'] = Ɛ
 
 
-populations = initialise_system(bac_params, sim_params)
-λd, λr, δ, p_dominant, n_extinct, p_dists, cycles = evolve_system(populations, bac_params, ab_params, sim_params)
+#####################
+## Plot parameters ##
+#####################
+plot_bacterial_parameters(bac_params, folder)
 
+#################
+## Plot cycles ##
+#################
+with open(f"{folder}/solve_cycles.pkl", 'rb') as file:
+    cycles = pickle.load(file)
 
-np.savetxt(f"{folder}/competition_average_λd-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt", λd)
-np.savetxt(f"{folder}/competition_average_λr-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt", λr)
-np.savetxt(f"{folder}/competition_average_δ-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt",  δ)
-
-with open(f"{folder}/solve_cycles.pkl", "wb") as file: 
-    pickle.dump(cycles, file) 
-
-# np.savetxt(f"data/competition_average/dominant_species-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt", p_dominant)
-# np.savetxt(f"data/competition_average/number_of_extinctions-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt", n_extinct)
-# np.savetxt(f"data/competition_average/population_distributions-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt", p_dists) 
+plot_cycles(cycles, bac_params, ab_params, sim_params, folder)

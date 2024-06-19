@@ -35,13 +35,10 @@ Also when the antibiotics are decoupled from the addition of nutrients the two s
 Redo competition simulations with mutation.
 
 ### To do
-1) Reorganize folder structure to suit new system. Data is saves as it is, but figs and config file is saved in separate folders
-3) Write script for plotting bacterial parameters from config file
-4) Modify code so it saves 10 cycles
-5) Write script for plotting feast-famine cycles
-6) Run competition
-7) Modify to add mutation
-8) Run mutation
+1) rerun heatmaps high resolution
+2) rerun competition to confirm
+3) Modify to add mutation
+4) Run mutation
 
 
 
