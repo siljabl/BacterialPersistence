@@ -1,6 +1,7 @@
 import sys
 import argparse
 import numpy as np
+from datetime import datetime
 
 sys.path.append('src')
 from initialization import initialize_bacterial_parameter_arrays, initialise_system

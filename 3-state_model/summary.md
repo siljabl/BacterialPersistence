@@ -36,7 +36,6 @@ Redo competition simulations with mutation.
 
 ### To do
 1) Reorganize folder structure to suit new system. Data is saves as it is, but figs and config file is saved in separate folders
-2) Redo heatmaps with correct labels/titles/legends, etc...
 3) Write script for plotting bacterial parameters from config file
 4) Modify code so it saves 10 cycles
 5) Write script for plotting feast-famine cycles

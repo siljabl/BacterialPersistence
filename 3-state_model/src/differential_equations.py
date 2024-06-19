@@ -8,7 +8,7 @@ K = 10**9           # carrying capacity
 β_max = 1           # max growth rate
 γ = 1               # kill rate
 λ_min = 0.01        # lower limit on lag time
-δ_max = 0.01         # upper limit on δ
+δ_max = 0.05         # upper limit on δ
 
 
 
@@ -22,7 +22,7 @@ p_min = 1           # lower threshold
 
 dt_max = 1 #check value
 T0_max = 12 # check value
-Ts_max  = 50
+Ts_max = 50
 
 
 ############################
