@@ -1,0 +1,12 @@
+date:2024-06-19
+ab_res:11
+bac_res:10
+T0:0
+Tab_min:0
+Tab_max:24
+λd_min:0.00999
+λd_max:25.009990000000002
+λr_min:0.01
+λr_max:25.01
+δ_min:0.0
+δ_max:0.05

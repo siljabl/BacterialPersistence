@@ -33,15 +33,17 @@ def plot_cycles(sol_cycles, bac_params, ab_params, sim_params, folder):
     fig, axes = plt.subplots(2, 5, figsize=(10,4), sharex=True, sharey=True)
     ax = axes.flatten()
 
+    ic = 0
     for c, ax_c in zip(cycles, ax):
         # nutrients
-        ax_c.fill_between(time[c], 0, substrate[c], color="lightskyblue")
+        ax_c.fill_between(time[ic], 0, substrate[ic], color="lightskyblue")
 
-        for i in range(len(species[c])-1):
-            if species[c][i][0] > 1:
-                ax_c.plot(time[c], species[c][i], color=colors[i%12], label=f"({λd[i]:0.2f}, {λr[i]:0.2f}, {δ[i]:0.2f})")
+        for i in range(len(species[ic])-1):
+            if species[ic][i][0] > 1:
+                ax_c.plot(time[ic], species[ic][i], color=colors[i%12], label=f"({λd[i]:0.2f}, {λr[i]:0.2f}, {δ[i]:0.2f})")
 
         ax_c.set(title=f"cycle #{c}", yscale="linear")
+        ic += 1
     
     fig.tight_layout(rect=(0,0,1,0.95))    
     # ax[2].legend(loc='upper center', bbox_to_anchor=(0.5, 1.5),
