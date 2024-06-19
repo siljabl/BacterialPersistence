@@ -1,6 +1,5 @@
 # Functions for computing optimal parameters from functions in model_equations.py
 import numpy as np
-import matplotlib.pyplot as plt
 
 from differential_equations import S0
 from estimate_consumption_time import estimate_Ts
