@@ -90,9 +90,9 @@ for p in p_arr:
     i = i + 1
 
 
-np.savetxt(f"data/{folder}/optimal_λd-T0_{T0}.txt", λd_opt)
-np.savetxt(f"data/{folder}/optimal_λr-T0_{T0}.txt", λr_opt)
-np.savetxt(f"data/{folder}/optimal_δ-T0_{T0}.txt", δ_opt)
+np.savetxt(f"{folder}/optimal_λd-T0_{T0}.txt", λd_opt)
+np.savetxt(f"{folder}/optimal_λr-T0_{T0}.txt", λr_opt)
+np.savetxt(f"{folder}/optimal_δ-T0_{T0}.txt", δ_opt)
 
 
 config = {"date"    : datetime.today().strftime('%Y-%m-%d'),
