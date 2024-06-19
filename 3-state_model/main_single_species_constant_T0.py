@@ -108,4 +108,4 @@ config = {"date"    : datetime.today().strftime('%Y-%m-%d'),
           "δ_min"   : np.min(δ),
           "δ_max"   : np.max(δ)}
 
-save_config(config, f"data/{folder}")
+save_config(config, folder)
