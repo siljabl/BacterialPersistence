@@ -90,6 +90,7 @@ for p in p_arr:
     i = i + 1
 
 
+np.savetxt(f"{folder}/single_optimal_F_max.txt", F_max)
 np.savetxt(f"{folder}/single_optimal_λd-T0_{T0}.txt", λd_opt)
 np.savetxt(f"{folder}/single_optimal_λr-T0_{T0}.txt", λr_opt)
 np.savetxt(f"{folder}/single_optimal_δ-T0_{T0}.txt", δ_opt)
