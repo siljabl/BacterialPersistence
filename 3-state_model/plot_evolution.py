@@ -31,9 +31,9 @@ fig_param, ax_param = plt.subplots(1, 3, figsize=(11,3))
 
 i = 0
 for p in p_arr:
-    λd = np.loadtxt(f"data/competition_average/average_λd-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt")
-    λr = np.loadtxt(f"data/competition_average/average_λr-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt")
-    δ  = np.loadtxt(f"data/competition_average/average_δ-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt")
+    λd = np.loadtxt(f"data/old/competition_average/average_λd-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt")
+    λr = np.loadtxt(f"data/old/competition_average/average_λr-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt")
+    δ  = np.loadtxt(f"data/old/competition_average/average_δ-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt")
 
     ab_params  = {'p': p, 'T0': T0, 'Tab': Tab}
     opt_params = identify_optimal_parameters(ab_params, config, folder)
