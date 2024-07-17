@@ -35,7 +35,7 @@ stoch_param = 'none'
 ###########################
 ## Antibiotic parameters ##
 ###########################
-p_arr  = np.linspace(0, 1, ab_res)       # probability of antibiotics
+p_arr  = np.linspace(0, 1, ab_res)          # probability of antibiotics
 T0_arr = np.linspace(0, T0_max, ab_res)     # time array
 
 
