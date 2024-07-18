@@ -27,7 +27,7 @@ def plot_cycles(sol_cycles, bac_params, ab_params, sim_params, folder):
 
     max_cycle = sim_params['tot_cycles']
 
-    cycles = np.arange(int(max_cycle / 10) - 1, max_cycle, int(max_cycle / 10))
+    cycles = np.arange(int(max_cycle / 10)-1, max_cycle, int(max_cycle / 10))
     colors = mpl.cm.jet(np.linspace(0,1,20))
 
     fig, axes = plt.subplots(2, 5, figsize=(10,4), sharex=True, sharey=True)
@@ -35,10 +35,13 @@ def plot_cycles(sol_cycles, bac_params, ab_params, sim_params, folder):
 
     ic = 0
     for c, ax_c in zip(cycles, ax):
-        # nutrients
+        # plotting amount of nutrients as blue background
         ax_c.fill_between(time[ic], 0, substrate[ic], color="lightskyblue")
 
+        # looping through all species
         for i in range(len(species[ic])-1):
+            
+            # only plotting species that are alive at start of cycle
             if species[ic][i][0] > 1:
                 ax_c.plot(time[ic], species[ic][i], color=colors[i%12], label=f"({λd[i]:0.2f}, {λr[i]:0.2f}, {δ[i]:0.2f})")
 

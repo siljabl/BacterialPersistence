@@ -10,7 +10,7 @@ from differential_equations import λ_min, δ_max
 from optimal_from_file      import identify_optimal_parameters
 
 parser = argparse.ArgumentParser(description='Competition between N species for tot_cycles cycles.')
-parser.add_argument('folder',          type=str, help="Folder for saving data.")
+parser.add_argument('folder',      type=str, help="Folder for saving data.")
 parser.add_argument('T0',  type=float, help='application time of antibiotics')
 parser.add_argument('Tab', type=float, help='duration of antibiotics')
 args = parser.parse_args()
