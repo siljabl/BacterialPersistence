@@ -35,7 +35,6 @@ Also when the antibiotics are decoupled from the addition of nutrients the two s
 Redo competition simulations with mutation.
 
 ### To do
-1) rerun heatmaps high resolution
 2) rerun competition to confirm
 3) Modify to add mutation
 4) Run mutation
