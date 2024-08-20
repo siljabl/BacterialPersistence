@@ -40,4 +40,9 @@ Redo competition simulations with mutation.
 4) Run mutation
 
 
+difference in wake up rate probably from low resolution on bacterial parameters?
+p=0.3 is bistable because very close to phase transition
+weird delta values for p=0.3, because it doesn't matter what delta is as long as lambda=0?
+But why suddenly more fluctuations than earlier??
+
 
