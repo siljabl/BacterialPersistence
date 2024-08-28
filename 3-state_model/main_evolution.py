@@ -51,7 +51,7 @@ dδ = 0.001               	# rate of spontaneous persistence
 ## Simulation ##
 ################
 r_arr = np.random.rand(sim_params['tot_cycles'])
-r_arr[1000:] = 0.5
+#r_arr[1000:] = 0.5
 sim_params['r_arr'] = r_arr
 
 bac_params = initialize_bacterial_parameter_arrays(ab_params, dλ, dδ)
@@ -62,9 +62,9 @@ populations = initialise_system(bac_params, sim_params)
 λd, λr, δ, p_dominant, n_extinct, p_dists, cycles = evolve_system(populations, bac_params, ab_params, sim_params)
 
 
-np.savetxt(f"{folder}/r_arr_specified_competition_average_λd-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt", λd)
-np.savetxt(f"{folder}/r_arr_specified_competition_average_λr-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt", λr)
-np.savetxt(f"{folder}/r_arr_specified_competition_average_δ-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt",  δ)
+np.savetxt(f"{folder}/competition_average_λd-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt", λd)
+np.savetxt(f"{folder}/competition_average_λr-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt", λr)
+np.savetxt(f"{folder}/competition_average_δ-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt",  δ)
 np.savetxt(f"{folder}/r_arr_specified_random_array-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt",           r_arr)
 
 with open(f"{folder}/solve_cycles_p_{p:0.1f}.pkl", "wb") as file: 
