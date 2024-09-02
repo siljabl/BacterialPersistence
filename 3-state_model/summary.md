@@ -18,7 +18,7 @@ The mutation simulations are done like the competition simulations, but with a m
 ![Optimal parameters for $T_0=0$](figs/single_optimal/optimal_heatmap_T0_0.png)
 
 I still get same result as before: optimal strategy is either only triggered persistence, or only spontaneous persistence (see Fig. 1 and Fig. 5). 
-$\lambda_d^*$ is the same as earlyer, i.e. $\lambda_d^* \approx pT$, whereas $\lambda_r^* \approx 0.85T$.
+$\lambda_d^*$ is the same as earlier, i.e. $\lambda_d^* \approx pT$, whereas $\lambda_r^* \approx 0.85T$.
 The value of $\delta^*$ is mainly determined by $p$.
 I am a bit surprised that $\lambda_r$ is not smaller, since bacteria is entering spontaneous persistence both during and after the antibiotics.
 I assume this is balanced by a low $\delta^*$ (though still not as low as experimentaly observed).
@@ -41,6 +41,10 @@ Whereas $\lambda_r$ and $\delta$ fluctuate a lot, $\lambda_d$ is not.
 For $p=0.1$, antibiotics are so rare that for long periods there are no cycles with antibiotics.
 During these periods $\lambda_r\to\lambda_{min}$, but as soon as there is a round of antibiotcs $\lambda_r$ jumps back to the theoretical optimal.
 It is not really clear to me why $\delta$ should be increasing in the absence of antibiotics.
+I also ran a simulation that starts with $p=0.1$ for the first 1000 cycles or so, before I set $p=0$ (see Fig. 7).
+My intuition is that it is related to the distribution of biomass among the subpopulations, i.e. that the subpopulations with higher $\delta$ have grown more than their competitiors during earlier periods with more frequent antibiotics.
+I think it could also be a numerical effect, but I'm not sure.
+When I run the competition with $p=0$ during the entire simulation, I get $(\lambda_d^*, \lambda_r^*, \delta^*) = (0,0,0)$ as expected.
 
 
 
@@ -56,15 +60,15 @@ I've probably set the upper limit on $\delta$ too low.
 
 I have also run a competition simulation in Fig. 4.
 The figure is a bit messy, but still in agreement with the theoretical optimals.
-For $p<0.7$ spontaneous persistence is the optimal strategy, and for $p=>0.7$ triggered persistence is the optimal.
+For $p<0.7$ spontaneous persistence is the optimal strategy, and for $p\geq0.7$ triggered persistence is the optimal.
 However, both $p=0.5$ and $p=0.7$ are close to the phase boundary, with strong fluctuations.
 $p=0.7$ shows similar behavior as $p=0.3$ in Fig. 2, but with the decay of $\delta$ being much faster.
-I think that is because $\delta^*_{p=0.7}\approx\delta_{max}$ (and I've probably set the upper limit on $\delta$ too low.)
+I think that is because $\delta^*_{p=0.7, T_0>3}\approx\delta_{max}$ (and that I've probably set the upper limit on $\delta$ too low.)
 The spikes in $\delta$ where the decay back to the optimal value happens immediately represent flucuations that are not large enough to the system to switch to spontaneous persistence.
 
 $p=0.1, 0.3, 0.5$, behave like $p=0.1$ in Fig. 2, i.e. with fluctuations away from the optimal strategy, but they never switch to triggered persistence.
-For $p=0.5$ the optimal stratefgy of triggered persistence has a finite $\lambda_d$, whereas for $p=0.1$ and $p=0.3$ it is $\lambda_{min}\approx0$.
-Lastly, I think the fluctuations at $p=0.3$ are smaller than for both $p=0.1$ and 0.5 because the penalty for switchin phase is the highest at $p=0.3$.
+For $p=0.5$ the optimal strategy of triggered persistence has a finite $\lambda_d$, whereas for $p=0.1$ and $p=0.3$ it is $\lambda_{min}\approx0$, which I think is why there are also fluctuations in $\lambda_d$ at $p=0.5$, but not for $p<0.5$.
+Lastly, I think the fluctuations at $p=0.3$ are smaller than for both $p=0.1$ and 0.5 because the penalty for switching phase is the highest at $p=0.3$.
 
 ## Mutation
 In progess
@@ -74,3 +78,5 @@ In progess
 ![Optimal parameters for $T_0=0$](figs/single_optimal/optimal_heatmap_T0_0_rescaled.png)
 
 ![Optimal parameters for $T_{AB}=12$](figs/single_optimal/optimal_heatmap_Tab_12_rescaled.png)
+
+![Competition with $p=0.1$ for the first 1000 cycles, then $p=0.0$ for the rest.](check_plot_p_0.1.png)
