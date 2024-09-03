@@ -38,7 +38,7 @@ def β(s):
 def ode_grow_single(t, p, λ_d, λ_r, δ):
     p[p < 0] = 0                                    # avoid negative populations
 
-    dp_dt = np.zeros_like(n)
+    dp_dt = np.zeros_like(p)
     dp_dt[0] = -p[0] / λ_d
     dp_dt[1] =  p[0] / λ_d + p[2] / λ_r + p[1] * (1-δ)
     dp_dt[2] = -p[2] / λ_r + p[1] * δ
@@ -49,9 +49,9 @@ def ode_grow_single(t, p, λ_d, λ_r, δ):
 def ode_grow(t, p, λ_d, λ_r, δ):
     p[p < 0] = 0                                    # avoid negative populations
 
-    dp_dt = np.zeros_like(n)
+    dp_dt = np.zeros_like(p)
     dp_dt[0:2] = -p[0:2] / λ_d
-    dp_dt[2:4] =  p[0:2] / λ_d + p[4:6] / λ_r + p[2:4] * (1-δ)
+    dp_dt[2:4] =  p[0:2] / λ_d + p[4:6] / λ_r - p[2:4] * δ
     dp_dt[4:6] = -p[4:6] / λ_r + p[2:4] * δ
 
     if p[6] > 0:
@@ -65,7 +65,7 @@ def ode_grow(t, p, λ_d, λ_r, δ):
 def ode_kill_single(t, p, λ_d, λ_r, δ):
     p[p < 0] = 0                                    # avoid negative populations
 
-    dp_dt = np.zeros_like(n)
+    dp_dt = np.zeros_like(p)
     dp_dt[0] = -p[0] / λ_d
     dp_dt[1] =  p[0] / λ_d + p[2] / λ_r - p[1] * (γ + δ)
     dp_dt[2] = -p[2] / λ_r + p[1] * δ
@@ -76,7 +76,7 @@ def ode_kill_single(t, p, λ_d, λ_r, δ):
 def ode_kill(t, p, λ_d, λ_r, δ):
     p[p < 0] = 0                                    # avoid negative populations
 
-    dp_dt = np.zeros_like(n)
+    dp_dt = np.zeros_like(p)
     dp_dt[0:2] = -p[0:2] / λ_d
     dp_dt[2:4] =  p[0:2] / λ_d + p[4:6] / λ_r - p[2:4] * (γ + δ)
     dp_dt[4:6] = -p[4:6] / λ_r + p[2:4] * δ

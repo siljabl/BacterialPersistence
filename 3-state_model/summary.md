@@ -80,3 +80,8 @@ In progess
 ![Optimal parameters for $T_{AB}=12$](figs/single_optimal/optimal_heatmap_Tab_12_rescaled.png)
 
 ![Competition with $p=0.1$ for the first 1000 cycles, then $p=0.0$ for the rest.](check_plot_p_0.1.png)
+
+## Todo
+- Replace figures
+- Run mutation
+- Check weird thing?
