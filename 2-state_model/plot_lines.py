@@ -47,14 +47,14 @@ for index in val_index:
 		lag_opt[i] = np.loadtxt(data_path + 'high_resolution/optimal_lag-'+ time)[index]
 		del_opt[i] = np.loadtxt(data_path + 'high_resolution/optimal_delta-' + time)[index]
 		# lag_comp[i] = np.loadtxt(data_path + 'competition_two_species/competition_lag-' + time)[:, index]
-		# del_comp[i] = np.loadtxt(data_path + 'competition_two_species/competition_lagdelta-' + time)[:, index]
+		# del_comp[i] = np.loadtxt(data_path + 'competition_two_species/competition_delta-' + time)[:, index]
 		color = ['dodgerblue', 'blue', 'black']
 	       
 	else:
 		lag_opt[i] = np.loadtxt(data_path + 'high_resolution/optimal_lag-'+ time)[:,index]
 		del_opt[i] = np.loadtxt(data_path + 'high_resolution/optimal_delta-' + time)[:,index]
 		# lag_comp[i] = np.loadtxt(data_path + 'competition_two_species/competition_lag-' + time)[index]
-		# del_comp[i] = np.loadtxt(data_path + 'competition_two_species/competition_lagdelta-' + time)[index]
+		# del_comp[i] = np.loadtxt(data_path + 'competition_two_species/competition_delta-' + time)[index]
 		color = ['orange', 'red', 'maroon', 'blue']
 
 	i += 1

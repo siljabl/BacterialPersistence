@@ -24,7 +24,7 @@ iS = 6
 
 p = 0.6
 r_arr = [0, 1, 1, 0, 1]
-bac_args=[np.array([T, λ_min]), np.array([λ_min, 9]), np.array([0, 0.01])]
+bac_args=[np.array([T, λ_min]), np.array([λ_min, 3]), np.array([0, 0.04])]
 
 
 popu_0 = [f*S0, f*S0, 0, 0, 0, 0, S0]
@@ -84,17 +84,17 @@ time = np.concatenate(tot_time)
 mpl.rcParams["font.family"] = "serif"
 mpl.rcParams["font.size"] = "12"
 
-fig, ax = plt.subplots(1, 1, figsize=(6.5, 2.8))
+fig, ax = plt.subplots(1, 1, figsize=(6.75, 2.5))
 ax.fill_between(time, S, 0, color="lightseagreen", alpha=0.3, label="substrate")
 
-ax.plot(time, species1, lw=2, color="firebrick", label=fr"$(\lambda_d, \lambda_r, \delta) = ({bac_args[0][0]:2.0f}, {bac_args[1][0]:2.0f}, {bac_args[2][0]:2.0f})$")
-ax.plot(time, species2, lw=2, color="royalblue", label=rf"$(\lambda_d, \lambda_r, \delta) = ({bac_args[0][1]:2.0f}, {bac_args[1][1]:2.0f}, {bac_args[2][1]:2.2f})$")
+ax.plot(time, species1, lw=2, color="firebrick", label="species 1")
+ax.plot(time, species2, lw=2, color="royalblue", label="species 2")
 
 ax.set(xlabel="Time", ylabel="log(Population)")
-ax.set(yscale='log',  ylim=[10**(-2), 10**10])
+ax.set(yscale='log',  ylim=[10**(0), 10**10])
 
-fig.tight_layout(rect=[0, 0.13, 1, 1])
-ax.legend(loc='upper center', bbox_to_anchor=(0.4335, -0.3), ncol=3, fancybox=True, shadow=False)
+fig.tight_layout(rect=[0, 0.12, 1, 1])
+ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.35), ncol=3, fancybox=True, shadow=False)
 fig.savefig("figs/example_3state.png")
 
 # Chose illustrative bacterial parameters
