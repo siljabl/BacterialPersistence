@@ -2,11 +2,6 @@
 # data and competitor
 import sys
 import numpy as np
-<<<<<<< HEAD
-#import matplotlib as mpl
-#import matplotlib.pyplot as plt
-=======
->>>>>>> ad7101d (prepared main_competition to run on server)
 import time
 
 sys.path.append("src")
@@ -14,17 +9,6 @@ from model_equations import a_b, ap_bp, lag_min, delta_max
 from simulation_functions import run_competition_in_parallel
 
 np.random.seed(18)
-<<<<<<< HEAD
-
-#font = {'family': 'Times New Roman',
-#        'weight': 'normal',
-#        'size': 20}
-#mpl.rc('font', **font)
-
-#lag_cmap = mpl.cm.get_cmap('viridis')
-#del_cmap = mpl.cm.get_cmap('plasma')
-=======
->>>>>>> ad7101d (prepared main_competition to run on server)
 constant_index = {'T0':0, 'Tab':1}
 
 
