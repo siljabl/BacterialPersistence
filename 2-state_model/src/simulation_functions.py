@@ -7,8 +7,6 @@ from model_equations import a_b, ap_bp
 from model_equations import analytical_population, analytical_growth, analytical_decay
 from model_equations import n0, S0, f, n_min
 
-import matplotlib.pyplot as plt
-
 
 ####################
 ## Single species ##
@@ -288,12 +286,5 @@ def run_competition_in_parallel(bac_args, ab_args, sim_args):
     S_opt   = np.concatenate([results[:, :, 0, i] for i in idx_sorted])
     lag_opt = np.concatenate([results[:, :, 1, i] for i in idx_sorted])
     del_opt = np.concatenate([results[:, :, 2, i] for i in idx_sorted])
-
-    # Verifying that domain decomposition works
-    # fig, ax = plt.subplots(cores, 1, figsize=(12, 12), sharex=True)
-    # for i in range(cores):
-    #         ax[cores - 1 - i].imshow(results[:, :, 1, i], vmax=np.max(results[:,:,1]), origin='lower')
-    # fig.show()
-    # fig.savefig("figs/" + path + "/decomposition_check.png")
 
     return S_opt, lag_opt, del_opt
