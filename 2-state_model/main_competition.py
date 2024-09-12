@@ -22,10 +22,6 @@ t_res   = 10                             # resolution in time array
 tot_cycles  = 10_000
 repetitions = 1                        # number of repetitions for ensemble average
 
-# data = 'new'                                # 'new' - generate and plot new data. 'old' plot old data
-# save_fig = False
-# save_data = False
-
 
 
 ###########################
