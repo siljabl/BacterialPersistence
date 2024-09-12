@@ -2,8 +2,8 @@
 # data and competitor
 import sys
 import numpy as np
-import matplotlib as mpl
-import matplotlib.pyplot as plt
+#import matplotlib as mpl
+#import matplotlib.pyplot as plt
 import time
 
 sys.path.append("src")
@@ -12,10 +12,10 @@ from simulation_functions import run_competition_in_parallel
 
 np.random.seed(18)
 
-font = {'family': 'Times New Roman',
-        'weight': 'normal',
-        'size': 20}
-mpl.rc('font', **font)
+#font = {'family': 'Times New Roman',
+#        'weight': 'normal',
+#        'size': 20}
+#mpl.rc('font', **font)
 
 #lag_cmap = mpl.cm.get_cmap('viridis')
 #del_cmap = mpl.cm.get_cmap('plasma')
@@ -29,7 +29,7 @@ constant_index = {'T0':0, 'Tab':1}
 bac_res = 100                          # resolution in bacterial parameters
 ab_res  = 100                           # resolution in antibiotic parameters
 t_res   = 10                             # resolution in time array
-tot_cycles  = 20 #10_000
+tot_cycles  = 10_000
 repetitions = 1                        # number of repetitions for ensemble average
 
 # data = 'new'                                # 'new' - generate and plot new data. 'old' plot old data
