@@ -104,14 +104,14 @@ def Ts_approximation(t, n_t0, a, b):
         g_t = d_t0 * a * b * (exp_bt - exp_at) / (a + b) + \
               g_t0 * (b * (1 + a) * exp_bt + a * (1 - b) * exp_at) / (a + b)  	# size of growing population
         S = S_0 - (g_t - g_t0).sum(axis=len(np.shape(g_t)) - 2 - 1)             # amount of substrate
-        print("S:", np.shape(S))
+        #print("S:", np.shape(S))
 
         # Finding upper and lower limit on ts
         idx = np.where(np.diff(np.sign(S), axis=0) < 0)             # identify indices where S changes sign
-        print("diff:", np.diff(np.sign(S), axis=0).shape)
-        print("idx:", np.shape(idx))
+        #print("diff:", np.diff(np.sign(S), axis=0).shape)
+        #print("idx:", np.shape(idx))
         idx_sorted = np.lexsort((idx[2], idx[1]))                   # sorting indices
-        print("idx_sorted:", np.shape(idx_sorted))
+        #print("idx_sorted:", np.shape(idx_sorted))
 
         Ts_lowlim = t[idx[0]]                                        # indentifying corresponding time
         Ts_lowlim = Ts_lowlim[idx_sorted].reshape(form) + t_rand     # adding offset
@@ -143,12 +143,12 @@ def optimal_parameters_from_data(bac_args, ab_args):
 
     lag, delta, a, b, ap, bp = bac_args
     p, T0, Tab = ab_args
-    ab_res = len(np.loadtxt("../../../data/model2/low_resolution/optimal_lag-T0" + str(int(T0))))
+    ab_res = len(np.loadtxt("data/low_resolution/optimal_lag-T0" + str(int(T0))))
     ip = int(p * (ab_res-1))
     it = int(Tab * (ab_res-1) / 24)
 
-    lag[0] = np.loadtxt("../../../data/model2/low_resolution/optimal_lag-T0" + str(int(T0)))[ip, it]
-    delta[0] = np.loadtxt("../../../data/model2/low_resolution/optimal_delta-T0" + str(int(T0)))[ip, it]
+    lag[0] = np.loadtxt("data/low_resolution/optimal_lag-T0" + str(int(T0)))[ip, it]
+    delta[0] = np.loadtxt("data/low_resolution/optimal_delta-T0" + str(int(T0)))[ip, it]
 
     # Transforming to a-b scheme
     a[0], b[0] = a_b(lag[0], delta[0])
@@ -247,8 +247,8 @@ def looping_through_antibiotic_parameters(bac_args, ab_args, sim_args):
             opt_params[ip, it], prob_ext = run_competition(bac_args, ab_args, sim_args)[0:2]
             if save_data:
                 config = str(int(10*p)*10) + "-T0" + str(int(T0[it])) + "-Tab" + str(int(Tab[it]))
-                np.savetxt("../../../data/model2/extinction_frequency/optimal_extinction_prob-p" + config, prob_ext[0])
-                np.savetxt("../../../data/model2/extinction_frequency/competitor_extinction_prob-p" + config, prob_ext[1])
+                np.savetxt("data/extinction_frequency/optimal_extinction_prob-p" + config, prob_ext[0])
+                np.savetxt("data/extinction_frequency/competitor_extinction_prob-p" + config, prob_ext[1])
 
             if it % 10 == 0 and 100 * p % 10 == 0:
                 print(100 * np.round((it + 10) / ab_res, 2), "% of p = " + str(np.round(p, 2)))  # print progression
@@ -285,7 +285,7 @@ def run_competition_in_parallel(bac_args, ab_args, sim_args):
 
     # Assemble domain
     idx_sorted = np.argsort(domain_order)
-    S_opt = np.concatenate([results[:, :, 0, i] for i in idx_sorted])
+    S_opt   = np.concatenate([results[:, :, 0, i] for i in idx_sorted])
     lag_opt = np.concatenate([results[:, :, 1, i] for i in idx_sorted])
     del_opt = np.concatenate([results[:, :, 2, i] for i in idx_sorted])
 

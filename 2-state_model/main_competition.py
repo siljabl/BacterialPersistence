@@ -1,10 +1,12 @@
 # Computing consumption fractions from competition between species with optimal parameters from 'main_single_species.py'
 # data and competitor
+import sys
 import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import time
 
+sys.path.append("src")
 from model_equations import a_b, ap_bp, lag_min, delta_max
 from simulation_functions import run_competition_in_parallel
 
@@ -24,15 +26,15 @@ constant_index = {'T0':0, 'Tab':1}
 ###########################
 ## Simulation parameters ##
 ###########################
-bac_res = 12                           # resolution in bacterial parameters
-ab_res = 11                            # resolution in antibiotic parameters
-t_res = 10                                  # resolution in time array
-tot_cycles = 20
-repetitions = 1                             # number of repetitions for ensemble average
+bac_res = 100                          # resolution in bacterial parameters
+ab_res  = 100                           # resolution in antibiotic parameters
+t_res   = 10                             # resolution in time array
+tot_cycles  = 20 #10_000
+repetitions = 1                        # number of repetitions for ensemble average
 
-data = 'new'                                # 'new' - generate and plot new data. 'old' plot old data
-save_fig = False
-save_data = False
+# data = 'new'                                # 'new' - generate and plot new data. 'old' plot old data
+# save_fig = False
+# save_data = False
 
 
 
@@ -40,8 +42,8 @@ save_data = False
 ## Antibiotic parameters ##
 ###########################
 # for chosing which time parameter to keep constant.
-ic = constant_index['Tab']                      # 'T0' or 'Tab'
-T_const = 8                                     # value of the constant parameter
+ic = constant_index['T0']                       # 'T0' or 'Tab'
+T_const = 5                                     # value of the constant parameter
 
 # defining parameter arrays
 T_max = [12, 24]                                # upper bounds on meningful values for T0 and Tab
@@ -76,63 +78,62 @@ ap, bp = ap_bp(lag, delta)
 ########################
 ## Running Simulation ##
 ########################
-if data == 'new':
-    tic = time.time()
-    bac_args = [lag, delta, a, b, ap, bp]
-    ab_args = [p_arr, T0, Tab]
-    sim_args = [ab_res, bac_res, t_res, tot_cycles, repetitions, save_data]
+# if data == 'new':
+tic = time.time()
+bac_args = [lag, delta, a, b, ap, bp]
+ab_args = [p_arr, T0, Tab]
+sim_args = [ab_res, bac_res, t_res, tot_cycles, repetitions, False]
 
-    if __name__ == '__main__':
-        S_frac, lag_opt, del_opt = run_competition_in_parallel(bac_args, ab_args, sim_args)
+if __name__ == '__main__':
+    S_frac, lag_opt, del_opt = run_competition_in_parallel(bac_args, ab_args, sim_args)
 
-    # saving
-    if save_data:
-        np.savetxt("../../../data/model2/competition_Sfrac-"+T_labels[ic]+str(T_const), S_frac)
-        np.savetxt("../../../data/model2/competition_lag-"+T_labels[ic]+str(T_const), lag_opt)
-        np.savetxt("../../../data/model2/competition_delta-"+T_labels[ic]+str(T_const), del_opt)
+# saving
+# if save_data:
+np.savetxt(f"data/competition_two_species/competition_Sfrac-{T_labels[ic]}{T_const}.txt", S_frac)
+np.savetxt(f"data/competition_two_species/competition_lag-{T_labels[ic]}{T_const}.txt", lag_opt)
+np.savetxt(f"data/competition_two_species/competition_delta-{T_labels[ic]}{T_const}.txt", del_opt)
 
-    toc = time.time()
-    print(f'\nTime: {(toc - tic) / 3600}h\n')
-
-
-###################
-## Plotting data ##
-###################
-if data == 'old':
-    S_frac = np.loadtxt('../../../data/model2/competition_Sfrac-'+T_labels[ic]+str(T_const))[:,:-1]
-    lag_opt = np.loadtxt('../../../data/model2/competition_lag-'+T_labels[ic]+str(T_const))[:,:-1]
-    del_opt = np.loadtxt('../../../data/model2/competition_delta-'+T_labels[ic]+str(T_const))[:,:-1]
+toc = time.time()
+print(f'\nTime: {(toc - tic) / 3600}h\n')
 
 
-T = np.outer(np.ones(ab_res), T0) + np.outer(np.ones(ab_res), Tab)
-T[0, 0] = 1
-time_labels = [r'$T_0$', r'$T_{AB}$']
-title = time_labels[ic] + ' = ' + str(T_const)
+# ###################
+# ## Plotting data ##
+# ###################
+# if data == 'old':
+#     S_frac = np.loadtxt('../../../data/model2/competition_Sfrac-'+T_labels[ic]+str(T_const))[:,:-1]
+#     lag_opt = np.loadtxt('../../../data/model2/competition_lag-'+T_labels[ic]+str(T_const))[:,:-1]
+#     del_opt = np.loadtxt('../../../data/model2/competition_delta-'+T_labels[ic]+str(T_const))[:,:-1]
 
-fig, ax = plt.subplots(1, 2, figsize=(15, 5.5), sharey=True)
-# fig.suptitle(title)
 
-# plotting lag time
-ax[0].set(xlabel=time_labels[1-ic] + r'$~[h]$', ylabel=r"$p$")#, title=r"$\lambda^*$")
-im0 = ax[0].imshow(lag_opt / T, origin="lower", cmap=lag_cmap, aspect="auto", vmin=0, extent=[0, T_arr.max(), 0, 1])
-cbar = fig.colorbar(im0, ax=ax[0], aspect=20, anchor=(-.1, 0.5))
-cbar.set_label(r"$\lambda^* / ~T$", rotation=0, labelpad=30)
+# T = np.outer(np.ones(ab_res), T0) + np.outer(np.ones(ab_res), Tab)
+# T[0, 0] = 1
+# time_labels = [r'$T_0$', r'$T_{AB}$']
+# title = time_labels[ic] + ' = ' + str(T_const)
 
-# plotting delta
-ax[1].set(xlabel=time_labels[1-ic] + r'$~[h]$', ylabel=r"$p$")#, title=r"$\delta^*$")
-im1 = ax[1].imshow(del_opt, origin="lower", cmap=del_cmap, aspect="auto", vmin=0, vmax=0.075, extent=[0, T_arr.max(), 0, 1])
-cbar = fig.colorbar(im1, ax=ax[1], aspect=20, anchor=(-.1, 0.5))
-cbar.set_label(r"$\delta^* [h^{-1}]$", rotation=0, labelpad=50)
+# fig, ax = plt.subplots(1, 2, figsize=(15, 5.5), sharey=True)
+# # fig.suptitle(title)
 
-# ax[2].set(xlabel=time_labels[1-ic] + r'$~[h]$', ylabel=r"$p$")#, title="Consumption fraction")
-# im2 = ax[2].imshow(S_frac, origin="lower", aspect="auto", extent=[0, max(T_arr), 0, 1])
-# cbar = fig.colorbar(im2, ax=ax[2], aspect=20, anchor=(-.1, 0.5))
-# cbar.set_label("Consumption fraction", rotation=0, labelpad=50)
+# # plotting lag time
+# ax[0].set(xlabel=time_labels[1-ic] + r'$~[h]$', ylabel=r"$p$")#, title=r"$\lambda^*$")
+# im0 = ax[0].imshow(lag_opt / T, origin="lower", cmap=lag_cmap, aspect="auto", vmin=0, extent=[0, T_arr.max(), 0, 1])
+# cbar = fig.colorbar(im0, ax=ax[0], aspect=20, anchor=(-.1, 0.5))
+# cbar.set_label(r"$\lambda^* / ~T$", rotation=0, labelpad=30)
 
-fig.tight_layout()
-fig.show()
+# # plotting delta
+# ax[1].set(xlabel=time_labels[1-ic] + r'$~[h]$', ylabel=r"$p$")#, title=r"$\delta^*$")
+# im1 = ax[1].imshow(del_opt, origin="lower", cmap=del_cmap, aspect="auto", vmin=0, vmax=0.075, extent=[0, T_arr.max(), 0, 1])
+# cbar = fig.colorbar(im1, ax=ax[1], aspect=20, anchor=(-.1, 0.5))
+# cbar.set_label(r"$\delta^* [h^{-1}]$", rotation=0, labelpad=50)
 
-if save_fig:
-    fig.savefig("../../../figures/model2/competitor_parameters-"+T_labels[ic]+str(T_const)+".png", dpi=100)
+# # ax[2].set(xlabel=time_labels[1-ic] + r'$~[h]$', ylabel=r"$p$")#, title="Consumption fraction")
+# # im2 = ax[2].imshow(S_frac, origin="lower", aspect="auto", extent=[0, max(T_arr), 0, 1])
+# # cbar = fig.colorbar(im2, ax=ax[2], aspect=20, anchor=(-.1, 0.5))
+# # cbar.set_label("Consumption fraction", rotation=0, labelpad=50)
 
-3
+# fig.tight_layout()
+# fig.show()
+
+# if save_fig:
+#     fig.savefig("../../../figures/model2/competitor_parameters-"+T_labels[ic]+str(T_const)+".png", dpi=100)
+

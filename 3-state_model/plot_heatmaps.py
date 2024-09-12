@@ -38,10 +38,10 @@ fig, ax = plt.subplots(2, 3, figsize=(6.75, 4.5), sharey=True)
 # fig.suptitle(title)
 
 # plotting lag
-ax[0,0].set(xlabel=r'$T_{AB}$', title=r"$\lambda^*_d / T$", ylabel=r"$p$")
-ax[0,1].set(xlabel=r'$T_{AB}$', title=r"$\lambda^*_r / T$")
+ax[0,0].set(xlabel=r'$T_{AB}$', title=r"$\lambda^*_d / ~T$", ylabel=r"$p$")
+ax[0,1].set(xlabel=r'$T_{AB}$', title=r"$\lambda^*_r / ~T$")
 ax[0,2].set(xlabel=r'$T_{AB}$', title=r"$\delta^*$")
-ax[1,0].set(xlabel=r'$T_{0}$',  title=r"$\lambda^*_d / T$", ylabel=r"$p$")
+ax[1,0].set(xlabel=r'$T_{0}$',  title=r"$\lambda^*_d / ~T$", ylabel=r"$p$")
 ax[1,1].set(xlabel=r'$T_{0}$',  title=r"$\lambda^*_r / T$")
 ax[1,2].set(xlabel=r'$T_{0}$',  title=r"$\delta^*$")
 
