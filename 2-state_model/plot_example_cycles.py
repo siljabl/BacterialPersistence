@@ -9,6 +9,11 @@ sys.path.append("src")
 from model_equations import S0, f, lag_min
 from model_equations import ode_grow, ode_kill
 
+#mpl.rcParams["text.usetex"] = True
+#mpl.rcParams["font.family"] = "serif"
+mpl.rcParams["font.size"] = "12"
+
+
 parser = argparse.ArgumentParser(description='Competition between N species for tot_cycles cycles.')
 parser.add_argument('T0',  type=float, help='application time of antibiotics')
 parser.add_argument('Tab', type=float, help='duration of antibiotics')
@@ -80,22 +85,16 @@ time = np.concatenate(tot_time)
 
 
 ##### PLOTTING #####
-#mpl.rcParams["text.usetex"] = True
-mpl.rcParams["font.family"] = "serif"
-mpl.rcParams["font.size"] = "12"
-
 fig, ax = plt.subplots(1, 1, figsize=(6.75, 2.5))
 ax.fill_between(time, S, 0, color="lightseagreen", alpha=0.3, label="substrate")
 
 ax.plot(time, species1, lw=2, color="firebrick", label="species 1")
 ax.plot(time, species2, lw=2, color="royalblue", label="species 2")
 
-ax.set(xlabel="Time", ylabel="log(Population)")
+ax.set(xlabel="Time", ylabel="log[Population]")
 ax.set(yscale='log',  ylim=[10**(0), 10**10])
 
 fig.tight_layout(rect=[0, 0.12, 1, 1])
 ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.35), ncol=3, fancybox=True, shadow=False)
 fig.savefig("figs/example_2state.png")
 
-# Chose illustrative bacterial parameters
-# match size with text

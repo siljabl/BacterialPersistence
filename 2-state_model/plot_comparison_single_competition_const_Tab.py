@@ -26,13 +26,13 @@ T0_comp  = idx_comp * T0_max / ab_res_comp
 T = Tab + T0_opt
 
 for i in range(n_plot):
-	print(idx_opt,  np.linspace(0,12,ab_res_opt)[idx_opt])
-	print(idx_comp, np.linspace(0,12,ab_res_comp)[idx_comp])
+	# print(idx_opt,  np.linspace(0,12,ab_res_opt)[idx_opt])
+	# print(idx_comp, np.linspace(0,12,ab_res_comp)[idx_comp])
       
-	lag_opt[i]  = np.loadtxt('data/high_resolution/optimal_lag-Tab10')[:,idx_opt[i]]
-	del_opt[i]  = np.loadtxt('data/high_resolution/optimal_delta-Tab10')[:,idx_opt[i]]
-	lag_comp[i] = np.loadtxt('data/competition_two_species/competition_lag-Tab10')[:,idx_comp[i]]
-	del_comp[i] = np.loadtxt('data/competition_two_species/competition_delta-Tab10')[:,idx_comp[i]]
+	lag_opt[i]  = np.loadtxt(f'data/high_resolution/optimal_lag-Tab{Tab}.txt')[:,idx_opt[i]]
+	del_opt[i]  = np.loadtxt(f'data/high_resolution/optimal_delta-Tab{Tab}.txt')[:,idx_opt[i]]
+	lag_comp[i] = np.loadtxt(f'data/competition_two_species/competition_lag-Tab{Tab}.txt')[:,idx_comp[i]]
+	del_comp[i] = np.loadtxt(f'data/competition_two_species/competition_delta-Tab{Tab}.txt')[:,idx_comp[i]]
 	
 color = color = ['dodgerblue', 'blue', 'black']	       
 x_opt  = np.linspace(0, 1, ab_res_opt)
@@ -68,10 +68,10 @@ for i in range(n_plot):
     ax[1].plot(x_comp[after],  del_comp[i][after],  '.', c=color[i], alpha=0.5)
 
 
-ax[0].set(xlabel=r"$p$", title=r"$\lambda^* / ~T$")
-ax[1].set(xlabel=r"$p$", title=r"$\delta^*$")
+ax[0].set(xlabel=r"$p$", title=r"$\lambda^{\star} / ~T$")
+ax[1].set(xlabel=r"$p$", title=r"$\delta^{\star}$")
 
 fig.tight_layout(rect=[0, 0, 0.85, 1])
 fig.legend(loc='upper center', bbox_to_anchor=(0.91, 0.75), ncol=1, fancybox=True, shadow=False, handletextpad=0)
-fig.savefig("compare_competition_Tab_10.png")
+fig.savefig(f"figs/compare_competition_Tab_{Tab}.png")
 

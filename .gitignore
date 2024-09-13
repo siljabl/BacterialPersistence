@@ -1,4 +1,20 @@
-todo
+# temporary files
+paper_notes
+3-state_model/check_p01.py
+3-state_model/check_plot_p_0.0.png
+3-state_model/check_plot_p_0.1.png
+
+3-state_model/plot_heatmap_constant_T0.py
+3-state_model/plot_heatmap_constant_Tab.py
+3-state_model/summary.md
+3-state_model/summary.pdf
+3-state_model/plot_evolution_control.py
+
 3-state_model/figs/*
 3-state_model/data/*/*.pkl
+3-state_model/summary.md
+3-state_model/summary.pdf
 
+2-state_model/visualisation_functions.py
+2-state_model/plot_lines.py
+2-state_model/data/low_resolution
