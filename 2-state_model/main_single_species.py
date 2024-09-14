@@ -18,7 +18,7 @@ resolution = 'high'                              # resolution of antibiotic para
 
 if resolution == 'low': ab_res = 26 #101               # for generating data used in competition simulations
 elif resolution == 'high': ab_res = 400            # for creating high resolution plots
-bac_res = 25 #400                                   # resolution in bacterial parameters
+bac_res = 400                                   # resolution in bacterial parameters
 
 
 
@@ -26,8 +26,8 @@ bac_res = 25 #400                                   # resolution in bacterial pa
 ## Antibiotic parameters ##
 ###########################
 # for chosing which time parameter to keep constant.
-ic = constant_index['T0']                      # 'T0' or 'Tab'
-T_const = 5                                    # value of the constant parameter
+ic = constant_index['Tab']                      # 'T0' or 'Tab'
+T_const = 10                                    # value of the constant parameter
 
 # defining parameter arrays
 T_max = [12, 24]                                # upper bounds on meningful values for T0 and Tab
@@ -65,7 +65,7 @@ toc = time.time()
 print(f'Time: {toc - tic}s')
 
 # saving
-np.savetxt(f"data/{resolution}_resolution/optimal_lag-{T_labels[ic]}{T_const}.txt", lag_opt)
-np.savetxt(f"data/{resolution}_resolution/optimal_delta-{T_labels[ic]}{T_const}.txt", del_opt)
-np.savetxt(f"data/{resolution}_resolution/optimal_fitness-{T_labels[ic]}{T_const}.txt", fitness)
+np.savetxt(f"data/half_dilution_ratio/optimal_lag-{T_labels[ic]}{T_const}.txt", lag_opt)
+np.savetxt(f"data/half_dilution_ratio/optimal_delta-{T_labels[ic]}{T_const}.txt", del_opt)
+np.savetxt(f"data/half_dilution_ratio/optimal_fitness-{T_labels[ic]}{T_const}.txt", fitness)
 

@@ -14,7 +14,7 @@ delta_max = 0.1     # upper limit on delta
 #########################
 ## External parameters ##
 #########################
-f = 10**(-6)        # dilution fraction
+f = 2*10**(-6)        # dilution fraction
 S0 = K              # initial substrate
 n0 = f * S0         # initial population
 n_min = 1           # lower threshold
