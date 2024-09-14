@@ -141,12 +141,12 @@ def optimal_parameters_from_data(bac_args, ab_args):
 
     lag, delta, a, b, ap, bp = bac_args
     p, T0, Tab = ab_args
-    ab_res = len(np.loadtxt("data/low_resolution/optimal_lag-T0" + str(int(T0))))
+    ab_res = len(np.loadtxt(f"data/low_resolution/optimal_lag-T0{int(T0)}.txt"))
     ip = int(p * (ab_res-1))
     it = int(Tab * (ab_res-1) / 24)
 
-    lag[0] = np.loadtxt("data/low_resolution/optimal_lag-T0" + str(int(T0)))[ip, it]
-    delta[0] = np.loadtxt("data/low_resolution/optimal_delta-T0" + str(int(T0)))[ip, it]
+    lag[0] = np.loadtxt(f"data/low_resolution/optimal_lag-T0{int(T0)}.txt")[ip, it]
+    delta[0] = np.loadtxt(f"data/low_resolution/optimal_delta-T0{int(T0)}.txt")[ip, it]
 
     # Transforming to a-b scheme
     a[0], b[0] = a_b(lag[0], delta[0])
