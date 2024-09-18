@@ -19,7 +19,7 @@ constant_index = {'T0':0, 'Tab':1}
 bac_res = 100                          # resolution in bacterial parameters
 ab_res  = 100                           # resolution in antibiotic parameters
 t_res   = 10                             # resolution in time array
-tot_cycles  = 10
+tot_cycles  = 1000
 repetitions = 1                        # number of repetitions for ensemble average
 
 

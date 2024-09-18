@@ -162,7 +162,7 @@ def run_competition(bac_args, ab_args, sim_args):
     p, T0, Tab = ab_args[0:3]
     _, bac_res, t_res, tot_cycles, reps, _ = sim_args
 
-    t_min, t_max = 12 - T0, 15 + (T0 + Tab)                     # time limits
+    t_min, t_max = 10 - T0, 15 + (T0 + Tab)                     # time limits
     t_arr = np.linspace(t_min, t_max, t_res)                    # time array
 
     S_frac_cycle = np.zeros([tot_cycles, 2, bac_res, bac_res])  # array for output
@@ -262,7 +262,7 @@ def run_competition_in_parallel(bac_args, ab_args, sim_args):
     ab_res, bac_res = sim_args[0:2]
 
     cores = psutil.cpu_count(logical=False)             # number of available cores
-
+    print(f'Available cores: {cores}')
     # Domain decomposition
     width = int(ab_res / cores)                         # width of subdomain
     domain_order = np.zeros(cores)                      # array for sorting domains
