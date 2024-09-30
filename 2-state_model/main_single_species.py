@@ -8,7 +8,7 @@ from model_equations import a_b, ap_bp, lag_min, delta_max
 from simulation_functions import compute_optimal_parameters, analytical_fitness
 
 constant_index = {'T0':0, 'Tab':1}
-
+folder = 'half_dilution_ratio'
 ###########################
 ## Simulation parameters ##
 ###########################
@@ -26,8 +26,8 @@ bac_res = 400                                   # resolution in bacterial parame
 ## Antibiotic parameters ##
 ###########################
 # for chosing which time parameter to keep constant.
-ic = constant_index['Tab']                      # 'T0' or 'Tab'
-T_const = 10                                    # value of the constant parameter
+ic = constant_index['T0']                      # 'T0' or 'Tab'
+T_const = 5                                    # value of the constant parameter
 
 # defining parameter arrays
 T_max = [12, 24]                                # upper bounds on meningful values for T0 and Tab
@@ -65,7 +65,7 @@ toc = time.time()
 print(f'Time: {toc - tic}s')
 
 # saving
-np.savetxt(f"data/half_dilution_ratio/optimal_lag-{T_labels[ic]}{T_const}.txt", lag_opt)
-np.savetxt(f"data/half_dilution_ratio/optimal_delta-{T_labels[ic]}{T_const}.txt", del_opt)
-np.savetxt(f"data/half_dilution_ratio/optimal_fitness-{T_labels[ic]}{T_const}.txt", fitness)
+np.savetxt(f"data/{folder}/optimal_lag-{T_labels[ic]}{T_const}.txt", lag_opt)
+np.savetxt(f"data/{folder}/optimal_delta-{T_labels[ic]}{T_const}.txt", del_opt)
+np.savetxt(f"data/{folder}/optimal_fitness-{T_labels[ic]}{T_const}.txt", fitness)
 

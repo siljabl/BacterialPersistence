@@ -10,7 +10,7 @@ lag_cmap = mpl.colormaps.get_cmap('viridis')
 del_cmap = mpl.colormaps.get_cmap('plasma')
 
 # importing data 
-folder = 'half_dilution_ratio'
+folder = 'high_resolution'
 lag_Tab = np.loadtxt(f'data/{folder}/optimal_lag-T05.txt')
 del_Tab = np.loadtxt(f'data/{folder}/optimal_delta-T05.txt')
 lag_T0  = np.loadtxt(f'data/{folder}/optimal_lag-Tab10.txt')
@@ -45,5 +45,5 @@ fig.colorbar(im11, ax=ax[1,1], aspect=20, anchor=(-.1, 0.5))
 
 # saving
 fig.tight_layout()
-fig.savefig(f"figs/2state_heatmap_half_dilution_ration.png") #, dpi=100)
+fig.savefig(f"figs/2state_heatmap.png") #, dpi=100)
 

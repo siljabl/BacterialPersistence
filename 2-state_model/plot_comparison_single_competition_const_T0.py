@@ -20,7 +20,7 @@ del_comp = np.zeros([n_plot, ab_res_comp])
 
 Tab_opt = np.array([10, 14, 18])
 idx_opt  = (Tab_opt * ab_res_opt  / Tab_max).astype(int)
-idx_comp = (Tab_opt * ab_res_comp / Tab_max).astype(int)
+idx_comp = (Tab_opt * ab_res_comp / Tab_max).astype(int)+ 6
 T0_comp  = idx_comp * Tab_max / ab_res_comp
 
 T = T0 + Tab_opt
@@ -50,14 +50,14 @@ for i in range(n_plot):
     ax[1].plot(x_opt[before], del_opt[i][before], color=color[i])
     ax[1].plot(x_opt[after],  del_opt[i][after],  color=color[i])
     
-    # before = (lag_comp[i] < 1)
-    # after  = (lag_comp[i] > 0.1)
+    before = (lag_comp[i] < 1)
+    after  = (lag_comp[i] > 0.1)
     
-    # ax[0].plot(x_comp[before], (lag_comp[i] / T[i])[before], 'o', color=color[i])
-    # ax[0].plot(x_comp[after],  (lag_comp[i] / T[i])[after], 'o', color=color[i])
+    ax[0].plot(x_comp[before], (lag_comp[i] / T[i])[before], 'o', color=color[i])
+    ax[0].plot(x_comp[after],  (lag_comp[i] / T[i])[after], 'o', color=color[i])
 
-    # ax[1].plot(x_comp[before], del_comp[i][before], 'o', color=color[i])
-    # ax[1].plot(x_comp[after],  del_comp[i][after],  'o', color=color[i])
+    ax[1].plot(x_comp[before], del_comp[i][before], 'o', color=color[i])
+    ax[1].plot(x_comp[after],  del_comp[i][after],  'o', color=color[i])
 
 ax[0].set(xlabel=r"$p$", title=r"$\lambda^{\star} / ~T$")
 ax[1].set(xlabel=r"$p$", title=r"$\delta^{\star}$")
