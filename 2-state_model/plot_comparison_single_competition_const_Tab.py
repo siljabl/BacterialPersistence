@@ -20,7 +20,7 @@ del_comp = np.zeros([n_plot, ab_res_comp])
 
 T0_opt = np.array([0, 3.7, 7])
 idx_opt  = (T0_opt * ab_res_opt  / T0_max).astype(int)
-idx_comp = (T0_opt * ab_res_comp / T0_max).astype(int) + 6
+idx_comp = (T0_opt * ab_res_comp / T0_max).astype(int) #+ 6
 T0_comp  = idx_comp * T0_max / ab_res_comp
 
 T = Tab + T0_opt
@@ -29,8 +29,8 @@ for i in range(n_plot):
 	# print(idx_opt,  np.linspace(0,12,ab_res_opt)[idx_opt])
 	# print(idx_comp, np.linspace(0,12,ab_res_comp)[idx_comp])
       
-	lag_opt[i]  = np.loadtxt(f'data/high_resolution/optimal_lag-Tab{Tab}.txt')[:,idx_opt[i]]
-	del_opt[i]  = np.loadtxt(f'data/high_resolution/optimal_delta-Tab{Tab}.txt')[:,idx_opt[i]]
+	lag_opt[i]  = np.loadtxt(f'data/half_dilution_ratio/optimal_lag-Tab{Tab}.txt')[:,idx_opt[i]]
+	del_opt[i]  = np.loadtxt(f'data/half_dilution_ratio/optimal_delta-Tab{Tab}.txt')[:,idx_opt[i]]
 	lag_comp[i] = np.loadtxt(f'data/competition_two_species/competition_lag-Tab{Tab}.txt')[:,idx_comp[i]]
 	del_comp[i] = np.loadtxt(f'data/competition_two_species/competition_delta-Tab{Tab}.txt')[:,idx_comp[i]]
 	
@@ -73,5 +73,5 @@ ax[1].set(xlabel=r"$p$", title=r"$\delta^{\star}$")
 
 fig.tight_layout(rect=[0, 0, 0.85, 1])
 fig.legend(loc='upper center', bbox_to_anchor=(0.91, 0.75), ncol=1, fancybox=True, shadow=False, handletextpad=0)
-fig.savefig(f"figs/compare_competition_Tab_{Tab}.png")
+fig.savefig(f"figs/compare_competition_Tab_{Tab}_half_dilution_ratio.png")
 
