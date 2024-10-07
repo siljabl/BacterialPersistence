@@ -7,7 +7,7 @@ mpl.rcParams["font.family"] = "serif"
 mpl.rcParams["font.size"]   = "12"
 
 ab_res_opt = 400
-ab_res_comp = 96
+ab_res_comp = 100
 n_plot = 3
 
 Tab_max = 24
@@ -66,3 +66,4 @@ ax[1].set(xlabel=r"$p$", title=r"$\delta^{\star}$")
 fig.tight_layout(rect=[0, 0, 0.85, 1])
 fig.legend(loc='upper center', bbox_to_anchor=(0.91, 0.75), ncol=1, fancybox=True, shadow=False, handletextpad=0.05)
 fig.savefig(f"figs/compare_competition_T0_{T0}.png")
+

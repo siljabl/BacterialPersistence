@@ -60,7 +60,7 @@ plot_bacterial_parameters(bac_params, folder)
 #################
 ## Plot cycles ##
 #################
-with open(f"{folder}/solve_cycles.pkl", 'rb') as file:
+with open(f"{folder}/solve_cycles_p_{p}.pkl", 'rb') as file:
     cycles = pickle.load(file)
 
 plot_cycles(cycles, bac_params, ab_params, sim_params, folder)

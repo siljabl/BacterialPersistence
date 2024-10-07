@@ -15,7 +15,7 @@ parser.add_argument('T0',  type=float, help='application time of antibiotics')
 parser.add_argument('Tab', type=float, help='duration of antibiotics')
 args = parser.parse_args()
 
-p_arr  = [0.1, 0.3, 0.5, 0.7, 0.9] #args.p
+p_arr  = [0.1] #, 0.3, 0.5, 0.7, 0.9] #args.p
 #p_arr  = [0.9, 0.7, 0.5, 0.3, 0.1] #args.p
 
 folder = args.folder
@@ -23,7 +23,7 @@ T0     = args.T0
 Tab    = args.Tab
 T      = T0 + Tab
 
-tot_cycles = 20_000
+tot_cycles = 100 #20_000
 config = read_config(folder)
 
 
@@ -33,9 +33,9 @@ fig_param, ax_param = plt.subplots(1, 3, figsize=(11,3))
 
 i = 0
 for p in p_arr:
-    λd = np.loadtxt(f"data/evolution-T0_{T0:0.0f}-Tab_{Tab:0.0f}/competition_average_λd-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt")
-    λr = np.loadtxt(f"data/evolution-T0_{T0:0.0f}-Tab_{Tab:0.0f}/competition_average_λr-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt")
-    δ  = np.loadtxt(f"data/evolution-T0_{T0:0.0f}-Tab_{Tab:0.0f}/competition_average_δ-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt")
+    λd = np.loadtxt(f"data/mutation-T0_{T0:0.0f}-Tab_{Tab:0.0f}/competition_average_λd-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt")
+    λr = np.loadtxt(f"data/mutation-T0_{T0:0.0f}-Tab_{Tab:0.0f}/competition_average_λr-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt")
+    δ  = np.loadtxt(f"data/mutation-T0_{T0:0.0f}-Tab_{Tab:0.0f}/competition_average_δ-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt")
 
     ab_params  = {'p': p, 'T0': T0, 'Tab': Tab}
     opt_params = identify_optimal_parameters_const_T0(ab_params, config, folder)
@@ -88,7 +88,7 @@ ax_param[2].legend(loc='upper center', bbox_to_anchor=(1.25, .75),
           ncol=1, fancybox=True, shadow=True)
 
 fig_param.tight_layout()
-fig_param.savefig(f"figs/competition_average/average_parameters-T0_{T0:0.0f}-T_{T:0.0f}.png")
+fig_param.savefig(f"figs/mutation_average/average_parameters-T0_{T0:0.0f}-T_{T:0.0f}.png")
 
 # fig_pop.tight_layout()
 # fig_pop.savefig(f"figs/competition_average/populations-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.png")

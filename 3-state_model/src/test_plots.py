@@ -49,8 +49,8 @@ def plot_cycles(sol_cycles, bac_params, ab_params, sim_params, folder):
         ic += 1
     
     fig.tight_layout(rect=(0,0,1,0.95))    
-    # ax[2].legend(loc='upper center', bbox_to_anchor=(0.5, 1.5),
-    #               ncol=5, fancybox=True, shadow=True)
+    ax[2].legend(loc='upper center', bbox_to_anchor=(0.5, 1.5),
+                  ncol=5, fancybox=True, shadow=True)
 
     T0 = ab_params['T0']
     T  = ab_params['T']
