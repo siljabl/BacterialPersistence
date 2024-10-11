@@ -23,13 +23,13 @@ T0     = args.T0
 Tab    = args.Tab
 T      = T0 + Tab
 
-tot_cycles = 100 #20_000
+tot_cycles = 20_000
 config = read_config(folder)
 
 
 colors = mpl.cm.jet(np.linspace(0,1,5))
 # fig_pop,   ax_pop   = plt.subplots(1, 3, figsize=(11,3))
-fig_param, ax_param = plt.subplots(1, 3, figsize=(11,3))
+fig_param, ax_param = plt.subplots(1, 3, figsize=(6.75, 2.75))
 
 i = 0
 for p in p_arr:
@@ -76,18 +76,19 @@ for p in p_arr:
 #     ax_param[i].legend()
 #     ax_pop[i].legend()
 
-ax_param[0].set(xlabel="Cycle number", ylabel="λd / T")
-ax_param[1].set(xlabel="Cycle number", ylabel="λr / T")
-ax_param[2].set(xlabel="Cycle number", ylabel="δ")
+ax_param[0].set(xlabel="Cycle number", title=r"$\langle \lambda_d \rangle ~/~ T$")
+ax_param[1].set(xlabel="Cycle number", title=r"$\langle \lambda_r \rangle ~/~ T$")
+ax_param[2].set(xlabel="Cycle number", title=r"$\langle \delta \rangle$")
 
 ax_param[0].set(ylim=[0, 1.1], yscale="linear", xscale="linear")
 ax_param[1].set(ylim=[0, 1.1], yscale="linear", xscale="linear")
 ax_param[2].set(ylim=[0, 0.1], yscale="linear", xscale="linear")
 
-ax_param[2].legend(loc='upper center', bbox_to_anchor=(1.25, .75),
-          ncol=1, fancybox=True, shadow=True)
+fig_param.tight_layout(rect=[0, 0, 1, 0.85])
+ax_param[1].legend(loc='upper center', bbox_to_anchor=(.5, 1.5),
+          ncol=5, fancybox=True, shadow=False)
 
-fig_param.tight_layout()
+
 fig_param.savefig(f"figs/mutation_average/average_parameters-T0_{T0:0.0f}-T_{T:0.0f}.png")
 
 # fig_pop.tight_layout()
