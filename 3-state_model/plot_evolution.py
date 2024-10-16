@@ -15,7 +15,7 @@ parser.add_argument('T0',  type=float, help='application time of antibiotics')
 parser.add_argument('Tab', type=float, help='duration of antibiotics')
 args = parser.parse_args()
 
-p_arr  = [0.1, 0.3] #, 0.5, 0.7, 0.9] #args.p
+p_arr  = [0.1, 0.3, 0.5, 0.7]#, 0.9] #args.p
 #p_arr  = [0.9, 0.7, 0.5, 0.3, 0.1] #args.p
 
 folder = args.folder
