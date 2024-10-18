@@ -43,8 +43,8 @@ T0_max = 12
 
 ab_params = {'p':p, 'T0':T0, 'Tab':Tab, 'T':T0+Tab, 'T0_max':T0_max}
 
-dλ = 1                  	# wake up rate from dormancy
-dδ = 0.001               	# rate of spontaneous persistence
+dλ = 0.5                  	# wake up rate from dormancy
+dδ = 0.005               	# rate of spontaneous persistence
 Ɛ = 10**(-3)
 
 ################

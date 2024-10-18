@@ -15,7 +15,7 @@ parser.add_argument('T0',  type=float, help='application time of antibiotics')
 parser.add_argument('Tab', type=float, help='duration of antibiotics')
 args = parser.parse_args()
 
-p_arr  = [0.1, 0.3, 0.5, 0.7]#, 0.9] #args.p
+p_arr  = [0.1, 0.3, 0.5, 0.7, 0.9] #args.p
 #p_arr  = [0.9, 0.7, 0.5, 0.3, 0.1] #args.p
 
 folder = args.folder
@@ -31,8 +31,9 @@ colors = mpl.cm.jet(np.linspace(0,1,5))
 # fig_pop,   ax_pop   = plt.subplots(1, 3, figsize=(11,3))
 fig_param, ax_param = plt.subplots(1, 3, figsize=(6.75, 2.75))
 
-i = 0
-for p in p_arr:
+index = [1, 0, 2, 3, 4]
+for i in index:
+    p = p_arr[i]
     λd = np.loadtxt(f"data/mutation-T0_{T0:0.0f}-Tab_{Tab:0.0f}/competition_average_λd-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt")[:tot_cycles]
     λr = np.loadtxt(f"data/mutation-T0_{T0:0.0f}-Tab_{Tab:0.0f}/competition_average_λr-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt")[:tot_cycles]
     δ  = np.loadtxt(f"data/mutation-T0_{T0:0.0f}-Tab_{Tab:0.0f}/competition_average_δ-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt")[:tot_cycles]
@@ -51,14 +52,13 @@ for p in p_arr:
     # fig_param, ax_param = plt.subplots(1, 3, figsize=(11,3))
 
     ax_param[0].plot(λd / T, c=colors[i], alpha=0.9, label=f"p={p:0.1}")
-    ax_param[1].plot(λr / T, '-', c=colors[i], alpha=0.9, label=f"p={p:0.1}")
-    ax_param[2].plot(δ,      '-', c=colors[i], alpha=0.9, label=f"p={p:0.1}")
+    ax_param[1].plot(λr / T, c=colors[i], alpha=0.9, label=f"p={p:0.1}")
+    ax_param[2].plot(δ,      c=colors[i], alpha=0.9, label=f"p={p:0.1}")
 
     ax_param[0].hlines(opt_params[0] / T, 0, tot_cycles, color=colors[i], ls="dashed")
     ax_param[1].hlines(opt_params[1] / T, 0, tot_cycles, color=colors[i], ls="dashed")
     ax_param[2].hlines(opt_params[2]    , 0, tot_cycles, color=colors[i], ls="dashed")
 
-    i += 1
 
     ###########################
     ## Antibiotic parameters ##
@@ -76,8 +76,8 @@ for p in p_arr:
 #     ax_param[i].legend()
 #     ax_pop[i].legend()
 
-ax_param[0].set(xlabel="Cycle number", title=r"$\langle \lambda_d \rangle ~/~ T$")
-ax_param[1].set(xlabel="Cycle number", title=r"$\langle \lambda_r \rangle ~/~ T$")
+ax_param[0].set(xlabel="Cycle number", title=r"$\langle \lambda \rangle ~/~ T$")
+ax_param[1].set(xlabel="Cycle number", title=r"$\langle \omega \rangle ~/~ T$")
 ax_param[2].set(xlabel="Cycle number", title=r"$\langle \delta \rangle$")
 
 ax_param[0].set(ylim=[0, 1.1], yscale="linear", xscale="linear")
@@ -89,7 +89,7 @@ ax_param[1].legend(loc='upper center', bbox_to_anchor=(.5, 1.5),
           ncol=5, fancybox=True, shadow=False)
 
 
-fig_param.savefig(f"figs/mutation_average/average_parameters-T0_{T0:0.0f}-T_{T:0.0f}.png")
+fig_param.savefig(f"figs/mutation_average/mutation_average_parameters-T0_{T0:0.0f}-T_{T:0.0f}.png")
 
 # fig_pop.tight_layout()
 # fig_pop.savefig(f"figs/competition_average/populations-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.png")
