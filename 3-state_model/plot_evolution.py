@@ -31,7 +31,7 @@ colors = mpl.cm.jet(np.linspace(0,1,5))
 # fig_pop,   ax_pop   = plt.subplots(1, 3, figsize=(11,3))
 fig_param, ax_param = plt.subplots(1, 3, figsize=(6.75, 2.75))
 
-index = [1, 0, 2, 3, 4]
+index = [0, 1, 2, 3, 4]
 for i in index:
     p = p_arr[i]
     λd = np.loadtxt(f"data/mutation-T0_{T0:0.0f}-Tab_{Tab:0.0f}/competition_average_λd-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt")[:tot_cycles]

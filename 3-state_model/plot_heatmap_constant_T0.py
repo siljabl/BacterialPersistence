@@ -42,13 +42,13 @@ fig, ax = plt.subplots(1, 3, figsize=(6.7, 2.5), sharey=True)
 # fig.suptitle(title)
 
 # plotting lag
-ax[0].set(xlabel=r'$T_{AB}$', ylabel=r"$p$", title=r"$\lambda^*_d / ~T$")
-ax[1].set(xlabel=r'$T_{AB}$', title=r"$\lambda^*_r / ~T$")
+ax[0].set(xlabel=r'$T_{AB}$', ylabel=r"$p$", title=r"$\lambda^* / ~T$")
+ax[1].set(xlabel=r'$T_{AB}$', title=r"$\omega^* / ~T$")
 ax[2].set(xlabel=r'$T_{AB}$', title=r"$\delta^*$")
 
 im0 = ax[0].imshow(λd_opt / T, origin="lower", cmap=d_cmap, aspect="auto", vmin=0, vmax=1, extent=[T_min, T_max, 0, 1])
-im1 = ax[1].imshow(λr_opt / T, origin="lower", cmap=r_cmap, aspect="auto", vmin=0, vmax=1, extent=[T_min, T_max, 0, 1])
-im2 = ax[2].imshow(δ_opt,  origin="lower", cmap=r_cmap, aspect="auto", vmin=0, extent=[T_min, T_max, 0, 1])
+im1 = ax[1].imshow(λr_opt / T, origin="lower", cmap=d_cmap, aspect="auto", vmin=0, vmax=1, extent=[T_min, T_max, 0, 1])
+im2 = ax[2].imshow(δ_opt,      origin="lower", cmap=r_cmap, aspect="auto", vmin=0, extent=[T_min, T_max, 0, 1])
 #im2 = ax[2].imshow(δ_opt,  origin="lower", norm=mpl.colors.LogNorm(vmin=10**(-6), vmax=δ_max, clip=False), cmap=δ_cmap, aspect="auto", extent=[T_arr.min(), T_arr.max(), 0, 1])
 
 # Colorbars
