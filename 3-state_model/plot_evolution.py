@@ -15,7 +15,7 @@ parser.add_argument('T0',  type=float, help='application time of antibiotics')
 parser.add_argument('Tab', type=float, help='duration of antibiotics')
 args = parser.parse_args()
 
-p_arr  = [0.1, 0.3, 0.5, 0.7, 0.9] #args.p
+p_arr  = [0.7, 0.9] #args.p
 #p_arr  = [0.9, 0.7, 0.5, 0.3, 0.1] #args.p
 
 folder = args.folder
@@ -31,7 +31,7 @@ colors = mpl.cm.jet(np.linspace(0,1,5))
 # fig_pop,   ax_pop   = plt.subplots(1, 3, figsize=(11,3))
 fig_param, ax_param = plt.subplots(1, 3, figsize=(6.75, 2.75))
 
-index = [0, 1, 2, 3, 4]
+index = [0, 1]
 for i in index:
     p = p_arr[i]
     λd = np.loadtxt(f"data/mutation-T0_{T0:0.0f}-Tab_{Tab:0.0f}/competition_average_λd-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt")[:tot_cycles]
@@ -39,8 +39,8 @@ for i in index:
     δ  = np.loadtxt(f"data/mutation-T0_{T0:0.0f}-Tab_{Tab:0.0f}/competition_average_δ-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt")[:tot_cycles]
 
     ab_params  = {'p': p, 'T0': T0, 'Tab': Tab}
-    opt_params = identify_optimal_parameters_const_T0(ab_params, config, folder)
-    #opt_params = identify_optimal_parameters_const_Tab(ab_params, config, folder)
+    #opt_params = identify_optimal_parameters_const_T0(ab_params, config, folder)
+    opt_params = identify_optimal_parameters_const_Tab(ab_params, config, folder)
 
     # p_dominant = np.loadtxt(f"data/competition_average/dominant_species-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt")
     # n_extinct  = np.loadtxt(f"data/competition_average/number_of_extinctions-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt")
@@ -85,8 +85,8 @@ ax_param[1].set(ylim=[0, 1.1], yscale="linear", xscale="linear")
 ax_param[2].set(ylim=[0, 0.1], yscale="linear", xscale="linear")
 
 fig_param.tight_layout(rect=[0, 0, 1, 0.85])
-ax_param[1].legend(loc='upper center', bbox_to_anchor=(.5, 1.5),
-          ncol=5, fancybox=True, shadow=False)
+# ax_param[1].legend(loc='upper center', bbox_to_anchor=(.5, 1.5),
+#           ncol=5, fancybox=True, shadow=False)
 
 
 fig_param.savefig(f"figs/mutation_average/mutation_average_parameters-T0_{T0:0.0f}-T_{T:0.0f}.png")
