@@ -32,8 +32,8 @@ T0_arr  = np.linspace(0, 12, ab_res)
 T_Tab = 5  + np.outer(np.ones_like(Tab_arr), Tab_arr)
 T_T0  = 10 + np.outer(np.ones_like(T0_arr),  T0_arr)
 
-# setting up figure
-fig, ax = plt.subplots(2, 3, figsize=(6.75, 4.5), sharey=True)
+# setting up figure,
+fig, ax = plt.subplots(2, 3, figsize=(6.75, 4.5), sharey=True)#, layout='constrained')
 # title = rf'$T_{0}$ = {T0}'
 # fig.suptitle(title)
 
@@ -46,10 +46,10 @@ ax[1,1].set(xlabel=r'$T_{0}$',  title=r"$\omega^{\star} / T$")
 ax[1,2].set(xlabel=r'$T_{0}$',  title=r"$\delta^{\star}$")
 
 im00 = ax[0,0].imshow(λd_Tab / T_Tab, origin="lower", cmap=d_cmap, aspect="auto", vmin=0, extent=[0, 24, 0, 1])
-im01 = ax[0,1].imshow(λr_Tab / T_Tab, origin="lower", cmap=r_cmap, aspect="auto", vmin=0, extent=[0, 24, 0, 1])
+im01 = ax[0,1].imshow(λr_Tab / T_Tab, origin="lower", cmap=d_cmap, aspect="auto", vmin=0, extent=[0, 24, 0, 1])
 im02 = ax[0,2].imshow(δ_Tab,          origin="lower", cmap=r_cmap, aspect="auto", vmin=0, extent=[0, 24, 0, 1])
 im10 = ax[1,0].imshow(λd_T0 / T_T0,   origin="lower", cmap=d_cmap, aspect="auto", vmin=0, extent=[0, 12, 0, 1])
-im11 = ax[1,1].imshow(λr_T0 / T_T0,   origin="lower", cmap=r_cmap, aspect="auto", vmin=0, extent=[0, 12, 0, 1])
+im11 = ax[1,1].imshow(λr_T0 / T_T0,   origin="lower", cmap=d_cmap, aspect="auto", vmin=0, extent=[0, 12, 0, 1])
 im12 = ax[1,2].imshow(δ_T0,           origin="lower", cmap=r_cmap, aspect="auto", vmin=0, extent=[0, 12, 0, 1])
 
 # Colorbars
