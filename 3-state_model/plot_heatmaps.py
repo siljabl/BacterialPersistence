@@ -7,7 +7,7 @@ sys.path.append("src")
 from config_functions import read_config
 
 # Plot parameters
-mpl.rcParams["font.family"] = "serif"
+#mpl.rcParams["font.family"] = "serif"
 mpl.rcParams["font.size"]   = "12"
 
 ab_res = 41

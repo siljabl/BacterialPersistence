@@ -9,7 +9,6 @@ sys.path.append("src")
 from model_equations import S0, f, lag_min
 from model_equations import ode_grow, ode_kill
 
-#mpl.rcParams["text.usetex"] = True
 #mpl.rcParams["font.family"] = "serif"
 mpl.rcParams["font.size"] = "12"
 

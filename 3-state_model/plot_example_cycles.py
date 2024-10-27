@@ -9,6 +9,9 @@ sys.path.append("src")
 from differential_equations import S0, f, λ_min
 from differential_equations import ode_grow, ode_kill
 
+#mpl.rcParams["font.family"] = "serif"
+mpl.rcParams["font.size"]   = "12"
+
 parser = argparse.ArgumentParser(description='Competition between N species for tot_cycles cycles.')
 parser.add_argument('T0',  type=float, help='application time of antibiotics')
 parser.add_argument('Tab', type=float, help='duration of antibiotics')
