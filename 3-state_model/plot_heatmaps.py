@@ -29,8 +29,9 @@ r_cmap = mpl.colormaps['plasma']
 
 Tab_arr = np.linspace(0, 24, ab_res)
 T0_arr  = np.linspace(0, 12, ab_res)
-T_Tab = 5  + np.outer(np.ones_like(Tab_arr), Tab_arr)
-T_T0  = 10 + np.outer(np.ones_like(T0_arr),  T0_arr)
+T_Tab = np.outer(np.ones_like(Tab_arr), Tab_arr)
+T_T0  = 12 + np.outer(np.ones_like(T0_arr),  T0_arr)
+T_Tab[:,0] = 1
 
 # setting up figure,
 fig, ax = plt.subplots(2, 3, figsize=(6.75, 4.5), sharey=True)#, layout='constrained')
