@@ -3,7 +3,7 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 
 # Plot parameters
-mpl.rcParams["font.family"] = "serif"
+#mpl.rcParams["font.family"] = "serif"
 mpl.rcParams["font.size"]   = "12"
 
 ab_res_opt = 400
