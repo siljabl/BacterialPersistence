@@ -20,8 +20,8 @@ args = parser.parse_args()
 
 
 tot_cycles = 10_000
-p_arr = [0.3, 0.5, 0.7, 0.9] #args.p
-index = [0, 1, 2, 3]
+p_arr = [0.1, 0.3, 0.5, 0.7, 0.9] #args.p
+index = [0, 1, 2, 3, 4]
 
 
 folder = args.folder
