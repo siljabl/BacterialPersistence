@@ -19,8 +19,8 @@ parser.add_argument('folder',          type=str, help="Folder for saving data.")
 parser.add_argument('Tab',             type=int, help='Time at which antibiotics are applied.')
 parser.add_argument('T0_max',          type=int, help='Upper limit on antibiotic duration.')
 parser.add_argument('-T0_min',         type=int, help='Lower limit on antibiotic duration.', nargs='?', default=0)
-parser.add_argument('-antibiotic_res', type=int, help='resolution on antibiotic parameters', nargs='?', default=11)
-parser.add_argument('-bacterial_res',  type=int, help='resolution on bacterial parameters',  nargs='?', default=10)
+parser.add_argument('-antibiotic_res', type=int, help='resolution on antibiotic parameters', nargs='?', default=41)
+parser.add_argument('-bacterial_res',  type=int, help='resolution on bacterial parameters',  nargs='?', default=100)
 args = parser.parse_args()
 
 folder  = args.folder
@@ -48,7 +48,7 @@ T0_arr = np.linspace(0, T0_max, ab_res)     # time array
 λd = np.outer(np.ones(bac_res), np.outer(np.ones(bac_res), λ_arr)).reshape(bac_res, bac_res, bac_res) - λ_min / 1000   # avoid overflow by distinguishing λd and λr
 λr = np.outer(np.outer(np.ones(bac_res), λ_arr), np.ones(bac_res)).reshape(bac_res, bac_res, bac_res)
 δ  = np.outer(np.outer(δ_arr, np.ones(bac_res)), np.ones(bac_res)).reshape(bac_res, bac_res, bac_res)
-
+print(np.max(δ))
 
 ###########################
 ## Simulation Parameters ##

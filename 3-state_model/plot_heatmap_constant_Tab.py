@@ -58,4 +58,4 @@ cbar = fig.colorbar(im2, ax=ax[2], aspect=20, anchor=(-.1, 0.5))
 
 # saving
 fig.tight_layout()
-fig.savefig(f"figs/single_optimal/optimal_heatmap_Tab_{Tab}_rescaled.png", dpi=100)
+fig.savefig(f"figs/single_optimal/optimal_heatmap_Tab_{Tab}_test.png", dpi=100)
