@@ -46,12 +46,12 @@ ax[1,0].set(xlabel=r'$T_{0}$',  title=r"$\lambda^{\star} / ~T$", ylabel=r"$p$")
 ax[1,1].set(xlabel=r'$T_{0}$',  title=r"$\omega^{\star} / T$")
 ax[1,2].set(xlabel=r'$T_{0}$',  title=r"$\delta^{\star}$")
 
-im00 = ax[0,0].imshow(λd_Tab / T_Tab, origin="lower", cmap=d_cmap, aspect="auto", vmin=0, extent=[0, 24, 0, 1])
-im01 = ax[0,1].imshow(λr_Tab / T_Tab, origin="lower", cmap=d_cmap, aspect="auto", vmin=0, extent=[0, 24, 0, 1])
-im02 = ax[0,2].imshow(δ_Tab,          origin="lower", cmap=r_cmap, aspect="auto", vmin=0, extent=[0, 24, 0, 1])
-im10 = ax[1,0].imshow(λd_T0 / T_T0,   origin="lower", cmap=d_cmap, aspect="auto", vmin=0, extent=[0, 12, 0, 1])
-im11 = ax[1,1].imshow(λr_T0 / T_T0,   origin="lower", cmap=d_cmap, aspect="auto", vmin=0, extent=[0, 12, 0, 1])
-im12 = ax[1,2].imshow(δ_T0,           origin="lower", cmap=r_cmap, aspect="auto", vmin=0, extent=[0, 12, 0, 1])
+im00 = ax[0,0].imshow(λd_Tab / T_Tab, origin="lower", cmap=d_cmap, aspect="auto", vmin=0, vmax=1, extent=[0, 24, 0, 1])
+im01 = ax[0,1].imshow(λr_Tab / T_Tab, origin="lower", cmap=d_cmap, aspect="auto", vmin=0, vmax=1, extent=[0, 24, 0, 1])
+im02 = ax[0,2].imshow(δ_Tab,          origin="lower", cmap=r_cmap, aspect="auto", vmin=0, vmax=0.06, extent=[0, 24, 0, 1])
+im10 = ax[1,0].imshow(λd_T0 / T_T0,   origin="lower", cmap=d_cmap, aspect="auto", vmin=0, vmax=1, extent=[0, 12, 0, 1])
+im11 = ax[1,1].imshow(λr_T0 / T_T0,   origin="lower", cmap=d_cmap, aspect="auto", vmin=0, vmax=1, extent=[0, 12, 0, 1])
+im12 = ax[1,2].imshow(δ_T0,           origin="lower", cmap=r_cmap, aspect="auto", vmin=0, vmax=0.06, extent=[0, 12, 0, 1])
 
 # Colorbars
 fig.colorbar(im00, ax=ax[0,0], aspect=20, anchor=(-.1, 0.5))
