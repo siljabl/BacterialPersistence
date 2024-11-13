@@ -19,8 +19,8 @@ parser.add_argument('Tab', type=float, help='duration of antibiotics')
 args = parser.parse_args()
 tot_cycles = 10_000
 
-p_arr = [0.3] #, 0.3, 0.5, 0.7, 0.9] #args.p
-index = [0] #, 1, 2, 3, 4]
+p_arr = [0.1, 0.3, 0.5, 0.7, 0.9] #args.p
+index = [0, 1, 2, 3, 4]
 
 
 folder = args.folder
@@ -31,7 +31,7 @@ T      = T0 + Tab
 config = read_config(folder)
 colors = mpl.cm.jet(np.linspace(0,1,5))
 
-fig, ax = plt.subplots(1, 3, figsize=(6.75, 2.75))
+fig, ax = plt.subplots(1, 3, figsize=(6.75, 3))
 
 for i in index:
     p = p_arr[i]
@@ -61,8 +61,8 @@ ax[0].set(ylim=[0, 1.1], yscale="linear", xscale="linear")
 ax[1].set(ylim=[0, 1.1], yscale="linear", xscale="linear")
 ax[2].set(ylim=[0, 0.1], yscale="linear", xscale="linear")
 
-fig.tight_layout(rect=[0, 0, 1, 0.85])
-# ax[1].legend(loc='upper center', bbox_to_anchor=(.5, 1.5),
-#           ncol=5, fancybox=True, shadow=False)
+fig.tight_layout(rect=[0, 0, 1, 0.8])
+ax[1].legend(loc='upper center', bbox_to_anchor=(.5, 1.7),
+          ncol=5, fancybox=True, shadow=False)
 
 fig.savefig(f"figs/mutation_average/mutation_average_parameters-T0_{T0:0.0f}-T_{T:0.0f}.png")
