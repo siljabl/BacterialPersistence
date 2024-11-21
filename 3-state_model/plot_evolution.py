@@ -19,8 +19,8 @@ parser.add_argument('Tab', type=float, help='duration of antibiotics')
 args = parser.parse_args()
 tot_cycles = 10_000
 
-p_arr = [0.9]#1, 0.3, 0.5, 0.7, 0.9] #args.p
-index = [0]#, 1, 2, 3, 4]
+p_arr = [0.1, 0.3, 0.5, 0.7, 0.9] #args.p
+index = [0, 1, 2, 3, 4]
 
 
 folder = args.folder
@@ -40,8 +40,8 @@ for i in index:
     δ  = np.loadtxt(f"data/mutation-T0_{T0:0.0f}-Tab_{Tab:0.0f}/competition_average_δ-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt")[:tot_cycles]
 
     ab_params  = {'p': p, 'T0': T0, 'Tab': Tab}
-    #opt_params = identify_optimal_parameters_const_T0(ab_params, config, folder)
-    opt_params = identify_optimal_parameters_const_Tab(ab_params, config, folder)
+    opt_params = identify_optimal_parameters_const_T0(ab_params, config, folder)
+    #opt_params = identify_optimal_parameters_const_Tab(ab_params, config, folder)
 
     ax[0].plot(λd / T, c=colors[i], alpha=0.9, label=f"p={p:0.1}")
     ax[1].plot(λr / T, c=colors[i], alpha=0.9, label=f"p={p:0.1}")

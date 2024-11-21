@@ -11,6 +11,8 @@ from config_functions import read_config
 mpl.rcParams["font.size"]   = "12"
 
 ab_res = 41
+Tab = 12
+T0  = 2
 
 d_cmap = mpl.colormaps['viridis']
 r_cmap = mpl.colormaps['plasma']
@@ -26,12 +28,13 @@ r_cmap = mpl.colormaps['plasma']
 
 # λr_opt = λr_opt * (δ_opt > 0) 
 
-
 Tab_arr = np.linspace(0, 24, ab_res)
 T0_arr  = np.linspace(0, 12, ab_res)
 T_Tab = np.outer(np.ones_like(Tab_arr), Tab_arr)
-T_T0  = 12 + np.outer(np.ones_like(T0_arr),  T0_arr)
+T_T0  = Tab + np.outer(np.ones_like(T0_arr),  T0_arr)
 T_Tab[:,0] = 1
+
+p_arr = [0.1, 0.3, 0.5, 0.7, 0.9]
 
 # setting up figure,
 fig, ax = plt.subplots(2, 3, figsize=(6.75, 4.5), sharey=True)#, layout='constrained')
@@ -52,6 +55,13 @@ im02 = ax[0,2].imshow(δ_Tab,          origin="lower", cmap=r_cmap, aspect="auto
 im10 = ax[1,0].imshow(λd_T0 / T_T0,   origin="lower", cmap=d_cmap, aspect="auto", vmin=0, vmax=1, extent=[0, 12, 0, 1])
 im11 = ax[1,1].imshow(λr_T0 / T_T0,   origin="lower", cmap=d_cmap, aspect="auto", vmin=0, vmax=1, extent=[0, 12, 0, 1])
 im12 = ax[1,2].imshow(δ_T0,           origin="lower", cmap=r_cmap, aspect="auto", vmin=0, vmax=0.06, extent=[0, 12, 0, 1])
+
+ax[0,0].scatter([Tab, Tab, Tab, Tab, Tab], p_arr, s=20, c='k', marker='.')
+ax[0,1].scatter([Tab, Tab, Tab, Tab, Tab], p_arr, s=20, c='k', marker='.')
+ax[0,2].scatter([Tab, Tab, Tab, Tab, Tab], p_arr, s=20, c='k', marker='.')
+ax[1,0].scatter([T0, T0, T0, T0, T0], p_arr, s=20, c='k', marker='.')
+ax[1,1].scatter([T0, T0, T0, T0, T0], p_arr, s=20, c='k', marker='.')
+ax[1,2].scatter([T0, T0, T0, T0, T0], p_arr, s=20, c='k', marker='.')
 
 # Colorbars
 fig.colorbar(im00, ax=ax[0,0], aspect=20, anchor=(-.1, 0.5))
