@@ -75,7 +75,7 @@ def linear_interpolation(dx, x1, y1, y2):
 
 
 
-def estimate_Ts(Ts_arr, eq_params, ab_params, iter=3):
+def estimate_Ts(Ts_arr, eq_params, ab_params, iter=5):
     '''
     This function estimates the time at which all substrate is consumed (Ts).
 
