@@ -87,6 +87,8 @@ for p in p_arr:
             λr_opt[i,j] = 0
 
         j = j + 1
+    
+    print(p)
     i = i + 1
 
 

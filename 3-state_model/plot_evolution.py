@@ -31,7 +31,7 @@ T      = T0 + Tab
 config = read_config(folder)
 colors = mpl.cm.jet(np.linspace(0,1,5))
 
-fig, ax = plt.subplots(1, 3, figsize=(6.75, 3))
+fig, ax = plt.subplots(1, 3, figsize=(6.75, 0.8*3))
 
 for i in index:
     p = p_arr[i]
@@ -40,8 +40,8 @@ for i in index:
     δ  = np.loadtxt(f"data/mutation-T0_{T0:0.0f}-Tab_{Tab:0.0f}/competition_average_δ-T0_{T0:0.0f}-T_{T:0.0f}-p_{p:0.1f}.txt")[:tot_cycles]
 
     ab_params  = {'p': p, 'T0': T0, 'Tab': Tab}
-    opt_params = identify_optimal_parameters_const_T0(ab_params, config, folder)
-    #opt_params = identify_optimal_parameters_const_Tab(ab_params, config, folder)
+    #opt_params = identify_optimal_parameters_const_T0(ab_params, config, folder)
+    opt_params = identify_optimal_parameters_const_Tab(ab_params, config, folder)
 
     ax[0].plot(λd / T, c=colors[i], alpha=0.9, label=f"p={p:0.1}")
     ax[1].plot(λr / T, c=colors[i], alpha=0.9, label=f"p={p:0.1}")
@@ -61,8 +61,8 @@ ax[0].set(ylim=[0, 1.1], yscale="linear", xscale="linear")
 ax[1].set(ylim=[0, 1.1], yscale="linear", xscale="linear")
 ax[2].set(ylim=[0, 0.1], yscale="linear", xscale="linear")
 
-fig.tight_layout(rect=[0, 0, 1, 0.8])
-ax[1].legend(loc='upper center', bbox_to_anchor=(.5, 1.7),
-          ncol=5, fancybox=True, shadow=False)
+fig.tight_layout()#rect=[0, 0, 1, 0.8])
+# ax[1].legend(loc='upper center', bbox_to_anchor=(.5, 1.7),
+#           ncol=5, fancybox=True, shadow=False)
 
 fig.savefig(f"figs/mutation_average/mutation_average_parameters-T0_{T0:0.0f}-T_{T:0.0f}.png")
