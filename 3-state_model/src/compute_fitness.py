@@ -20,9 +20,9 @@ def analytical_fitness(eq_params, ab_params):
 
     Ts_min = 0 # np.log(1/f)
     Ts_max = 100 #np.max(T0 * 40)
-    Ts_arr = np.linspace(Ts_min, Ts_max, 100)
+    #Ts_arr = np.linspace(Ts_min, Ts_max, 100)
 
-    Ts, Ts_p = estimate_Ts(Ts_arr, eq_params, ab_params, iter=3)
+    Ts, Ts_p = estimate_Ts(eq_params, ab_params, iter=3)
 
     # weighted average
     Ts_avrg = (1 - p) * Ts + p * (T + Ts_p)
@@ -43,5 +43,3 @@ def transform_fitness_to_bac_parameters(fitness, bac_params):
     idx = (fitness == F_max)
 
     return F_max, λd[idx], λr[idx], δ[idx]
-
-

@@ -19,8 +19,8 @@ parser.add_argument('folder',          type=str, help="Folder for saving data.")
 parser.add_argument('T0',              type=int, help='Time at which antibiotics are applied.')
 parser.add_argument('Tab_max',         type=int, help='Upper limit on antibiotic duration.')
 parser.add_argument('-Tab_min',        type=int, help='Lower limit on antibiotic duration.', nargs='?', default=0)
-parser.add_argument('-antibiotic_res', type=int, help='resolution on antibiotic parameters', nargs='?', default=41)
-parser.add_argument('-bacterial_res',  type=int, help='resolution on bacterial parameters',  nargs='?', default=100)
+parser.add_argument('-antibiotic_res', type=int, help='resolution on antibiotic parameters', nargs='?', default=21)
+parser.add_argument('-bacterial_res',  type=int, help='resolution on bacterial parameters',  nargs='?', default=20)
 args = parser.parse_args()
 
 folder  = args.folder
