@@ -20,7 +20,7 @@ parser.add_argument('T0',              type=int, help='Time at which antibiotics
 parser.add_argument('Tab_max',         type=int, help='Upper limit on antibiotic duration.')
 parser.add_argument('-Tab_min',        type=int, help='Lower limit on antibiotic duration.', nargs='?', default=0)
 parser.add_argument('-antibiotic_res', type=int, help='resolution on antibiotic parameters', nargs='?', default=41)
-parser.add_argument('-bacterial_res',  type=int, help='resolution on bacterial parameters',  nargs='?', default=150)
+parser.add_argument('-bacterial_res',  type=int, help='resolution on bacterial parameters',  nargs='?', default=100)
 args = parser.parse_args()
 
 folder  = args.folder
