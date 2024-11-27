@@ -1,12 +1,12 @@
-date:2024-11-25
+date:2024-11-26
 ab_res:41
 bac_res:150
 T0:0
 Tab_min:0
-Tab_max:24
+Tab_max:6
 λd_min:0.00999
-λd_max:25.009990000000002
+λd_max:7.00999
 λr_min:0.01
-λr_max:25.01
+λr_max:7.01
 δ_min:0.0
 δ_max:0.1

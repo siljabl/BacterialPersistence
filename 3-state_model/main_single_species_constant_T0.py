@@ -19,8 +19,8 @@ parser.add_argument('folder',          type=str, help="Folder for saving data.")
 parser.add_argument('T0',              type=int, help='Time at which antibiotics are applied.')
 parser.add_argument('Tab_max',         type=int, help='Upper limit on antibiotic duration.')
 parser.add_argument('-Tab_min',        type=int, help='Lower limit on antibiotic duration.', nargs='?', default=0)
-parser.add_argument('-antibiotic_res', type=int, help='resolution on antibiotic parameters', nargs='?', default=21)
-parser.add_argument('-bacterial_res',  type=int, help='resolution on bacterial parameters',  nargs='?', default=20)
+parser.add_argument('-antibiotic_res', type=int, help='resolution on antibiotic parameters', nargs='?', default=41)
+parser.add_argument('-bacterial_res',  type=int, help='resolution on bacterial parameters',  nargs='?', default=150)
 args = parser.parse_args()
 
 folder  = args.folder
@@ -30,13 +30,14 @@ Tab_min = args.Tab_min
 ab_res  = args.antibiotic_res
 bac_res = args.bacterial_res
 stoch_param = 'none'
+Tab_res = 11
 
 
 ###########################
 ## Antibiotic parameters ##
 ###########################
 p_arr   = np.linspace(0, 1, ab_res)
-Tab_arr = np.linspace(0, Tab_max, ab_res)
+Tab_arr = np.linspace(0, Tab_max, Tab_res)
 
 
 ##########################
@@ -64,10 +65,10 @@ eq_params  = {'a':a, 'b':b, 'c':c, 'ap':ap, 'bp':bp}
 ###########################################
 ## Looping through antibiotic parameters ##
 ###########################################
-λd_opt = np.zeros([ab_res, ab_res])
-λr_opt = np.zeros([ab_res, ab_res])
-δ_opt  = np.zeros([ab_res, ab_res])
-F_max  = np.zeros([ab_res, ab_res])
+λd_opt = np.zeros([ab_res, Tab_res])
+λr_opt = np.zeros([ab_res, Tab_res])
+δ_opt  = np.zeros([ab_res, Tab_res])
+F_max  = np.zeros([ab_res, Tab_res])
 
 
 i = 0

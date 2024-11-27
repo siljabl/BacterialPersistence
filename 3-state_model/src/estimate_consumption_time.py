@@ -82,7 +82,7 @@ def define_initial_Ts_arr(ab_params):
     if Ts_p_max < Ts_max:
         Ts_p_max = Ts_max
     
-    Ts_arr = np.linspace(Ts_min,   Ts_max, 100)
+    Ts_arr = np.linspace(Ts_min, Ts_max, 100)
     Ts_p_arr = np.linspace(Ts_min, Ts_p_max, 100)
 
     return Ts_arr, Ts_p_arr
