@@ -82,7 +82,7 @@ def define_initial_Ts_arr(ab_params):
     if Ts_p_max < Ts_max:
         Ts_p_max = Ts_max
     
-    Ts_arr = np.linspace(Ts_min, Ts_max, 100)
+    Ts_arr   = np.linspace(Ts_min, Ts_max, 100)
     Ts_p_arr = np.linspace(Ts_min, Ts_p_max, 100)
 
     return Ts_arr, Ts_p_arr
@@ -129,10 +129,10 @@ def estimate_Ts(eq_params, ab_params, iter=5):
 
     # Linear approximation around S = 0
     S1, S2 = reshape_S_arrays(S, args, dims)
-    Ts = linear_interpolation(args['dt2'], args['Ts'], S1, S2)
+    Ts     = linear_interpolation(args['dt2'], args['Ts'], S1, S2)
 
     S1, S2 = reshape_S_arrays(Sp, args_p, dims)
-    Ts_p = linear_interpolation(args_p['dt2'], args_p['Ts'], S1, S2)
+    Ts_p   = linear_interpolation(args_p['dt2'], args_p['Ts'], S1, S2)
 
     return Ts, Ts_p
 
