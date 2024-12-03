@@ -1,5 +1,6 @@
 import sys
 import numpy as np
+import seaborn as sns
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
@@ -19,7 +20,7 @@ r_cmap = mpl.colormaps['plasma']
 
 
 #importing data
-λd_Tab_low  = np.loadtxt(f'data/constant_T0_0_Tab_8/single_optimal_λd-T0_0.txt')
+λd_Tab_low  = np.loadtxt(f'data/constant_T0_0_Tab_6/single_optimal_λd-T0_0.txt')
 λd_Tab = np.loadtxt(f'data/constant_T0_0/single_optimal_λd-T0_0.txt')
 λr_Tab = np.loadtxt(f'data/constant_T0_0/single_optimal_λr-T0_0.txt')
 δ_Tab  = np.loadtxt(f'data/constant_T0_0/single_optimal_δ-T0_0.txt')
@@ -60,12 +61,14 @@ im10 = ax[1,0].imshow(λd_T0 / T_T0,   origin="lower", cmap=d_cmap, aspect="auto
 im11 = ax[1,1].imshow(λr_T0 / T_T0,   origin="lower", cmap=d_cmap, aspect="auto", vmin=0, vmax=1, extent=[0, 12, 0, 1])
 im12 = ax[1,2].imshow(δ_T0,           origin="lower", cmap=r_cmap, aspect="auto", vmin=0, vmax=0.06, extent=[0, 12, 0, 1])
 
-# ax[0,0].scatter([Tab, Tab, Tab, Tab, Tab], p_arr, s=20, c='k', marker='.')
-# ax[0,1].scatter([Tab, Tab, Tab, Tab, Tab], p_arr, s=20, c='k', marker='.')
-# ax[0,2].scatter([Tab, Tab, Tab, Tab, Tab], p_arr, s=20, c='k', marker='.')
-# ax[1,0].scatter([T0, T0, T0, T0, T0], p_arr, s=20, c='k', marker='.')
-# ax[1,1].scatter([T0, T0, T0, T0, T0], p_arr, s=20, c='k', marker='.')
-# ax[1,2].scatter([T0, T0, T0, T0, T0], p_arr, s=20, c='k', marker='.')
+cmap = sns.color_palette('coolwarm', as_cmap=True)
+colors = cmap(np.linspace(0,1,5))
+ax[0,0].scatter([Tab, Tab, Tab, Tab, Tab], p_arr, s=20, edgecolors='k', c=colors, marker='o')
+ax[0,1].scatter([Tab, Tab, Tab, Tab, Tab], p_arr, s=20, edgecolors='k', c=colors, marker='o')
+ax[0,2].scatter([Tab, Tab, Tab, Tab, Tab], p_arr, s=20, edgecolors='k', c=colors, marker='o')
+ax[1,0].scatter([T0, T0, T0, T0, T0], p_arr, s=20, edgecolors='k', c='w', marker='o')
+ax[1,1].scatter([T0, T0, T0, T0, T0], p_arr, s=20, edgecolors='k', c='w', marker='o')
+ax[1,2].scatter([T0, T0, T0, T0, T0], p_arr, s=20, edgecolors='k', c='w', marker='o')
 
 # Colorbars
 fig.colorbar(im00, ax=ax[0,0], aspect=20, anchor=(-.1, 0.5))
