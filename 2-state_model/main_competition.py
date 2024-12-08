@@ -5,21 +5,22 @@ import numpy as np
 import time
 
 sys.path.append("src")
-from model_equations import a_b, ap_bp, lag_min, delta_max
+from differential_equations import lag_min, delta_max
+from analytical_calculations import compute_a_and_b, compute_ap_and_bp
 from simulation_functions import run_competition_in_parallel
 
 np.random.seed(18)
 constant_index = {'T0':0, 'Tab':1}
-
+folder = 'test' #'competition_two_species'
 
 
 ###########################
 ## Simulation parameters ##
 ###########################
-bac_res = 100                          # resolution in bacterial parameters
-ab_res  = 100                          # resolution in antibiotic parameters
+bac_res = 20                          # resolution in bacterial parameters
+ab_res  = 20                          # resolution in antibiotic parameters
 t_res   = 10                           # resolution in time array
-tot_cycles  = 10_000
+tot_cycles  = 10#_000
 repetitions = 1                        # number of repetitions for ensemble average
 
 
@@ -47,7 +48,7 @@ Tab = T_values[1-ic]
 ## Bacterial parameters ##
 ##########################
 # empty arrays parameters
-lag   = np.ones([2, bac_res, bac_res]) * lag_min
+lag   =  np.ones([2, bac_res, bac_res]) * lag_min
 delta = np.zeros([2, bac_res, bac_res])
 
 # competitor parameters
@@ -56,9 +57,8 @@ lag[1]   += np.outer(I, np.linspace(0, max(T0 + Tab), bac_res))
 delta[1] += np.outer(np.linspace(0, delta_max, bac_res), I)
 
 # transforming parameters to a-b space
-a,  b  = a_b(lag, delta)
-ap, bp = ap_bp(lag, delta)
-
+a,  b  = compute_a_and_b(lag, delta)
+ap, bp = compute_ap_and_bp(lag, delta)
 
 
 ########################
@@ -73,9 +73,9 @@ if __name__ == '__main__':
     S_frac, lag_opt, del_opt = run_competition_in_parallel(bac_args, ab_args, sim_args)
 
 # saving
-np.savetxt(f"data/competition_two_species/competition_Sfrac-{T_labels[ic]}{T_const}.txt", S_frac)
-np.savetxt(f"data/competition_two_species/competition_lag-{T_labels[ic]}{T_const}.txt", lag_opt)
-np.savetxt(f"data/competition_two_species/competition_delta-{T_labels[ic]}{T_const}.txt", del_opt)
+np.savetxt(f"data/{folder}/competition_Sfrac-{T_labels[ic]}{T_const}.txt", S_frac)
+np.savetxt(f"data/{folder}/competition_lag-{T_labels[ic]}{T_const}.txt", lag_opt)
+np.savetxt(f"data/{folder}/competition_delta-{T_labels[ic]}{T_const}.txt", del_opt)
 
 toc = time.time()
 print(f'\nTime: {(toc - tic) / 3600}h\n')

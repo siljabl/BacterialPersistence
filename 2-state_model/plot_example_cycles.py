@@ -1,17 +1,13 @@
 import sys
 import argparse
 import numpy as np
-import matplotlib as mpl
+import seaborn as sns
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
 
 sys.path.append("src")
-from model_equations import S0, f, lag_min
-from model_equations import ode_grow, ode_kill
-
-#mpl.rcParams["font.family"] = "serif"
-mpl.rcParams["font.size"] = "12"
-
+from differential_equations import S0, f, lag_min
+from differential_equations import ode_grow, ode_kill
 
 parser = argparse.ArgumentParser(description='Competition between N species for tot_cycles cycles.')
 parser.add_argument('T0',  type=float, help='application time of antibiotics')
@@ -84,16 +80,23 @@ time = np.concatenate(tot_time)
 
 
 ##### PLOTTING #####
-fig, ax = plt.subplots(1, 1, figsize=(6.75, 2.5))
-ax.fill_between(time, S, 0, color="lightseagreen", alpha=0.3, label="substrate")
+sns.set_theme(style='ticks', palette='deep', font_scale=1.2)
+fig, ax = plt.subplots(1, 1, figsize=(6.75, 2.7))
+ax.fill_between(time, S, 0, color=sns.color_palette('deep')[2], alpha=0.3, label="Substrate")
 
-ax.plot(time, species1, lw=2, color="firebrick", label="species 1")
-ax.plot(time, species2, lw=2, color="royalblue", label="species 2")
+ax.plot(time, species1, lw=2, color=sns.color_palette('deep')[0], label="Species 1")
+ax.plot(time, species2, lw=2, color=sns.color_palette('deep')[3], label="Species 2")
+ax.set_xticks(np.arange(0, max(time), max(time)/5) + max(time)/10)
+ax.set_xticklabels(['1', '2', '3', '4', '5'])
 
-ax.set(xlabel="Time", ylabel="log[Population]")
+ax.set(xlabel="Cycle", ylabel="Population")
 ax.set(yscale='log',  ylim=[10**(0), 10**10])
+sns.despine()
 
-fig.tight_layout(rect=[0, 0.12, 1, 1])
-ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.35), ncol=3, fancybox=True, shadow=False)
+fig.tight_layout(rect=[0, 0, 1, 0.85])
+ax.legend(loc='upper center', 
+          bbox_to_anchor=(0.5, 1.45), 
+          ncol=3, 
+          frameon=False)
 fig.savefig("figs/example_2state.png")
 
