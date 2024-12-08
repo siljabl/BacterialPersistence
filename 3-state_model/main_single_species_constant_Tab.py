@@ -107,6 +107,7 @@ config = {"date"    : datetime.today().strftime('%Y-%m-%d'),
           "λd_max"  : np.max(λd),
           "λr_min"  : np.min(λr),
           "λr_max"  : np.max(λr),
+np.savetxt("actin_velocity.txt", save_arr, header='mean, std, mask', delimiter=',')
           "δ_min"   : np.min(δ),
           "δ_max"   : np.max(δ)}
 
