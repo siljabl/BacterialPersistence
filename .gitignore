@@ -2,7 +2,6 @@
 .vscode
 
 3-state_model/plot_evolution_control.py
-
 3-state_model/figs/*
 3-state_model/data/*/*.pkl
 
