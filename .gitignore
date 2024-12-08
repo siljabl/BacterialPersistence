@@ -5,8 +5,7 @@
 3-state_model/figs/*
 3-state_model/data/*/*.pkl
 
-2-state_model/visualisation_functions.py
-2-state_model/plot_lines.py
 2-state_model/data/mutation
 2-state_model/data/mutation_extinction
 2-state_model/data/competition_all_species
+2-state_model/figs/*

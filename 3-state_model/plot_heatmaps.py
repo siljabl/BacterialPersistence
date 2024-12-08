@@ -94,10 +94,6 @@ for im, axes in zip(ims, ax.flatten()):
         cbar.ax.yaxis.set_ticks([0,0.5, 1],   minor=False)
         cbar.ax.yaxis.set_ticks([0.25, 0.75], minor=True)
 
-    if im in [im02, im12]:
-        cbar.ax.yaxis.set_ticks([0, 0.03, 0.06], minor=False)
-        cbar.ax.yaxis.set_ticks([0.015, 0.045],  minor=True)
-
     i += 1
 
 fig.savefig(f"figs/3state_heatmaps.png", dpi=100)

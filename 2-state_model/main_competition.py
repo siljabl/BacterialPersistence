@@ -29,8 +29,8 @@ repetitions = 1                        # number of repetitions for ensemble aver
 ## Antibiotic parameters ##
 ###########################
 # for chosing which time parameter to keep constant.
-ic = constant_index['T0']                       # 'T0' or 'Tab'
-T_const = 5                                     # value of the constant parameter
+ic = constant_index['Tab']                       # 'T0' or 'Tab'
+T_const = 10                                     # value of the constant parameter
 
 # defining parameter arrays
 T_max = [12, 24]                                # upper bounds on meningful values for T0 and Tab
@@ -73,9 +73,9 @@ if __name__ == '__main__':
     S_frac, lag_opt, del_opt = run_competition_in_parallel(bac_args, ab_args, sim_args)
 
 # saving
-np.savetxt(f"data/{folder}/competition_Sfrac-{T_labels[ic]}{T_const}.txt", S_frac)
-np.savetxt(f"data/{folder}/competition_lag-{T_labels[ic]}{T_const}.txt", lag_opt)
-np.savetxt(f"data/{folder}/competition_delta-{T_labels[ic]}{T_const}.txt", del_opt)
+np.savetxt(f"data/{folder}/optimal_Sfrac-{T_labels[ic]}{T_const}.txt", S_frac)
+np.savetxt(f"data/{folder}/optimal_lag-{T_labels[ic]}{T_const}.txt", lag_opt)
+np.savetxt(f"data/{folder}/optimal_delta-{T_labels[ic]}{T_const}.txt", del_opt)
 
 toc = time.time()
 print(f'\nTime: {(toc - tic) / 3600}h\n')
