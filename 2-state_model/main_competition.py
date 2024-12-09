@@ -5,22 +5,22 @@ import numpy as np
 import time
 
 sys.path.append("src")
-from differential_equations import lag_min, delta_max
+from differential_equations  import lag_min, delta_max
+from simulation_functions    import run_competition_in_parallel
 from analytical_calculations import compute_a_and_b, compute_ap_and_bp
-from simulation_functions import run_competition_in_parallel
 
 np.random.seed(18)
 constant_index = {'T0':0, 'Tab':1}
-folder = 'test' #'competition_two_species'
+folder = 'competition_two_species'
 
 
 ###########################
 ## Simulation parameters ##
 ###########################
-bac_res = 20                          # resolution in bacterial parameters
-ab_res  = 20                          # resolution in antibiotic parameters
+bac_res = 100                          # resolution in bacterial parameters
+ab_res  = 100                          # resolution in antibiotic parameters
 t_res   = 10                           # resolution in time array
-tot_cycles  = 1_000
+tot_cycles  = 10_000
 
 
 

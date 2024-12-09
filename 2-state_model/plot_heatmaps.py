@@ -12,14 +12,11 @@ T0  = 5
 Tab = 10
 
 # importing data 
-folder = 'test'
+folder = 'competition_two_species'
 lag_Tab = np.loadtxt(f'data/{folder}/optimal_lag-T0{T0}.txt')
 del_Tab = np.loadtxt(f'data/{folder}/optimal_delta-T0{T0}.txt')
 lag_T0  = np.loadtxt(f'data/{folder}/optimal_lag-Tab{Tab}.txt')
 del_T0  = np.loadtxt(f'data/{folder}/optimal_delta-Tab{Tab}.txt')
-
-S_Tab = np.loadtxt(f'data/{folder}/optimal_Sfrac-T0{T0}.txt')
-S_T0 = np.loadtxt(f'data/{folder}/optimal_Sfrac-Tab{Tab}.txt')
 
 
 # arrays for scaling imshow
@@ -38,12 +35,10 @@ ax[1,0].set(xlabel=r'$T_{0}$', ylabel=r"$p$",  title=r"$\delta^{\star}$")
 ax[0,1].set(title=r"$\lambda^{\star} / ~T$")
 ax[1,1].set(xlabel=r'$T_{ab}$', title=r"$\delta^{\star}$")
 
-im00 = ax[0,0].imshow(lag_T0,   cmap=lag_cmap, origin="lower", vmin=0, vmax=20.1,   aspect="auto", extent=[0, 12, 0, 1]) 
+im00 = ax[0,0].imshow(lag_T0,   cmap=lag_cmap, origin="lower", vmin=0, vmax=1.1,   aspect="auto", extent=[0, 12, 0, 1]) 
 im10 = ax[1,0].imshow(del_T0,          cmap=del_cmap, origin="lower", vmin=0, vmax=0.065, aspect="auto", extent=[0, 12, 0, 1])
-im01 = ax[0,1].imshow(lag_Tab, cmap=lag_cmap, origin="lower", vmin=0, vmax=20.1,   aspect="auto", extent=[0, 24, 0, 1])
+im01 = ax[0,1].imshow(lag_Tab, cmap=lag_cmap, origin="lower", vmin=0, vmax=1.1,   aspect="auto", extent=[0, 24, 0, 1])
 im11 = ax[1,1].imshow(del_Tab,         cmap=del_cmap, origin="lower", vmin=0, vmax=0.065, aspect="auto", extent=[0, 24, 0, 1])
-im20 = ax[2,0].imshow(S_T0, origin="lower")
-im21 = ax[2,1].imshow(S_Tab, origin="lower")
 
 # Ticks
 for j in range(2):
@@ -70,9 +65,6 @@ cbar1 = fig.colorbar(im11, ax=ax[1,:], aspect=10, anchor=(-.1, 0.5))
 cbar0.ax.yaxis.set_ticks([0,0.5, 1],   minor=False)
 cbar0.ax.yaxis.set_ticks([0.25, 0.75], minor=True)
 cbar1.formatter = cbformat
-
-fig.colorbar(im20, ax=ax[2,0])
-fig.colorbar(im21, ax=ax[2,1])
 
 
 fig.savefig(f"figs/2state_heatmap_{folder}.png") #, dpi=100)
