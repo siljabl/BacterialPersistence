@@ -29,8 +29,8 @@ for i in range(n_plot):
 	
 	lag_opt[i]  = np.loadtxt(f'data/high_resolution/optimal_lag-T0{T0}.txt')[:,idx_opt[i]]
 	del_opt[i]  = np.loadtxt(f'data/high_resolution/optimal_delta-T0{T0}.txt')[:,idx_opt[i]]
-	lag_comp[i] = np.loadtxt(f'data/competition_two_species/competition_lag-T0{T0}.txt')[:,idx_comp[i]]
-	del_comp[i] = np.loadtxt(f'data/competition_two_species/competition_delta-T0{T0}.txt')[:,idx_comp[i]]
+	lag_comp[i] = np.loadtxt(f'data/competition_two_species/optimal_lag-T0{T0}.txt')[:,idx_comp[i]]
+	del_comp[i] = np.loadtxt(f'data/competition_two_species/optimal_delta-T0{T0}.txt')[:,idx_comp[i]]
 
 
 color = sns.color_palette("flare", as_cmap=True)([0, 0.5, 1])
@@ -38,7 +38,7 @@ color = sns.color_palette("flare", as_cmap=True)([0, 0.5, 1])
 x_opt  = np.linspace(0, 1, ab_res_opt)
 x_comp = np.linspace(0, 1, ab_res_comp)
 
-sns.set_theme(style='ticks', font_scale=1.1)
+sns.set_theme(style='ticks', font_scale=1.2)
 fig, ax = plt.subplots(1,2, figsize=(6.7,2.5), sharex=True)
 for i in range(n_plot):
     ax[0].plot(x_opt, (lag_opt[i] / T[i]), '--', lw=1.5, c=color[i])
@@ -77,7 +77,7 @@ ax[1].yaxis.set_ticks([0.015, 0.045],  minor=True)
 sns.despine()
 fig.tight_layout(rect=[0, 0, 0.85, 1], w_pad=2)
 fig.legend(loc='upper center',
-           bbox_to_anchor=(0.91, 0.8),
+           bbox_to_anchor=(0.91, 0.9),
            ncol=1,
            frameon=False,
            handlelength=1, 

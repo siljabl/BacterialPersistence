@@ -11,11 +11,11 @@ from competition_fitness import run_competition
 # Looping through antibiotic parameters
 def looping_through_antibiotic_parameters(bac_args, ab_args, sim_args):
     p_arr, T0, Tab = ab_args
-    ab_res, save_data = sim_args[0], sim_args[5]
-    #np.random.seed(int(min(p_arr) * ab_res))            # setting different random seeds for each subdomain (parallel simulation)
+    ab_res = sim_args[0]
     
-    T0 = T0 * np.ones(ab_res)                           # preparing time array
+    T0  = T0  * np.ones(ab_res)                           # preparing time array
     Tab = Tab * np.ones(ab_res)                         # preparing time array
+
     opt_params = np.zeros([len(p_arr), ab_res, 3])  	# output array
 
     ip = 0
@@ -26,15 +26,9 @@ def looping_through_antibiotic_parameters(bac_args, ab_args, sim_args):
             ab_args = [p, T0[it], Tab[it]]        # subset of antibiotic parameters
             bac_args = optimal_parameters_from_data(bac_args, ab_args)     # compute winner parameters
 
-            # Without extinction
-            opt_params[ip, it], prob_ext = run_competition(bac_args, ab_args, sim_args)[0:2]
-            if save_data:
-                config = str(int(10*p)*10) + "-T0" + str(int(T0[it])) + "-Tab" + str(int(Tab[it]))
-                np.savetxt("data/extinction_frequency/optimal_extinction_prob-p" + config, prob_ext[0])
-                np.savetxt("data/extinction_frequency/competitor_extinction_prob-p" + config, prob_ext[1])
+            opt_params[ip, it] = run_competition(bac_args, ab_args, sim_args)[0]
 
-            if it % 10 == 0 and 100 * p % 10 == 0:
-                print(100 * np.round((it + 10) / ab_res, 2), "% of p = " + str(np.round(p, 2)))  # print progression
+        print("p = " + str(np.round(p, 2)))  # print progression
         ip += 1
 
     return opt_params, p_arr.min()
@@ -73,3 +67,14 @@ def run_competition_in_parallel(bac_args, ab_args, sim_args):
     del_opt = np.concatenate([results[:, :, 2, i] for i in idx_sorted])
 
     return S_opt, lag_opt, del_opt
+
+
+def run_competition_one_core(bac_args, ab_args, sim_args):
+    opt_params, _ = looping_through_antibiotic_parameters(bac_args, ab_args, sim_args)
+    
+    S_opt   = opt_params[:, :, 0]
+    lag_opt = opt_params[:, :, 1]
+    del_opt = opt_params[:, :, 2]
+    
+    return S_opt, lag_opt, del_opt
+

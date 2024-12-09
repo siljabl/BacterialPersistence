@@ -20,8 +20,7 @@ folder = 'test' #'competition_two_species'
 bac_res = 20                          # resolution in bacterial parameters
 ab_res  = 20                          # resolution in antibiotic parameters
 t_res   = 10                           # resolution in time array
-tot_cycles  = 10#_000
-repetitions = 1                        # number of repetitions for ensemble average
+tot_cycles  = 1_000
 
 
 
@@ -29,8 +28,8 @@ repetitions = 1                        # number of repetitions for ensemble aver
 ## Antibiotic parameters ##
 ###########################
 # for chosing which time parameter to keep constant.
-ic = constant_index['Tab']                       # 'T0' or 'Tab'
-T_const = 10                                     # value of the constant parameter
+ic = constant_index['T0']                       # 'T0' or 'Tab'
+T_const = 5                                     # value of the constant parameter
 
 # defining parameter arrays
 T_max = [12, 24]                                # upper bounds on meningful values for T0 and Tab
@@ -67,7 +66,7 @@ ap, bp = compute_ap_and_bp(lag, delta)
 tic = time.time()
 bac_args = [lag, delta, a, b, ap, bp]
 ab_args = [p_arr, T0, Tab]
-sim_args = [ab_res, bac_res, t_res, tot_cycles, repetitions, False]
+sim_args = [ab_res, bac_res, t_res, tot_cycles]
 
 if __name__ == '__main__':
     S_frac, lag_opt, del_opt = run_competition_in_parallel(bac_args, ab_args, sim_args)

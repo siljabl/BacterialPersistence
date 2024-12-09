@@ -120,64 +120,58 @@ def run_competition(bac_args, ab_args, sim_args):
     # Sorting inputs
     lag, delta, a, b, ap, bp = bac_args
     p, T0, Tab = ab_args[0:3]
-    _, bac_res, t_res, tot_cycles, reps, _ = sim_args
+    _, bac_res, t_res, tot_cycles = sim_args
 
     t_min, t_max = 10 - T0, 15 + (T0 + Tab)                     # time limits
     t_arr = np.linspace(t_min, t_max, t_res)                    # time array
 
     S_frac_cycle = np.zeros([tot_cycles, 2, bac_res, bac_res])  # array for output
-    p_extinct = np.zeros_like(lag)  # array for output
 
-    # Compute ensemble average
-    for rep in range(reps):
-        # Initial populations, as [d(0), g(0), S(0)]
-        n_0 = [f * S0 * np.ones_like(lag), np.zeros_like(lag), S0 * np.ones_like(lag)[0]]
-        extinct = np.zeros([bac_res, bac_res])                  # array for counting first extinctions
-        ext = np.ones_like(lag)                                 # masking 
-        r_arr = np.random.rand(tot_cycles)                      # random array for ab
 
-        for ic in range(tot_cycles):
+    # Initial populations, as [d(0), g(0), S(0)]
+    n_0 = [f * S0 * np.ones_like(lag), np.zeros_like(lag), S0 * np.ones_like(lag)[0]]
+    extinct = np.zeros([bac_res, bac_res])                    # array for counting first extinctions
+    ext     = np.ones_like(lag)                               # masking 
+    r_arr   = np.random.rand(tot_cycles)                      # random array for ab
 
-            # With antibiotics
-            if r_arr[ic] < p:
-                n_T0 = analytical_growth(T0, n_0, a, b)             # population before AB
-                n_T = analytical_decay(Tab, n_T0, a, b, ap, bp)     # population after AB
-                d_dead = n_T[0] < n_min                             # checking if dormant species is killed by AB
-                g_dead = n_T[1] < n_min                             # checking if growing species is killed by AB
-                p_extinct[d_dead * g_dead * (extinct == 0)] += 1    # counting number of species that went extinct
-                ext[d_dead * g_dead * (extinct == 0)] = 0
-                for i in range(2):
-                    extinct[d_dead[i] * g_dead[i]] = 1              # updating counter of first extinction
+    for ic in range(tot_cycles):
 
-                t = Ts_approximation(t_arr, n_T, a, b)              # computing ts: S(ts) = 0
-                n_t = analytical_growth(t, n_T, a, b)               # population at ts
-                # S_frac_cycle[ic] += (n_t[1] - n_T[1] + n_T0[1]) / ((S0 - n_t[2]) * reps)
-                S_frac_cycle[ic] += (n_t[1] - n_T[1] + n_T0[1]) * ext / (S0 * reps) + (S0 - n_t[1] + n_T[1] - n_T0[1]) * ext * extinct / (S0 * reps)
+        # With antibiotics
+        if r_arr[ic] < p:
+            n_T0 = analytical_growth(T0, n_0,  a, b)            # population before AB
+            n_T  = analytical_decay(Tab, n_T0, a, b, ap, bp)    # population after AB
 
-            # Without antibiotics
-            else:
-                t = Ts_approximation(t_arr, n_0, a, b)              # computing ts: S(ts) = 0
-                n_t = analytical_growth(t, n_0, a, b)               # population at ts
-                # S_frac_cycle[ic] += n_t[1] / ((S0 - n_t[2]) * reps)
-                S_frac_cycle[ic] += n_t[1] * ext / (S0 * reps) + (S0 - n_t[1]) * ext * extinct / (S0 * reps)
-
-            # Preparing for next cycle
-            d_0 = f * (n_t[0] + n_t[1])                             # enter dormancy and dilute
-            dead = d_0 < n_min                                      # checking if species killed by dilution
-            p_extinct[dead * (extinct == 0)] += 1                   # counting extinction
-            ext[dead * (extinct == 0)] = 0
+            d_dead = n_T[0] < n_min                             # checking if dormant species is killed by AB
+            g_dead = n_T[1] < n_min                             # checking if growing species is killed by AB
+            ext[d_dead * g_dead * (extinct == 0)] = 0
             for i in range(2):
-                extinct[dead[i]] = 1                                # updating counter of first extinction
-            n_0 = [d_0 * np.ones_like(lag), np.zeros_like(lag), S0 * np.ones_like(lag)[0]]
+                extinct[d_dead[i] * g_dead[i]] = 1              # updating counter of first extinction
+
+            t   = Ts_approximation(t_arr, n_T, a, b)            # computing ts: S(ts) = 0
+            n_t = analytical_growth(t, n_T, a, b)               # population at ts
+            S_frac_cycle[ic] += (n_t[1] - n_T[1] + n_T0[1]) / (S0 - n_t[2])
+
+        # Without antibiotics
+        else:
+            t   = Ts_approximation(t_arr, n_0, a, b)            # computing ts: S(ts) = 0
+            n_t = analytical_growth(t, n_0, a, b)               # population at ts
+            S_frac_cycle[ic] += n_t[1] / (S0 - n_t[2])
+
+        # Preparing for next cycle
+        d_0  = f * (n_t[0] + n_t[1])                            # enter dormancy and dilute
+        dead = d_0 < n_min                                      # checking if species killed by dilution
+        ext[dead * (extinct == 0)] = 0
+        for i in range(2):
+            extinct[dead[i]] = 1                                # updating counter of first extinction
+        n_0 = [d_0 * np.ones_like(lag), np.zeros_like(lag), S0 * np.ones_like(lag)[0]]
 
     # Finding optimal set of bacterial parameters
     S_frac_mean = S_frac_cycle[:, 1].mean(axis=0)                   # taking cycle average of consumption fraction
     S_max = (S_frac_mean == S_frac_mean.max())                      # finding max consumption fraction
 
-    S_frac = S_frac_mean.max()  # saving max consumption fraction
-    lag_opt = lag[1, 0][(S_max.sum(0)).astype(bool)][0]             # saving corresponding lag time
+    S_frac  = S_frac_mean.max()                                     # saving max consumption fraction
+    lag_opt = lag[1,0][(S_max.sum(0)).astype(bool)][0]              # saving corresponding lag time
     del_opt = delta[1][(S_max.sum(1)).astype(bool), 0][0]           # saving corresponding type-II fraction
 
-    p_extinct /= reps                                               # computing fraction of extinctions
 
-    return np.array([S_frac, lag_opt, del_opt]), p_extinct, n_t, t, S_frac_cycle, r_arr
+    return np.array([S_frac, lag_opt, del_opt]), n_t, t, S_frac_cycle, r_arr
