@@ -18,7 +18,7 @@ folder = 'competition_two_species'
 ## Simulation parameters ##
 ###########################
 bac_res = 100                          # resolution in bacterial parameters
-ab_res  = 100                          # resolution in antibiotic parameters
+ab_res  = 101                          # resolution in antibiotic parameters
 t_res   = 10                           # resolution in time array
 tot_cycles  = 10_000
 
