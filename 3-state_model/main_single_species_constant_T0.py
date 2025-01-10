@@ -42,7 +42,7 @@ Tab_arr = np.linspace(0, Tab_max, ab_res)
 ##########################
 ## Bacterial parameters ##
 ##########################
-λ_arr = np.linspace(0, T0 + Tab_max + 1, bac_res) + λ_min
+λ_arr = np.linspace(0, T0 + Tab_max, bac_res) + λ_min
 δ_arr = np.linspace(0, δ_max, bac_res)
 
 λd = np.outer(np.ones(bac_res), np.outer(np.ones(bac_res), λ_arr)).reshape(bac_res, bac_res, bac_res) - λ_min / 1000    # avoid overflow by distinguishing λd and λr

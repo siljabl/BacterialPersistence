@@ -27,10 +27,11 @@ T = args.T0 + args.Tab
 ###############
 ## Load data ##
 ###############
-F_max = np.loadtxt(f"../data/supplementary/fitness_δprojection_p{args.p}_T0{args.T0}_Tab{args.Tab}.txt")
-δ_max = np.loadtxt(f"../data/supplementary/δ_δprojection_p{args.p}_T0{args.T0}_Tab{args.Tab}.txt")
-λd    = np.loadtxt(f"../data/supplementary/λd_δprojection_p{args.p}_T0{args.T0}_Tab{args.Tab}.txt")
-λr    = np.loadtxt(f"../data/supplementary/λr_δprojection_p{args.p}_T0{args.T0}_Tab{args.Tab}.txt")
+type = "spon_"
+F_max = np.loadtxt(f"../data/supplementary/fitness_{type}projection_p{args.p}_T0{args.T0}_Tab{args.Tab}.txt")
+δ_max = np.loadtxt(f"../data/supplementary/δ_{type}projection_p{args.p}_T0{args.T0}_Tab{args.Tab}.txt")
+λd    = np.loadtxt(f"../data/supplementary/λd_{type}projection_p{args.p}_T0{args.T0}_Tab{args.Tab}.txt")
+λr    = np.loadtxt(f"../data/supplementary/λr_{type}projection_p{args.p}_T0{args.T0}_Tab{args.Tab}.txt")
 
 
 folder = '../data/constant_Tab_12'
@@ -53,8 +54,8 @@ fig, ax = plt.subplots(1, 2, figsize=(8, 3.5), sharey=True, sharex=True)
 
 im0 = ax[0].imshow(F_max, origin="lower", aspect="auto", extent=[0, T+1,  0, T+1])
 im1 = ax[1].imshow(δ_max, origin="lower", aspect="auto", extent=[0, T+1,  0, T+1])
-ax[0].set(xlabel=r'$\lambda$',  ylabel=r"$\omega$", title=r"$F(\lambda, \omega, \delta^{\star})$")
-ax[1].set(xlabel=r'$\lambda$',  title=r"$\delta^{\star}(\lambda, \omega)$")
+ax[0].set(xlabel=r'$\omega$',  ylabel=r"$\delta$", title=r"$F(\lambda, \omega, \delta_{max})$")
+ax[1].set(xlabel=r'$\lambda$',  title=r"$\lambda$")
 
 
 # Colorbars
@@ -78,10 +79,10 @@ ax[0].yaxis.set_ticks(np.linspace(0, ax_lim, 7, endpoint=True),  minor=True)
 # Optimal
 for j in range(2):
     #ax[j].scatter(opt_params[0], opt_params[1], s=40, edgecolors='gray', color=color, marker='*')
-    ax[j].scatter(stoch_params[0], stoch_params[1], s=50, color=sns.color_palette('colorblind')[2], marker=5, clip_on=False)
-    ax[j].scatter(trig_params[0] * T / args.Tab, 0, s=50, color=sns.color_palette('colorblind')[4], marker=6, clip_on=False)
+    ax[j].scatter(stoch_params[0], stoch_params[1], s=80, color=sns.color_palette('bright')[1], marker=5, clip_on=False)
+    ax[j].scatter(trig_params[0] * T / args.Tab, 0, s=80, color=sns.color_palette('bright')[9], marker=6, clip_on=False)
 
 
 # saving
 fig.tight_layout()
-fig.savefig(f"../figs/supplementary/fitness_bacterial_params_p{args.p}_T0{args.T0}_Tab{args.Tab}.png", dpi=100)
+fig.savefig(f"../figs/supplementary/{type}fitness_bacterial_params_p{args.p}_T0{args.T0}_Tab{args.Tab}.png", dpi=100)

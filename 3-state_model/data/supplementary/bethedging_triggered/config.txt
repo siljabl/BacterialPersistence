@@ -1,0 +1,10 @@
+date:2025-01-05
+ab_res:21
+bac_res:10
+T0:2
+Tab_min:0
+Tab_max:24
+λr_min:0.01
+λr_max:27.01
+δ_min:0.0
+δ_max:0.1

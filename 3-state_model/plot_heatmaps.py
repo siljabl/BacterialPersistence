@@ -47,35 +47,36 @@ fig, ax = plt.subplots(3, 2, figsize=(6.75, 7.5), sharey=True, sharex='col')
 # plotting lag
 ax[0,0].set(ylabel=r"$p$", title=r"$\lambda^{\star} / ~T$")
 ax[1,0].set(ylabel=r"$p$", title=r"$\omega^{\star} / T$")
-ax[2,0].set(xlabel=r'$T_{0}$', ylabel=r"$p$", title=r"$\delta^{\star}$")
+ax[2,0].set(xlabel=r'$T_{ab}$', ylabel=r"$p$", title=r"$\delta^{\star}$")
 ax[0,1].set(title=r"$\lambda^{\star} / ~T$")
 ax[1,1].set( title=r"$\omega^{\star} / T$")
-ax[2,1].set(xlabel=r'$T_{ab}$', title=r"$\delta^{\star}$")
+ax[2,1].set(xlabel=r'$T_{0}$', title=r"$\delta^{\star}$")
 
-im00 = ax[0,0].imshow(λd_T0 / T_T0,   origin="lower", cmap=d_cmap, aspect="auto", vmin=0, vmax=1, extent=[0, 12, 0, 1])
-im01 = ax[1,0].imshow(λr_T0 / T_T0,   origin="lower", cmap=d_cmap, aspect="auto", vmin=0, vmax=1, extent=[0, 12, 0, 1])
-im02 = ax[2,0].imshow(δ_T0,           origin="lower", cmap=r_cmap, aspect="auto", vmin=0, vmax=0.06, extent=[0, 12, 0, 1])
-im10 = ax[0,1].imshow(λd_Tab / T_Tab, origin="lower", cmap=d_cmap, aspect="auto", vmin=0, vmax=1, extent=[0, 24, 0, 1])
-im11 = ax[1,1].imshow(λr_Tab / T_Tab, origin="lower", cmap=d_cmap, aspect="auto", vmin=0, vmax=1, extent=[0, 24, 0, 1])
-im12 = ax[2,1].imshow(δ_Tab,          origin="lower", cmap=r_cmap, aspect="auto", vmin=0, vmax=0.06, extent=[0, 24, 0, 1])
+
+im00 = ax[0,0].imshow(λd_Tab / T_Tab, origin="lower", cmap=d_cmap, aspect="auto", vmin=0, vmax=1, extent=[0, 24, 0, 1])
+im01 = ax[1,0].imshow(λr_Tab / T_Tab, origin="lower", cmap=d_cmap, aspect="auto", vmin=0, vmax=1, extent=[0, 24, 0, 1])
+im02 = ax[2,0].imshow(δ_Tab,          origin="lower", cmap=r_cmap, aspect="auto", vmin=0, vmax=0.06, extent=[0, 24, 0, 1])
+im10 = ax[0,1].imshow(λd_T0 / T_T0,   origin="lower", cmap=d_cmap, aspect="auto", vmin=0, vmax=1, extent=[0, 12, 0, 1])
+im11 = ax[1,1].imshow(λr_T0 / T_T0,   origin="lower", cmap=d_cmap, aspect="auto", vmin=0, vmax=1, extent=[0, 12, 0, 1])
+im12 = ax[2,1].imshow(δ_T0,           origin="lower", cmap=r_cmap, aspect="auto", vmin=0, vmax=0.06, extent=[0, 12, 0, 1])
 
 for j in range(3):
-    ax[j,0].set(xticks=[0,  6, 12])
-    ax[j,1].set(xticks=[0, 12, 24])
+    ax[j,0].set(xticks=[0, 12, 24])
+    ax[j,1].set(xticks=[0,  6, 12])
 
-    ax[j,0].scatter([T0, T0, T0, T0, T0],      p_arr, s=40, edgecolors='k', c=p_cmap, marker='o')
-    ax[j,1].scatter([Tab, Tab, Tab, Tab, Tab], p_arr, s=40, edgecolors='k', c=p_cmap, marker='o')
+    ax[j,0].scatter([Tab, Tab, Tab, Tab, Tab], p_arr, s=40, edgecolors='k', c=p_cmap, marker='o')
+    ax[j,1].scatter([T0, T0, T0, T0, T0],      p_arr, s=40, edgecolors='k', c=p_cmap, marker='o')
 
 # Ticks
 plt.gca().yaxis.set_ticks([0, 0.5, 1],  minor=False)
 plt.gca().yaxis.set_ticks([0.25, 0.75], minor=True)
 
 for j in range(3):
-    ax[j,0].xaxis.set_ticks([0, 6, 12], minor=False)
-    ax[j,0].xaxis.set_ticks([3, 9],     minor=True)
-
-    ax[j,1].xaxis.set_ticks([0, 12, 24], minor=False)
-    ax[j,1].xaxis.set_ticks([6, 18],     minor=True)
+    ax[j,0].xaxis.set_ticks([0, 12, 24], minor=False)
+    ax[j,0].xaxis.set_ticks([6, 18],     minor=True)
+    
+    ax[j,1].xaxis.set_ticks([0, 6, 12], minor=False)
+    ax[j,1].xaxis.set_ticks([3, 9],     minor=True)
 
 # saving
 fig.tight_layout(rect=[0, 0, 1, 1],w_pad=2, h_pad=1.5)

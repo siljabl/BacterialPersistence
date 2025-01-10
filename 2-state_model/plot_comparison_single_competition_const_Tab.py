@@ -21,7 +21,6 @@ del_comp = np.zeros([n_plot, ab_res_comp])
 T0_opt = np.array([0, 3, 6])
 idx_opt  = (T0_opt * ab_res_opt  / T0_max).astype(int)
 idx_comp = (T0_opt * ab_res_comp / T0_max).astype(int)
-T0_comp  = idx_comp * T0_max / ab_res_comp
 
 T = Tab + T0_opt
 

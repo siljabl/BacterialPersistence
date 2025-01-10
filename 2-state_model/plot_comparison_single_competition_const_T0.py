@@ -21,7 +21,6 @@ del_comp = np.zeros([n_plot, ab_res_comp])
 Tab_opt = np.array([10, 14, 18])
 idx_opt  = (Tab_opt * ab_res_opt  / Tab_max).astype(int)
 idx_comp = (Tab_opt * ab_res_comp / Tab_max).astype(int)
-T0_comp  = idx_comp * Tab_max / ab_res_comp
 
 T = T0 + Tab_opt
 
@@ -82,5 +81,5 @@ fig.legend(loc='upper center',
            frameon=False,
            handlelength=1, 
            title=r"$T_{ab}$")
-fig.savefig(f"figs/compare_competition_T0_{T0}.png")
+fig.savefig(f"figs/compare_competition_T0_{T0}_half_dilution_ratio.png")
 

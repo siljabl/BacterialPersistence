@@ -43,3 +43,17 @@ def transform_fitness_to_bac_parameters(fitness, bac_params):
     idx = (fitness == F_max)
 
     return F_max, λd[idx], λr[idx], δ[idx]
+
+
+def transform_fitness_to_bethedge_parameters(fitness, bac_params):
+    '''
+    This function identifies the optimal parameters from the maximal fitness
+    '''
+    x  = bac_params['x']
+    λr = bac_params['λr']
+    δ  = bac_params['δ']
+
+    F_max = np.max(fitness)
+    idx = (fitness == F_max)
+
+    return F_max, x[idx], λr[idx], δ[idx]
