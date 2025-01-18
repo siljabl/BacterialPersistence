@@ -80,7 +80,8 @@ species2 = popu_t[1] + popu_t[3] + popu_t[5]
 S = np.concatenate(popu_t[6])
 time = np.concatenate(tot_time)
 
-
+ab_time_1 = np.array([T0, T])
+ab_time_2 = np.array([T0, T]) + 3 * T_cycle
 
 ##### PLOTTING #####
 sns.set_theme(style='ticks', palette='deep', font_scale=1.2)

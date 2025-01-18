@@ -72,7 +72,7 @@ ax[1].legend(loc='upper center',
                frameon=False,
                fancybox=True,
                handlelength=1,
-               title=r"$p$",
+               title=r"$T_0$",
                alignment='center')
 
 sns.despine()
