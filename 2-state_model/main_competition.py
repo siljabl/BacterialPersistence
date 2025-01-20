@@ -20,7 +20,7 @@ folder = 'competition_two_species'
 bac_res = 100                          # resolution in bacterial parameters
 ab_res  = 101                          # resolution in antibiotic parameters
 t_res   = 10                           # resolution in time array
-tot_cycles  = 10_000
+tot_cycles  = 10_0
 
 
 
@@ -28,8 +28,8 @@ tot_cycles  = 10_000
 ## Antibiotic parameters ##
 ###########################
 # for chosing which time parameter to keep constant.
-ic = constant_index['T0']                       # 'T0' or 'Tab'
-T_const = 5                                     # value of the constant parameter
+ic = constant_index['Tab']                       # 'T0' or 'Tab'
+T_const = 10                                     # value of the constant parameter
 
 # defining parameter arrays
 T_max = [12, 24]                                # upper bounds on meningful values for T0 and Tab

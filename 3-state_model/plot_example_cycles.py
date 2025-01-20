@@ -25,7 +25,7 @@ T_cycle = 40
 # index of substrate
 iS = 6
 
-p = 0.6
+p = 0.4
 r_arr = [0, 1, 1, 0, 1]
 bac_args=[np.array([T, λ_min]), np.array([λ_min, 3]), np.array([0, 0.04])]
 

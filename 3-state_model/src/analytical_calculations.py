@@ -10,7 +10,6 @@ def compute_a_and_b(λ_p, δ):
     '''
     Computing a, b as defined in thesis
     '''
-    a, b = 1 / λ_p, np.ones_like(δ)
 
     D = np.sqrt((λ_p * (1 - δ) - 1) ** 2 + 4 * λ_p)
 
@@ -25,7 +24,6 @@ def compute_ap_and_bp(λ_p, δ):
     '''
     Computing ap, bp as defined in thesis
     '''
-    ap, bp = γ * np.ones_like(δ), 1 / λ_p
 
     D = np.sqrt((λ_p * (γ + δ) + 1) ** 2 - 4 * γ * λ_p)
 
@@ -54,9 +52,9 @@ def solve_constants(eq_params, ab_params, stage):
     T   = ab_params['T']
 
     ebT0, eaT0, ecT0 = np.exp(b*T0), np.exp(-a*T0), np.exp(-c*T0)
-    ebT, eaT, ecT = np.exp(-bp*Tab), np.exp(-ap*Tab), np.exp(-c*Tab)
+    # ebT, eaT, ecT = np.exp(-bp*Tab), np.exp(-ap*Tab), np.exp(-c*Tab)
 
-    B0 =  (c*f*S0 / (a+b)) * (b*(a+1)) / (b+c)
+    B0 =  (c*f*S0 / (a+b)) * (b*(1+a)) / (b+c)
     A0 = -(c*f*S0 / (a+b)) * (a*(1-b)) / (a-c)
     C0 = -(c*f*S0 / (b+c)) * ((c-a*b)) / (c-a)
 
@@ -68,13 +66,13 @@ def solve_constants(eq_params, ab_params, stage):
 
     Bp =  ((a-bp)*B0*ebT0 - (b+bp)*A0*eaT0) / (ap-bp)
     Ap = -((a-ap)*B0*ebT0 - (b+ap)*A0*eaT0 + C0*(a-ap)*(b+ap)*ecT0/(ap-c)) / (ap-bp)
-    Cp = c*f*S0 / (ap-c)
+    Cp = -c*f*S0 / (ap-c)
 
     #Bp[1:] += (C0*(a-bp)*(b+bp)*ecT0 / (ap-bp))[1:] / (bp[1:]-c[1:])
     #Cp[1:] *= (c-a*b)[1:] / (c[1:]-bp[1:])
 
     Bp += (C0*(a-bp)*(b+bp)*ecT0 / (ap-bp)) / (bp-c)
-    Cp *= (c-a*b) / (c-bp)
+    Cp *= (c-a*b) / (bp-c)
     if stage == 'ab':
         return Bp, Ap, Cp
     

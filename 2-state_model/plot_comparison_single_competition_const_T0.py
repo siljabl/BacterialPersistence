@@ -81,5 +81,5 @@ fig.legend(loc='upper center',
            frameon=False,
            handlelength=1, 
            title=r"$T_{ab}$")
-fig.savefig(f"figs/compare_competition_T0_{T0}_half_dilution_ratio.png")
+fig.savefig(f"figs/compare_competition_T0_{T0}_test.png")
 
