@@ -11,7 +11,7 @@ from analytical_calculations import compute_a_and_b, compute_ap_and_bp
 
 np.random.seed(18)
 constant_index = {'T0':0, 'Tab':1}
-folder = 'competition_two_species'
+folder = 'competition_two_species_check_10'
 
 
 ###########################
@@ -41,7 +41,7 @@ T_values = [T_const, T_arr]
 T0  = T_values[ic]
 Tab = T_values[1-ic]
 
-
+print(f"data/{folder}/optimal_lag-{T_labels[ic]}{T_const}.txt")
 
 ##########################
 ## Bacterial parameters ##
