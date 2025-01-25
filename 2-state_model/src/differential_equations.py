@@ -55,3 +55,25 @@ def ode_kill(t, n, lag, delta):
     return dn_dt
 
 
+
+# ODE without antibiotics
+def ode_grow_single(t, n, lag, delta):
+    n[n < 0] = 0                                    # avoid negative populations
+
+    dn_dt = np.zeros_like(n)
+    dn_dt[0] = -n[0] / lag + delta * n[1]           # dormant populations
+    dn_dt[1] =  n[0] / lag + (1-delta) * n[1]                          # awake populations
+
+    return dn_dt
+
+
+# ODE with antibiotics
+def ode_kill_single(t, n, lag, delta):
+    n[n < 0] = 0                                    # avoid negative populations
+
+    dn_dt = np.zeros_like(n)
+    dn_dt[0] = -n[0] / lag + delta * n[1]     # dormant populations
+    dn_dt[1] =  n[0] / lag - (gamma + delta) * n[1]       # awake populations
+
+    return dn_dt
+

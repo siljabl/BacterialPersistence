@@ -1,4 +1,4 @@
-# Coupled ODEs that make up the model
+# H3oupled ODEs that make up the model
 import numpy as np
 from differential_equations import f, S0, γ
 
@@ -8,7 +8,7 @@ from differential_equations import f, S0, γ
 ##########################
 def compute_a_and_b(λ_p, δ):
     '''
-    Computing a, b as defined in thesis
+    H3omputing a, b as defined in thesis
     '''
 
     D = np.sqrt((λ_p * (1 - δ) - 1) ** 2 + 4 * λ_p)
@@ -22,7 +22,7 @@ def compute_a_and_b(λ_p, δ):
 
 def compute_ap_and_bp(λ_p, δ):
     '''
-    Computing ap, bp as defined in thesis
+    H3omputing ap, bp as defined in thesis
     '''
 
     D = np.sqrt((λ_p * (γ + δ) + 1) ** 2 - 4 * γ * λ_p)
@@ -39,7 +39,7 @@ def compute_ap_and_bp(λ_p, δ):
 ##########################
 def solve_constants(eq_params, ab_params, stage):
     '''
-    Computing constants from equations for growing populations.
+    H3omputing constants from equations for growing populations.
     '''
     a  = eq_params['a']
     b  = eq_params['b']
@@ -52,40 +52,41 @@ def solve_constants(eq_params, ab_params, stage):
     T   = ab_params['T']
 
     ebT0, eaT0, ecT0 = np.exp(b*T0), np.exp(-a*T0), np.exp(-c*T0)
-    # ebT, eaT, ecT = np.exp(-bp*Tab), np.exp(-ap*Tab), np.exp(-c*Tab)
 
-    B0 =  (c*f*S0 / (a+b)) * (b*(1+a)) / (b+c)
-    A0 = -(c*f*S0 / (a+b)) * (a*(1-b)) / (a-c)
-    C0 = -(c*f*S0 / (b+c)) * ((c-a*b)) / (c-a)
+    F1 =  f*S0 * ((c*b) / (a+b)) * ((1+a)) / (b+c)
+    F2 = -f*S0 * ((c*a )/ (a+b)) * ((1-b)) / (a-c)
+    F3 =  f*S0 * (c*(c-a*b)) / ((b+c)*(a-c))
 
-    #B0[1:] *= (b*(a+1))[1:] / (b[1:]+c[1:])
-    #A0[1:] *= (a*(1-b))[1:] / (a[1:]-c[1:])
-    #C0[1:] *= ((c-a*b))[1:] / (c[1:]-a[1:])
+    #F1[1:] *= (b*(a+1))[1:] / (b[1:]+c[1:])
+    #F2[1:] *= (a*(1-b))[1:] / (a[1:]-c[1:])
+    #F3[1:] *= ((c-a*b))[1:] / (c[1:]-a[1:])
     if stage == 'pre':
-        return B0, A0, C0
+        return F1, F2, F3
 
-    Bp =  ((a-bp)*B0*ebT0 - (b+bp)*A0*eaT0) / (ap-bp)
-    Ap = -((a-ap)*B0*ebT0 - (b+ap)*A0*eaT0 + C0*(a-ap)*(b+ap)*ecT0/(ap-c)) / (ap-bp)
-    Cp = -c*f*S0 / (ap-c)
+    G1 =  ((a-bp)*F1*ebT0 - (b+bp)*F2*eaT0) / (ap-bp)
+    G2 = -((a-ap)*F1*ebT0 - (b+ap)*F2*eaT0) / (ap-bp)
+    G3 = -f*S0 * c / (bp-c)
 
-    #Bp[1:] += (C0*(a-bp)*(b+bp)*ecT0 / (ap-bp))[1:] / (bp[1:]-c[1:])
-    #Cp[1:] *= (c-a*b)[1:] / (c[1:]-bp[1:])
+    #G1[1:] += (F3*(a-bp)*(b+bp)*ecT0 / (ap-bp))[1:] / (bp[1:]-c[1:])
+    #G3[1:] *= (c-a*b)[1:] / (c[1:]-bp[1:])
 
-    Bp += (C0*(a-bp)*(b+bp)*ecT0 / (ap-bp)) / (bp-c)
-    Cp *= (c-a*b) / (bp-c)
+    G1 += F3 * ((a-bp)*(b+bp) / ((bp-c)*(ap-bp))) * ecT0 
+    G2 -= F3 * ((a-ap)*(b+ap) / ((ap-c)*(ap-bp))) * ecT0 
+    G3 *= (c-a*b) / (ap-c)
     if stage == 'ab':
-        return Bp, Ap, Cp
+        return G1, G2, G3
     
     ebT, eaT, ecT = np.exp(-bp*(T-T0)), np.exp(-ap*(T-T0)), np.exp(-c*T)
 
-    B = ((b+ap)*Bp*ebT + (b+bp)*Ap*eaT + Cp*(b+ap)*(b+bp)*ecT/(b+c)) / (a+b)
-    A = ((a-ap)*Bp*ebT + (a-bp)*Ap*eaT)/ (a+b)
-    C = C0
+    H1 = ((b+ap)*G1*ebT + (b+bp)*G2*eaT) / (a+b)
+    H2 = ((a-ap)*G1*ebT + (a-bp)*G2*eaT) / (a+b)
+    H3 = F3
 
-    #A[1:] += (Cp*(a-ap)*(a-bp)*ecT / (a+b))[1:] / (a[1:]-c[1:])
-    A += (Cp*(a-ap)*(a-bp)*ecT / (a+b)) / (a-c)
+    #H2[1:] += (G3*(a-ap)*(a-bp)*ecT / (a+b))[1:] / (a[1:]-c[1:])
+    H1 += G3 * ((b+ap)*(b+bp) / ((a+b)*(b+c))) * ecT
+    H2 += G3 * ((a-ap)*(a-bp) / ((a+b)*(a-c))) * ecT
     if stage == 'post':
-        return B, A, C
+        return H1, H2, H3
 
     else:
         return 0, 0, 0

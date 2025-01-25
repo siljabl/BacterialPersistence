@@ -5,7 +5,7 @@ from scipy.integrate import solve_ivp
 
 sys.path.append("../src")
 from differential_equations import S0, f, γ, ode_kill_single
-from analytical_calculations import a_b, ap_bp, solve_constants
+from analytical_calculations import compute_a_and_b, compute_ap_and_bp, solve_constants
 
 # setting parameters
 d_0 = 1000
@@ -16,14 +16,14 @@ d_0 = 1000
 t_max = 10
 T_0 = 0
 
-a, b = a_b(λ_r, δ)
-ap, bp = ap_bp(λ_r, δ)
+a,  b  = compute_a_and_b(λ_r, δ)
+ap, bp = compute_ap_and_bp(λ_r, δ)
 c = 1/λ_d
 
 
 def BAC_p(a,ap,b,bp,c,T_0):
-	bac_args = [0, 0, 0, a, b, c, ap, bp]
-	ab_args  = [0, T_0, 0]
+	bac_args = {'λ_d':0, 'λ_d':0, 'δ':0, 'a':a, 'b':b, 'c':c, 'ap':ap, 'bp':bp}
+	ab_args  = {'T0':T_0, 'Tab':0, 'T':0}
 	
 	Bp, Ap, Cp = solve_constants(bac_args, ab_args, stage="ab")
 	return Bp, Ap, Cp
@@ -38,8 +38,8 @@ def d(t, λ_d, λ_r, δ):
 
 
 def g(t, λ_d, λ_r, δ):
-	a, b = a_b(λ_r, δ)
-	ap, bp = ap_bp(λ_r, δ)
+	a, b = compute_a_and_b(λ_r, δ)
+	ap, bp = compute_ap_and_bp(λ_r, δ)
 	c = 1/λ_d
 
 	Bp, Ap, Cp = BAC_p(a,ap,b,bp,c,T_0)
@@ -48,8 +48,8 @@ def g(t, λ_d, λ_r, δ):
 
 
 def r(t, λ_d, λ_r, δ):
-	a, b = a_b(λ_r, δ)
-	ap, bp = ap_bp(λ_r, δ)
+	a, b = compute_a_and_b(λ_r, δ)
+	ap, bp = compute_ap_and_bp(λ_r, δ)
 	c = 1/λ_d
 
 	Bp, Ap, Cp = BAC_p(a,ap,b,bp,c,T_0)

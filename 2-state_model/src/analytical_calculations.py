@@ -1,5 +1,5 @@
 import numpy as np
-from differential_equations import gamma, n0
+from differential_equations import gamma, n0, f, S0
 
 
 ##########################
@@ -23,8 +23,8 @@ def compute_ap_and_bp(lag, delta):
     '''
     D = np.sqrt((lag * (gamma + delta) + 1) ** 2 - 4 * gamma * lag)
 
-    ap = (D + (lag * (gamma + delta) + 1)) / (2 * lag)
-    bp = - (D - (lag * (gamma + delta) + 1)) / (2 * lag)
+    ap =  (D + (lag * (gamma + delta) + 1)) / (2 * lag)
+    bp = -(D - (lag * (gamma + delta) + 1)) / (2 * lag)
 
     return ap, bp
 
@@ -99,3 +99,47 @@ def analytical_decay(t, n_t0, a, b, ap, bp):
           g_t0 * ((a * b - bp) * exp_bpt - (a * b - ap) * exp_apt) / denom
 
     return d_t, g_t, S_t0 * np.ones_like(t)
+
+
+
+##########################
+## Analytical equations ##
+##########################
+def solve_constants(eq_params, ab_params, stage):
+    '''
+    H3omputing constants from equations for growing populations.
+    '''
+    a  = eq_params['a']
+    b  = eq_params['b']
+    ap = eq_params['ap']
+    bp = eq_params['bp']
+
+    T0  = ab_params['T0']
+    Tab = ab_params['Tab']
+    T   = ab_params['T']
+
+    ebT0, eaT0 = np.exp(b*T0), np.exp(-a*T0)
+    ebT,  eaT  = np.exp(-bp*(T-T0)), np.exp(-ap*(T-T0))
+
+    C1 =  f*S0 * (a*b) / (a+b)
+    C2 = -f*S0 * (a*b) / (a+b)
+
+    if stage == 'pre':
+        return C1, C2
+    
+    D1 = C1*((a-bp)*ebT0 + (b+bp)*eaT0) / (ap-bp)
+    D2 = C2*((a-ap)*ebT0 + (b+ap)*eaT0) / (ap-bp)
+
+    if stage == 'ab':
+        return D1, D2
+    
+    E1 = ((b+ap)*D1*ebT + (b+bp)*D2*eaT) / (a+b)
+    E2 = ((a-ap)*D1*ebT + (a-bp)*D2*eaT) / (a+b)
+
+    if stage == 'post':
+        return E1, E2,
+
+    else:
+        return 0, 0
+
+
