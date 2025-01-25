@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import skimage.morphology
 import matplotlib.colors as colors
 
-folder = 'competition_two_species'
+folder = 'competition_two_species_check_10'
 ab_res = 400
 
 def get_edge(heatmap, X, Y, lim):
@@ -36,7 +36,8 @@ cmap = mpl.colormaps['viridis']
 
 #importing data
 F_T0  = np.loadtxt(f'../data/{folder}/optimal_fitness-Tab10.txt')
-F_Tab = np.loadtxt(f'../data/{folder}/optimal_fitness-T05.txt')
+#F_Tab = np.loadtxt(f'../data/{folder}/optimal_fitness-T05.txt')
+F_Tab = F_T0
 
 # setting up figure
 sns.set_theme(style='ticks', font_scale=1.2)
