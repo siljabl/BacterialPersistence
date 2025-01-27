@@ -115,7 +115,6 @@ def solve_constants(eq_params, ab_params, stage):
     bp = eq_params['bp']
 
     T0  = ab_params['T0']
-    Tab = ab_params['Tab']
     T   = ab_params['T']
 
     ebT0, eaT0 = np.exp(b*T0), np.exp(-a*T0)

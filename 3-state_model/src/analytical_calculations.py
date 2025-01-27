@@ -81,8 +81,7 @@ def solve_constants(eq_params, ab_params, stage):
     H1 = ((b+ap)*G1*ebT + (b+bp)*G2*eaT) / (a+b)
     H2 = ((a-ap)*G1*ebT + (a-bp)*G2*eaT) / (a+b)
     H3 = F3
-
-    #H2[1:] += (G3*(a-ap)*(a-bp)*ecT / (a+b))[1:] / (a[1:]-c[1:])
+    
     H1 += G3 * ((b+ap)*(b+bp) / ((a+b)*(b+c))) * ecT
     H2 += G3 * ((a-ap)*(a-bp) / ((a+b)*(a-c))) * ecT
     if stage == 'post':

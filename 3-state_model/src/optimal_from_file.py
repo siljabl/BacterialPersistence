@@ -46,7 +46,7 @@ def identify_optimal_parameters_const_Tab(ab_params, config, folder):
     p_arr  = np.linspace(0, 1,      ab_res)
     T_arr  = np.linspace(0, T0_max, ab_res)
 
-    ip = np.where(abs(p_arr-p)   == np.min(abs(p_arr-p)))
+    ip = np.where(abs(p_arr-p)  == np.min(abs(p_arr-p)))
     iT = np.where(abs(T_arr-T0) == np.min(abs(T_arr-T0)))
 
     # find optimal

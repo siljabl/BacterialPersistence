@@ -120,7 +120,7 @@ def run_competition(bac_args, ab_args, sim_args):
     # Sorting inputs
     lag, delta, a, b, ap, bp = bac_args
     p, T0, Tab = ab_args[0:3]
-    _, bac_res, t_res, tot_cycles = sim_args
+    _, bac_res, t_res, tot_cycles, _ = sim_args
 
     t_min, t_max = 10 - T0, 15 + (T0 + Tab)                     # time limits
     t_arr = np.linspace(t_min, t_max, t_res)                    # time array

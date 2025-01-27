@@ -68,5 +68,5 @@ cbar0.ax.yaxis.set_ticks([0.25, 0.75], minor=True)
 cbar1.formatter = cbformat
 
 
-fig.savefig(f"figs/2state_heatmap_{folder}.png") #, dpi=100)
+fig.savefig(f"figs/2state_heatmap_{folder}_check_10.png") #, dpi=100)
 

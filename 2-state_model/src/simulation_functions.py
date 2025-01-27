@@ -13,7 +13,7 @@ def looping_through_antibiotic_parameters(bac_args, ab_args, sim_args):
     p_arr, T0, Tab = ab_args
     ab_res = sim_args[0]
     
-    T0  = T0  * np.ones(ab_res)                           # preparing time array
+    T0  = T0  * np.ones(ab_res)                         # preparing time array
     Tab = Tab * np.ones(ab_res)                         # preparing time array
 
     opt_params = np.zeros([len(p_arr), ab_res, 3])  	# output array
@@ -24,7 +24,7 @@ def looping_through_antibiotic_parameters(bac_args, ab_args, sim_args):
         # Time loop
         for it in range(ab_res):
             ab_args = [p, T0[it], Tab[it]]        # subset of antibiotic parameters
-            bac_args = optimal_parameters_from_data(bac_args, ab_args)     # compute winner parameters
+            bac_args = optimal_parameters_from_data(bac_args, ab_args, sim_args[-1])     # compute winner parameters
 
             opt_params[ip, it] = run_competition(bac_args, ab_args, sim_args)[0]
 
@@ -37,11 +37,12 @@ def looping_through_antibiotic_parameters(bac_args, ab_args, sim_args):
 
 # run simulation
 def run_competition_in_parallel(bac_args, ab_args, sim_args):
-    p_arr, T0, Tab = ab_args
+    p_arr, T0, Tab  = ab_args
     ab_res, bac_res = sim_args[0:2]
 
     cores = psutil.cpu_count(logical=False)             # number of available cores
     print(f'Available cores: {cores}')
+    
     # Domain decomposition
     width = int(ab_res / cores)                         # width of subdomain
     domain_order = np.zeros(cores)                      # array for sorting domains

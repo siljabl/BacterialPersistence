@@ -20,7 +20,7 @@ folder = 'competition_two_species_check_10'
 bac_res = 100                          # resolution in bacterial parameters
 ab_res  = 101                          # resolution in antibiotic parameters
 t_res   = 10                           # resolution in time array
-tot_cycles  = 10_00
+tot_cycles  = 10_000
 
 
 
@@ -42,6 +42,7 @@ T0  = T_values[ic]
 Tab = T_values[1-ic]
 
 print(f"data/{folder}/optimal_lag-{T_labels[ic]}{T_const}.txt")
+
 
 ##########################
 ## Bacterial parameters ##
@@ -65,8 +66,8 @@ ap, bp = compute_ap_and_bp(lag, delta)
 ########################
 tic = time.time()
 bac_args = [lag, delta, a, b, ap, bp]
-ab_args = [p_arr, T0, Tab]
-sim_args = [ab_res, bac_res, t_res, tot_cycles]
+ab_args  = [p_arr, T0, Tab]
+sim_args = [ab_res, bac_res, t_res, tot_cycles, T_labels[ic]]
 
 if __name__ == '__main__':
     S_frac, lag_opt, del_opt = run_competition_in_parallel(bac_args, ab_args, sim_args)
