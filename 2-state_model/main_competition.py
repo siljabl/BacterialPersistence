@@ -20,7 +20,7 @@ folder = 'competition_two_species_check_10'
 bac_res = 100                          # resolution in bacterial parameters
 ab_res  = 101                          # resolution in antibiotic parameters
 t_res   = 10                           # resolution in time array
-tot_cycles  = 10_000
+tot_cycles  = 10_00
 
 
 
