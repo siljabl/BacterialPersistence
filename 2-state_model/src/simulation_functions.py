@@ -25,7 +25,7 @@ def looping_through_antibiotic_parameters(bac_args, ab_args, sim_args):
         for it in range(ab_res):
             ab_args = [p, T0[it], Tab[it]]        # subset of antibiotic parameters
             bac_args = optimal_parameters_from_data(bac_args, ab_args, sim_args[-1])     # compute winner parameters
-
+            
             opt_params[ip, it] = run_competition(bac_args, ab_args, sim_args)[0]
 
         print("p = " + str(np.round(p, 2)))  # print progression

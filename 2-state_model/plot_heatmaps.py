@@ -12,7 +12,7 @@ T0  = 5
 Tab = 10
 
 # importing data 
-folder = 'competition_two_species'
+folder = 'competition_two_species_check_10'
 lag_Tab = np.loadtxt(f'data/{folder}/optimal_lag-T0{T0}.txt')
 del_Tab = np.loadtxt(f'data/{folder}/optimal_delta-T0{T0}.txt')
 lag_T0  = np.loadtxt(f'data/{folder}/optimal_lag-Tab{Tab}.txt')

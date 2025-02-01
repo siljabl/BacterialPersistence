@@ -36,8 +36,8 @@ cmap = mpl.colormaps['viridis']
 
 #importing data
 F_T0  = np.loadtxt(f'../data/{folder}/optimal_fitness-Tab10.txt')
-#F_Tab = np.loadtxt(f'../data/{folder}/optimal_fitness-T05.txt')
-F_Tab = F_T0
+F_Tab = np.loadtxt(f'../data/{folder}/optimal_fitness-T05.txt')
+#F_Tab = F_T0
 
 # setting up figure
 sns.set_theme(style='ticks', font_scale=1.2)
