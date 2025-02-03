@@ -27,8 +27,8 @@ T = Tab + T0_opt
 for i in range(n_plot):      
 	lag_opt[i]  = np.loadtxt(f'data/high_resolution/optimal_lag-Tab{Tab}.txt')[:,idx_opt[i]]
 	del_opt[i]  = np.loadtxt(f'data/high_resolution/optimal_delta-Tab{Tab}.txt')[:,idx_opt[i]]
-	lag_comp[i] = np.loadtxt(f'data/competition_two_species/optimal_lag-Tab{Tab}.txt')[:,idx_comp[i]]
-	del_comp[i] = np.loadtxt(f'data/competition_two_species/optimal_delta-Tab{Tab}.txt')[:,idx_comp[i]]
+	lag_comp[i] = np.loadtxt(f'data/competition_two_species_check_10/optimal_lag-Tab{Tab}.txt')[:,idx_comp[i]]
+	del_comp[i] = np.loadtxt(f'data/competition_two_species_check_10/optimal_delta-Tab{Tab}.txt')[:,idx_comp[i]]
 
 color = sns.color_palette("crest", as_cmap=True)([0, 0.5, 1])
 #color = ['dodgerblue', 'blue', 'black']	       
@@ -83,5 +83,5 @@ fig.legend(loc='upper center',
            frameon=False,
            handlelength=1, 
            title=r"$T_0$")
-fig.savefig(f"figs/compare_competition_Tab_{Tab}.png")
+fig.savefig(f"figs/compare_competition_Tab_{Tab}_check_10.png")
 
