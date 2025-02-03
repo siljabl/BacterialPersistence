@@ -28,8 +28,8 @@ tot_cycles  = 10_00
 ## Antibiotic parameters ##
 ###########################
 # for chosing which time parameter to keep constant.
-ic = constant_index['Tab']                       # 'T0' or 'Tab'
-T_const = 10                                     # value of the constant parameter
+ic = constant_index['T0']                       # 'T0' or 'Tab'
+T_const = 5                                     # value of the constant parameter
 
 # defining parameter arrays
 T_max = [12, 24]                                # upper bounds on meningful values for T0 and Tab
