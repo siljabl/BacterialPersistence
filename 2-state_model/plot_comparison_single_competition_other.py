@@ -10,9 +10,9 @@ ab_res_opt = 400
 ab_res_comp = 101
 n_plot = 3
 
-file = 'T0'
-T_const = 5
-T_max   = 24
+file = 'Tab'
+T_const = 10
+T_max   = 12
 
 lag_opt  = np.zeros([n_plot, ab_res_opt])
 del_opt  = np.zeros([n_plot, ab_res_opt])
@@ -32,8 +32,8 @@ for i in range(n_plot):
 	del_comp[i] = np.loadtxt(f'data/competition_two_species/optimal_delta-{file}{T_const}.txt')[idx_comp[i]]
 
 
-color = sns.color_palette("flare", as_cmap=True)([1, 0.5, 0])
-#color =  sns.color_palette("crest", as_cmap=True)([0, 0.5, 1])       
+#color = sns.color_palette("flare", as_cmap=True)([1, 0.5, 0])
+color =  sns.color_palette("crest", as_cmap=True)([0, 0.5, 1])       
 x_opt  = np.linspace(0, T_max, ab_res_opt)
 x_comp = np.linspace(0, T_max, ab_res_comp)
 T_opt = T_const + x_opt
@@ -62,8 +62,8 @@ for i in range(n_plot):
         ax[0].plot(x_comp[mask], (lag_comp[i] / T_comp)[mask], '.', c=color[i], lw=3, alpha=0.5)
         ax[1].plot(x_comp[mask],  del_comp[i][mask],         '.', c=color[i], lw=3, alpha=0.5)
 
-ax[0].set(xlabel=r"$T_{ab}$", title=r"$\lambda^{\star} / ~T$")
-ax[1].set(xlabel=r"$T_{ab}$", title=r"$\delta^{\star}$")
+ax[0].set(xlabel=r"$T_{0}$", title=r"$\lambda^{\star} / ~T$")
+ax[1].set(xlabel=r"$T_{0}$", title=r"$\delta^{\star}$")
 
 # Ticks
 # plt.gca().xaxis.set_ticks([0, 0.5, 1],  minor=False)

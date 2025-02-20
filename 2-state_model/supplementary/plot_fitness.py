@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import skimage.morphology
 import matplotlib.colors as colors
 
-folder = 'competition_two_species_check_10'
+folder = 'competition_two_species'
 ab_res = 400
 
 def get_edge(heatmap, X, Y, lim):
