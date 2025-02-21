@@ -13,9 +13,9 @@ from single_species_fitness  import compute_optimal_parameters
 ## Simulation parameters ##
 ###########################
 constant_index = {'T0':0, 'Tab':1}
-folder = 'test'
-bac_res = 100                                  # resolution in bacterial parameters
-ab_res  = 101                                  # resolution in antibiotic parameters
+folder = 'new'
+bac_res = 400                                  # resolution in bacterial parameters
+ab_res  = 400                                  # resolution in antibiotic parameters
 
 
 
@@ -23,8 +23,8 @@ ab_res  = 101                                  # resolution in antibiotic parame
 ## Antibiotic parameters ##
 ###########################
 # for chosing which time parameter to keep constant.
-ic = constant_index['T0']                      # 'T0' or 'Tab'
-T_const = 5                                    # value of the constant parameter
+ic = constant_index['Tab']                      # 'T0' or 'Tab'
+T_const = 10                                    # value of the constant parameter
 
 # defining parameter arrays
 T_max = [12, 24]                                # upper bounds on meningful values for T0 and Tab

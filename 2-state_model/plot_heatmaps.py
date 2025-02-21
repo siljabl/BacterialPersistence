@@ -4,7 +4,7 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 
 
-ab_res = 101
+ab_res = 400
 lag_cmap = mpl.colormaps.get_cmap('viridis')
 del_cmap = mpl.colormaps.get_cmap('plasma')
 
@@ -12,7 +12,7 @@ T0  = 5
 Tab = 10
 
 # importing data 
-folder = 'low_resolution'
+folder = 'high_resolution'
 lag_Tab = np.loadtxt(f'data/{folder}/optimal_lag-T0{T0}.txt')
 del_Tab = np.loadtxt(f'data/{folder}/optimal_delta-T0{T0}.txt')
 lag_T0  = np.loadtxt(f'data/{folder}/optimal_lag-Tab{Tab}.txt')
