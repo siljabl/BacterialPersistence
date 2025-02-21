@@ -70,6 +70,6 @@ def compute_optimal_parameters(bac_args, ab_args):
 
         print(100 * np.round(ip / ab_res, 4), "%")			# printing progress
 
-    return lag_opt, del_opt, F_matrix
+    return lag_opt, del_opt, F
 
 

@@ -44,8 +44,8 @@ sns.set_theme(style='ticks', font_scale=1.2)
 
 fig, ax = plt.subplots(1, 2, figsize=(6.5, 3), sharey=True)
 
-im0=ax[0].imshow(1/F_T0,  origin="lower", cmap=cmap, aspect="auto", extent=[0, 12, 0, 1])
-im1=ax[1].imshow(F_T0, origin="lower", cmap=cmap, aspect="auto", extent=[0, 24, 0, 1])
+im0=ax[0].imshow(F_T0,  origin="lower", cmap=cmap, aspect="auto", extent=[0, 12, 0, 1])
+im1=ax[1].imshow(F_Tab, origin="lower", cmap=cmap, aspect="auto", extent=[0, 24, 0, 1])
 
 # plotting edge
 heatmap_T0  = np.loadtxt(f'../data/{folder}/optimal_lag-Tab10.txt')
