@@ -6,37 +6,35 @@ import matplotlib.pyplot as plt
 # Plot parameters
 mpl.rcParams["font.size"]   = "12"
 
-ab_res_opt = 400
-ab_res_comp = 101
+p_res = 96
+T_res = 101
 n_plot = 3
 
 file = 'Tab'
 T_const = 10
 T_max   = 12
 
-lag_opt  = np.zeros([n_plot, ab_res_opt])
-del_opt  = np.zeros([n_plot, ab_res_opt])
-lag_comp = np.zeros([n_plot, ab_res_comp])
-del_comp = np.zeros([n_plot, ab_res_comp])
+lag_opt  = np.zeros([n_plot, T_res])
+del_opt  = np.zeros([n_plot, T_res])
+lag_comp = np.zeros([n_plot, T_res])
+del_comp = np.zeros([n_plot, T_res])
 
 p_opt = np.array([0.8, 0.5, 0.2])
-idx_opt  = (p_opt * ab_res_opt).astype(int)
-idx_comp = (p_opt * ab_res_comp).astype(int)
-
+idx = (p_opt * 100**2 / 101).astype(int)
 
 for i in range(n_plot):
 	
-	lag_opt[i]  = np.loadtxt(f'data/high_resolution/optimal_lag-{file}{T_const}.txt')[idx_opt[i]]
-	del_opt[i]  = np.loadtxt(f'data/high_resolution/optimal_delta-{file}{T_const}.txt')[idx_opt[i]]
-	lag_comp[i] = np.loadtxt(f'data/competition_two_species/optimal_lag-{file}{T_const}.txt')[idx_comp[i]]
-	del_comp[i] = np.loadtxt(f'data/competition_two_species/optimal_delta-{file}{T_const}.txt')[idx_comp[i]]
+	lag_opt[i]  = np.loadtxt(f'data/low_resolution/optimal_lag-{file}{T_const}.txt')[idx[i]]
+	del_opt[i]  = np.loadtxt(f'data/low_resolution/optimal_delta-{file}{T_const}.txt')[idx[i]]
+	lag_comp[i] = np.loadtxt(f'data/competition_two_species/optimal_lag-{file}{T_const}.txt')[idx[i]]
+	del_comp[i] = np.loadtxt(f'data/competition_two_species/optimal_delta-{file}{T_const}.txt')[idx[i]]
 
 
 #color = sns.color_palette("flare", as_cmap=True)([1, 0.5, 0])
 color =  sns.color_palette("crest", as_cmap=True)([0, 0.5, 1])       
-x_opt  = np.linspace(0, T_max, ab_res_opt)
-x_comp = np.linspace(0, T_max, ab_res_comp)
-T_opt = T_const + x_opt
+x_opt  = np.linspace(0, T_max, T_res)
+x_comp = np.linspace(0, T_max, T_res)
+T_opt  = T_const + x_opt
 T_comp = T_const + x_comp
 
 

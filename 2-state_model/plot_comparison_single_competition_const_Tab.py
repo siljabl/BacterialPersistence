@@ -6,34 +6,34 @@ import matplotlib.pyplot as plt
 # Plot parameters
 mpl.rcParams["font.size"]   = "12"
 
-ab_res_opt = 400
-ab_res_comp = 96
+p_res = 96
+T_res = 101
 n_plot = 3
 
 T0_max = 12
 Tab = 10
 
-lag_opt  = np.zeros([n_plot, ab_res_opt])
-del_opt  = np.zeros([n_plot, ab_res_opt])
-lag_comp = np.zeros([n_plot, ab_res_comp])
-del_comp = np.zeros([n_plot, ab_res_comp])
+lag_opt  = np.zeros([n_plot, p_res])
+del_opt  = np.zeros([n_plot, p_res])
+lag_comp = np.zeros([n_plot, p_res])
+del_comp = np.zeros([n_plot, p_res])
 
 T0_opt = np.array([0, 3, 6])
-idx_opt  = (T0_opt * ab_res_opt  / T0_max).astype(int)
-idx_comp = (T0_opt * ab_res_comp / T0_max).astype(int)
+idx_opt  = (T0_opt * T_res / T0_max).astype(int)
+idx_comp = (T0_opt * T_res / T0_max).astype(int)
 
 T = Tab + T0_opt
 
 for i in range(n_plot):      
-	lag_opt[i]  = np.loadtxt(f'data/high_resolution/optimal_lag-Tab{Tab}.txt')[:,idx_opt[i]]
-	del_opt[i]  = np.loadtxt(f'data/high_resolution/optimal_delta-Tab{Tab}.txt')[:,idx_opt[i]]
+	lag_opt[i]  = np.loadtxt(f'data/low_resolution/optimal_lag-Tab{Tab}.txt')[:p_res,idx_opt[i]]
+	del_opt[i]  = np.loadtxt(f'data/low_resolution/optimal_delta-Tab{Tab}.txt')[:p_res,idx_opt[i]]
 	lag_comp[i] = np.loadtxt(f'data/competition_two_species/optimal_lag-Tab{Tab}.txt')[:,idx_comp[i]]
 	del_comp[i] = np.loadtxt(f'data/competition_two_species/optimal_delta-Tab{Tab}.txt')[:,idx_comp[i]]
 
 color = sns.color_palette("crest", as_cmap=True)([0, 0.5, 1])
 #color = ['dodgerblue', 'blue', 'black']	       
-x_opt  = np.linspace(0, 1, ab_res_opt)
-x_comp = np.linspace(0, 1, ab_res_comp)
+x_opt  = np.linspace(0, 1*96/101, p_res)
+x_comp = np.linspace(0, 1*96/101, p_res)
 
 sns.set_theme(style='ticks', font_scale=1.2)
 fig, ax = plt.subplots(1,2, figsize=(6.7,2.5), sharex=True)

@@ -63,8 +63,7 @@ def compute_optimal_parameters(bac_args, ab_args):
 
             F_matrix = analytical_fitness(bac_args, ab_arg)				# computing fitness matrix corresponding to all bacterial parameters
             F_max = (F_matrix == F_matrix.max())				        # masking shortest time
-            #np.savetxt("../../../../data2", F_matrix)
-
+            
             F[ip, it] = F_matrix[F_max]					                # saving max fitness
             lag_opt[ip, it] = lag[0, (F_max.sum(0)).astype(bool)]		# identifying corresponding lag time
             del_opt[ip, it] = delta[(F_max.sum(1)).astype(bool), 0]  	# identifying corresponding persistence

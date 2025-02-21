@@ -12,7 +12,7 @@ T0  = 5
 Tab = 10
 
 # importing data 
-folder = 'competition_two_species'
+folder = 'low_resolution'
 lag_Tab = np.loadtxt(f'data/{folder}/optimal_lag-T0{T0}.txt')
 del_Tab = np.loadtxt(f'data/{folder}/optimal_delta-T0{T0}.txt')
 lag_T0  = np.loadtxt(f'data/{folder}/optimal_lag-Tab{Tab}.txt')
@@ -22,8 +22,8 @@ del_T0  = np.loadtxt(f'data/{folder}/optimal_delta-Tab{Tab}.txt')
 # arrays for scaling imshow
 Tab_arr = np.linspace(0, 24, ab_res)
 T0_arr  = np.linspace(0, 12, ab_res)
-T_Tab = T0  + np.outer(np.ones(ab_res-1), Tab_arr)
-T_T0  = Tab + np.outer(np.ones(ab_res-5),  T0_arr)
+T_Tab = T0  + np.outer(np.ones(ab_res), Tab_arr)
+T_T0  = Tab + np.outer(np.ones(ab_res),  T0_arr)
 
 
 # setting up figure
@@ -36,9 +36,9 @@ ax[1,0].set(xlabel=r'$T_{0}$', ylabel=r"$p$",  title=r"$\delta^{\star}_{comp}$")
 ax[0,1].set(title=r"$\lambda^{\star}_{comp} / ~T$")
 ax[1,1].set(xlabel=r'$T_{ab}$', title=r"$\delta^{\star}_{comp}$")
 
-im00 = ax[0,0].imshow(lag_T0 / T_T0,   cmap=lag_cmap, origin="lower", vmin=0, vmax=1.1,   aspect="auto", extent=[0, 12, 0, 1]) 
+im00 = ax[0,0].imshow(lag_T0 / T_T0,   cmap=lag_cmap, origin="lower", vmin=0, vmax=1.01,   aspect="auto", extent=[0, 12, 0, 1]) 
 im10 = ax[1,0].imshow(del_T0,          cmap=del_cmap, origin="lower", vmin=0, vmax=0.07, aspect="auto", extent=[0, 12, 0, 1])
-im01 = ax[0,1].imshow(lag_Tab / T_Tab, cmap=lag_cmap, origin="lower", vmin=0, vmax=1.1,   aspect="auto", extent=[0, 24, 0, 1])
+im01 = ax[0,1].imshow(lag_Tab / T_Tab, cmap=lag_cmap, origin="lower", vmin=0, vmax=1.01,   aspect="auto", extent=[0, 24, 0, 1])
 im11 = ax[1,1].imshow(del_Tab,         cmap=del_cmap, origin="lower", vmin=0, vmax=0.07, aspect="auto", extent=[0, 24, 0, 1])
 
 # Ticks

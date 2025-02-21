@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 # Plot parameters
 mpl.rcParams["font.size"]   = "12"
 
-ab_res_opt = 400
+ab_res_opt  = 101
 ab_res_comp = 100
 n_plot = 3
 
@@ -26,8 +26,8 @@ T = T0 + Tab_opt
 
 for i in range(n_plot):
 	
-	lag_opt[i]  = np.loadtxt(f'data/high_resolution/optimal_lag-T0{T0}.txt')[:,idx_opt[i]]
-	del_opt[i]  = np.loadtxt(f'data/high_resolution/optimal_delta-T0{T0}.txt')[:,idx_opt[i]]
+	lag_opt[i]  = np.loadtxt(f'data/low_resolution/optimal_lag-T0{T0}.txt')[:,idx_opt[i]]
+	del_opt[i]  = np.loadtxt(f'data/low_resolution/optimal_delta-T0{T0}.txt')[:,idx_opt[i]]
 	lag_comp[i] = np.loadtxt(f'data/competition_two_species/optimal_lag-T0{T0}.txt')[:,idx_comp[i]]
 	del_comp[i] = np.loadtxt(f'data/competition_two_species/optimal_delta-T0{T0}.txt')[:,idx_comp[i]]
 
