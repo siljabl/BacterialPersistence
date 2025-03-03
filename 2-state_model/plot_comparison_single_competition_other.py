@@ -58,7 +58,7 @@ for i in range(n_plot):
 
     for mask in [before, after]:
         ax[0].plot(x_comp[mask], (lag_comp[i] / T_comp)[mask], '.', c=color[i], lw=3, alpha=0.5)
-        ax[1].plot(x_comp[mask],  del_comp[i][mask],         '.', c=color[i], lw=3, alpha=0.5)
+        ax[1].plot(x_comp[mask],  del_comp[i][mask],           '.', c=color[i], lw=3, alpha=0.5)
 
 ax[0].set(xlabel=r"$T_{0}$", title=r"$\lambda^{\star} / ~T$")
 ax[1].set(xlabel=r"$T_{0}$", title=r"$\delta^{\star}$")
@@ -82,5 +82,5 @@ fig.legend(loc='upper center',
            frameon=False,
            handlelength=1, 
            title=r"$p$")
-fig.savefig(f"figs/compare_competition_{file}{T_const}_parr.png")
+fig.savefig(f"figs/compare_competition_{file}{T_const}_parr_half_dilution_ratio.png")
 

@@ -15,7 +15,7 @@ from single_species_fitness  import compute_optimal_parameters
 constant_index = {'T0':0, 'Tab':1}
 folder = 'new'
 bac_res = 400                                  # resolution in bacterial parameters
-ab_res  = 400                                  # resolution in antibiotic parameters
+ab_res  = 101                                  # resolution in antibiotic parameters
 
 
 

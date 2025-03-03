@@ -4,7 +4,7 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 
 
-ab_res = 400
+ab_res = 101
 lag_cmap = mpl.colormaps.get_cmap('viridis')
 del_cmap = mpl.colormaps.get_cmap('plasma')
 
@@ -12,7 +12,7 @@ T0  = 5
 Tab = 10
 
 # importing data 
-folder = 'high_resolution'
+folder = 'competition_two_species'
 lag_Tab = np.loadtxt(f'data/{folder}/optimal_lag-T0{T0}.txt')
 del_Tab = np.loadtxt(f'data/{folder}/optimal_delta-T0{T0}.txt')
 lag_T0  = np.loadtxt(f'data/{folder}/optimal_lag-Tab{Tab}.txt')
@@ -22,8 +22,8 @@ del_T0  = np.loadtxt(f'data/{folder}/optimal_delta-Tab{Tab}.txt')
 # arrays for scaling imshow
 Tab_arr = np.linspace(0, 24, ab_res)
 T0_arr  = np.linspace(0, 12, ab_res)
-T_Tab = T0  + np.outer(np.ones(ab_res), Tab_arr)
-T_T0  = Tab + np.outer(np.ones(ab_res),  T0_arr)
+T_Tab = T0  + np.outer(np.ones(ab_res-1), Tab_arr)
+T_T0  = Tab + np.outer(np.ones(ab_res-5),  T0_arr)
 
 
 # setting up figure
