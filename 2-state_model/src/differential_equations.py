@@ -39,7 +39,8 @@ def ode_grow(t, n, lag, delta):
 
     if n[4] > 0:
         dn_dt[2:4] += beta(n[4]) * n[2:4]           # adding growth if nutrients left
-        dn_dt[4] = -dn_dt[2:4].sum()                # nutrients
+        #dn_dt[4] = -dn_dt[2:4].sum()               # nutrients, old consumption rate
+        dn_dt[4] = -((1-delta) * n[2:4]).sum()      # correct consumption rate
 
     return dn_dt
 
@@ -62,7 +63,7 @@ def ode_grow_single(t, n, lag, delta):
 
     dn_dt = np.zeros_like(n)
     dn_dt[0] = -n[0] / lag + delta * n[1]           # dormant populations
-    dn_dt[1] =  n[0] / lag + (1-delta) * n[1]                          # awake populations
+    dn_dt[1] =  n[0] / lag + (1-delta) * n[1]       # awake populations
 
     return dn_dt
 

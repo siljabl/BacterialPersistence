@@ -9,7 +9,7 @@ sys.path.append("src")
 # Plot parameters
 mpl.rcParams["font.size"]   = "12"
 
-ab_res = 200
+ab_res = 41
 Tab = 12
 T0  = 2
 
@@ -22,12 +22,12 @@ p_cmap = sns.color_palette('coolwarm', as_cmap=True)(np.linspace(0,1,5))
 folderT0  = "peer_review"
 folderTab = "peer_review"
 #λd_Tab_low  = np.loadtxt(f'data/{folder_T0}_Tab_6/single_optimal_λd-T0_0.txt')
-λd_Tab = np.loadtxt(f'data/{folderT0}/single_optimal_λd-T0_0.txt')
-λr_Tab = np.loadtxt(f'data/{folderT0}/single_optimal_λr-T0_0.txt')
-δ_Tab  = np.loadtxt(f'data/{folderT0}/single_optimal_δ-T0_0.txt')
-λd_T0  = np.loadtxt(f'data/{folderTab}/single_optimal_λd-Tab_12.txt')
-λr_T0  = np.loadtxt(f'data/{folderTab}/single_optimal_λr-Tab_12.txt')
-δ_T0   = np.loadtxt(f'data/{folderTab}/single_optimal_δ-Tab_12.txt')
+λd_Tab = np.loadtxt(f'data/{folderT0}/single_optimal_λd-T0_0.txt') - np.loadtxt(f'data/peer_review_old/single_optimal_λd-T0_0.txt')
+λr_Tab = np.loadtxt(f'data/{folderT0}/single_optimal_λr-T0_0.txt') - np.loadtxt(f'data/peer_review_old/single_optimal_λr-T0_0.txt')
+δ_Tab  = np.loadtxt(f'data/{folderT0}/single_optimal_δ-T0_0.txt')  - np.loadtxt(f'data/peer_review_old/single_optimal_δ-T0_0.txt')
+λd_T0  = np.loadtxt(f'data/{folderTab}/single_optimal_λd-Tab_12.txt') - np.loadtxt(f'data/peer_review_old/single_optimal_λd-Tab_12.txt')
+λr_T0  = np.loadtxt(f'data/{folderTab}/single_optimal_λr-Tab_12.txt') - np.loadtxt(f'data/peer_review_old/single_optimal_λr-Tab_12.txt')
+δ_T0   = np.loadtxt(f'data/{folderTab}/single_optimal_δ-Tab_12.txt')  - np.loadtxt(f'data/peer_review_old/single_optimal_δ-Tab_12.txt')
 
 #λd_Tab[:, :11] = λd_Tab_low[:,:11]
 
@@ -55,12 +55,12 @@ ax[1,1].set( title=r"$\omega^{\star} / T$")
 ax[2,1].set(xlabel=r'$T_{0}$', title=r"$\delta^{\star}$")
 
 
-im00 = ax[0,0].imshow(λd_Tab / T_Tab, origin="lower", cmap=d_cmap, aspect="auto", vmin=0, vmax=1, extent=[0, 24, 0, 1])
-im01 = ax[1,0].imshow(λr_Tab / T_Tab, origin="lower", cmap=d_cmap, aspect="auto", vmin=0, vmax=1, extent=[0, 24, 0, 1])
-im02 = ax[2,0].imshow(δ_Tab,          origin="lower", cmap=r_cmap, aspect="auto", vmin=0, vmax=0.06, extent=[0, 24, 0, 1])
-im10 = ax[0,1].imshow(λd_T0 / T_T0,   origin="lower", cmap=d_cmap, aspect="auto", vmin=0, vmax=1, extent=[0, 12, 0, 1])
-im11 = ax[1,1].imshow(λr_T0 / T_T0,   origin="lower", cmap=d_cmap, aspect="auto", vmin=0, vmax=1, extent=[0, 12, 0, 1])
-im12 = ax[2,1].imshow(δ_T0,           origin="lower", cmap=r_cmap, aspect="auto", vmin=0, vmax=0.06, extent=[0, 12, 0, 1])
+im00 = ax[0,0].imshow(λd_Tab / T_Tab, origin="lower", cmap=d_cmap, aspect="auto", vmin=-1e-1, vmax=1e-1, extent=[0, 24, 0, 1])
+im01 = ax[1,0].imshow(λr_Tab / T_Tab, origin="lower", cmap=d_cmap, aspect="auto", vmin=-1e-1, vmax=1e-1, extent=[0, 24, 0, 1])
+im02 = ax[2,0].imshow(δ_Tab,          origin="lower", cmap=r_cmap, aspect="auto", vmin=-1e-2, vmax=1e-2, extent=[0, 24, 0, 1])
+im10 = ax[0,1].imshow(λd_T0 / T_T0,   origin="lower", cmap=d_cmap, aspect="auto", vmin=-1e-1, vmax=1e-1, extent=[0, 12, 0, 1])
+im11 = ax[1,1].imshow(λr_T0 / T_T0,   origin="lower", cmap=d_cmap, aspect="auto", vmin=-1e-1, vmax=1e-1, extent=[0, 12, 0, 1])
+im12 = ax[2,1].imshow(δ_T0,           origin="lower", cmap=r_cmap, aspect="auto", vmin=-1e-2, vmax=1e-2, extent=[0, 12, 0, 1])
 
 for j in range(3):
     ax[j,0].set(xticks=[0, 12, 24])
@@ -93,10 +93,10 @@ for im, axes in zip(ims, ax.flatten()):
     cbar = fig.colorbar(im, ax=ax[i,:], aspect=10, anchor=(-.1, 0.5))
     cbar.formatter = cbformat
     
-    if im in [im00, im01, im10, im11]:
-        cbar.ax.yaxis.set_ticks([0,0.5, 1],   minor=False)
-        cbar.ax.yaxis.set_ticks([0.25, 0.75], minor=True)
+    # if im in [im00, im01, im10, im11]:
+    #     cbar.ax.yaxis.set_ticks([0,0.5, 1],   minor=False)
+    #     cbar.ax.yaxis.set_ticks([0.25, 0.75], minor=True)
 
     i += 1
 
-fig.savefig(f"figs/3state_heatmaps_peer_review.png", dpi=300)
+fig.savefig(f"figs/3state_heatmaps_compare.png", dpi=100)

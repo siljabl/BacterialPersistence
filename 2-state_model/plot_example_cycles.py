@@ -81,21 +81,28 @@ time = np.concatenate(tot_time)
 
 ##### PLOTTING #####
 sns.set_theme(style='ticks', palette='deep', font_scale=1.2)
-fig, ax = plt.subplots(1, 1, figsize=(6.75, 2.7))
-ax.fill_between(time, S, 0, color=sns.color_palette('deep')[2], alpha=0.3, label="Substrate")
+fig, ax = plt.subplots(2, 1, figsize=(6.75, 3.75), sharex=True, gridspec_kw={"height_ratios": [1,0.6]})
+ax[0].fill_between(time, S, 0, color=sns.color_palette('deep')[2], alpha=0.3, label="Substrate")
+#ax[1].fill_between(time, S, 0, color=sns.color_palette('deep')[2], alpha=0.3, label="Substrate")
 
-ax.plot(time, species1, lw=2, color=sns.color_palette('deep')[0], label="Species 1")
-ax.plot(time, species2, lw=2, color=sns.color_palette('deep')[3], label="Species 2")
-ax.set_xticks(np.arange(0, max(time), max(time)/5) + max(time)/10)
-ax.set_xticklabels(['1', '2', '3', '4', '5'])
+ax[0].plot(time, species1, lw=2, color=sns.color_palette('deep')[0], label=r"$p_1$")
+ax[0].plot(time, species2, lw=2, color=sns.color_palette('deep')[3], label=r"$p_2$")
+ax[0].set_xticks(np.arange(0, max(time), max(time)/5) + max(time)/10)
+ax[0].set_xticklabels(['1', '2', '3', '4', '5'])
 
-ax.set(xlabel="Cycle", ylabel="Population")
-ax.set(yscale='log',  ylim=[10**(0), 10**10])
+
+ax[1].plot(time, 0.5*np.ones_like(time), "-", lw=1, color="gray", alpha=0.7)
+ax[1].plot(time, species1 / (species1 + species2), lw=2, color="k")
+
+ax[0].set(ylabel="Population")
+ax[1].set(xlabel="Cycle", ylabel=r"$p_1 / (p_1 + p_2)$")
+ax[0].set(yscale='log',  ylim=[10**(0), 10**10])
+ax[1].set(ylim=[0, 1])
 sns.despine()
 
-fig.tight_layout(rect=[0, 0, 1, 0.85])
-ax.legend(loc='upper center', 
-          bbox_to_anchor=(0.5, 1.45), 
+fig.tight_layout(rect=[0, 0, 1, 0.95])
+ax[0].legend(loc='upper center', 
+          bbox_to_anchor=(0.5, 1.3), 
           ncol=3, 
           frameon=False)
 fig.savefig("figs/example_2state.png")

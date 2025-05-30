@@ -25,8 +25,8 @@ idx_comp = (T0_opt * T_res / T0_max).astype(int)
 T = Tab + T0_opt
 
 for i in range(n_plot):      
-	lag_opt[i]  = np.loadtxt(f'data/new/optimal_lag-Tab{Tab}.txt')[:p_res,idx_opt[i]]
-	del_opt[i]  = np.loadtxt(f'data/new/optimal_delta-Tab{Tab}.txt')[:p_res,idx_opt[i]]
+	lag_opt[i]  = np.loadtxt(f'data/quarter_dilution_ratio/optimal_lag-Tab{Tab}.txt')[:p_res,idx_opt[i]]
+	del_opt[i]  = np.loadtxt(f'data/quarter_dilution_ratio/optimal_delta-Tab{Tab}.txt')[:p_res,idx_opt[i]]
 	lag_comp[i] = np.loadtxt(f'data/competition_two_species/optimal_lag-Tab{Tab}.txt')[:,idx_comp[i]]
 	del_comp[i] = np.loadtxt(f'data/competition_two_species/optimal_delta-Tab{Tab}.txt')[:,idx_comp[i]]
 

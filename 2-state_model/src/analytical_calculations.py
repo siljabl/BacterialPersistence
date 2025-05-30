@@ -107,7 +107,7 @@ def analytical_decay(t, n_t0, a, b, ap, bp):
 ##########################
 def solve_constants(eq_params, ab_params, stage):
     '''
-    H3omputing constants from equations for growing populations.
+    Computing constants from equations for growing populations.
     '''
     a  = eq_params['a']
     b  = eq_params['b']

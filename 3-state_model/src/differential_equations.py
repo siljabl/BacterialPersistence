@@ -56,7 +56,9 @@ def ode_grow(t, p, λ_d, λ_r, δ):
 
     if p[6] > 0:
         dp_dt[2:4] += β(p[6]) * p[2:4]              # adding growth if nutrients left
-        dp_dt[6] = -dp_dt[2:4].sum()                # nutrients
+        #dp_dt[6] = -dp_dt[2:4].sum()               # nutrients, old consumption rate
+        dp_dt[6] = -((1-δ) * p[2:4]).sum()          # correct consumption rate
+
 
     return dp_dt
 

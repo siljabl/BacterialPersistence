@@ -75,7 +75,7 @@ for p in p_arr:
     j = 0
     for T0 in T0_arr:
         ab_params = {'p':p, 'T0':T0, 'Tab':Tab, 'T':T0+Tab}
-        fitness = analytical_fitness(eq_params, ab_params)
+        fitness = analytical_fitness(bac_params, eq_params, ab_params)
         optimal_params = transform_fitness_to_bac_parameters(fitness, bac_params)
         
         F_max[i,j] = optimal_params[0]
@@ -86,9 +86,9 @@ for p in p_arr:
         if optimal_params[3][0] == 0:
             λr_opt[i,j] = 0
 
-
         j = j + 1
     i = i + 1
+    print(p)
 
 
 np.savetxt(f"{folder}/single_optimal_F_max.txt", F_max)
