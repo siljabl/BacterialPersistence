@@ -8,6 +8,7 @@ from differential_equations import lag_min, delta_max
 
 res = 100
 T_max = 6
+Ts = 30
 lag_arr   = np.linspace(0, T_max, res) + lag_min
 delta_arr = np.linspace(0, delta_max, res)
 T0 = 0
@@ -25,9 +26,9 @@ ab_params = {'T0':T0, 'T':T}
 #C1, C2 = solve_constants(eq_params, ab_params, stage="pre")
 D1, D2 = solve_constants(eq_params, ab_params, stage="ab")
 
-c = 1/100
+ratio = abs(((a-ap)*(a-bp)*(Ts+1/(a+b)) + ap + bp - 2*a) / (a+b))
 
-plt.imshow((b+a)*(bp-c)*(ap-c)/((a-c)*(b+ap)*(b+bp)), vmin=-10)
+plt.imshow(ratio, vmax=2, aspect="auto", extent=[delta.min(), lag.min(), delta.max(), lag.max()])
 plt.colorbar()
 plt.xlabel(r"$\lambda$")
 plt.ylabel(r"$\delta$")
@@ -43,5 +44,3 @@ plt.savefig("a_minus.png")
 # a,  b  = compute_a_and_b(lag_arr, 0.001)
 # plt.plot(lag_arr, 1/a)
 # plt.savefig("a_minus.png")
-
-print(delta_max)

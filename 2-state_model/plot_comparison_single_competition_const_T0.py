@@ -18,7 +18,7 @@ del_opt  = np.zeros([n_plot, ab_res_opt])
 lag_comp = np.zeros([n_plot, ab_res_comp])
 del_comp = np.zeros([n_plot, ab_res_comp])
 
-Tab_opt = np.array([8, 14, 20])
+Tab_opt = np.array([8, 14, 18])
 idx_opt  = (Tab_opt * ab_res_opt  / Tab_max).astype(int)
 idx_comp = (Tab_opt * ab_res_comp / Tab_max).astype(int)
 
@@ -26,8 +26,8 @@ T = T0 + Tab_opt
 
 for i in range(n_plot):
 	
-	lag_opt[i]  = np.loadtxt(f'data/new/optimal_lag-T0{T0}.txt')[:,idx_opt[i]]
-	del_opt[i]  = np.loadtxt(f'data/new/optimal_delta-T0{T0}.txt')[:,idx_opt[i]]
+	lag_opt[i]  = np.loadtxt(f'data/low_resolution/optimal_lag-T0{T0}.txt')[:,idx_opt[i]]
+	del_opt[i]  = np.loadtxt(f'data/low_resolution/optimal_delta-T0{T0}.txt')[:,idx_opt[i]]
 	lag_comp[i] = np.loadtxt(f'data/competition_two_species/optimal_lag-T0{T0}.txt')[:,idx_comp[i]]
 	del_comp[i] = np.loadtxt(f'data/competition_two_species/optimal_delta-T0{T0}.txt')[:,idx_comp[i]]
 
@@ -81,5 +81,5 @@ fig.legend(loc='upper center',
            frameon=False,
            handlelength=1, 
            title=r"$T_{ab}$")
-fig.savefig(f"figs/compare_competition_T0_{T0}_new.png")
+fig.savefig(f"figs/compare_competition_T0_{T0}.png", dpi=300)
 

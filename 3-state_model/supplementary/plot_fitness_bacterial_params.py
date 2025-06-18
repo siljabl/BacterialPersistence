@@ -85,4 +85,4 @@ for j in range(2):
 
 # saving
 fig.tight_layout()
-fig.savefig(f"../figs/supplementary/{type}fitness_bacterial_params_p{args.p}_T0{args.T0}_Tab{args.Tab}.png", dpi=100)
+fig.savefig(f"../figs/supplementary/{type}fitness_bacterial_params_p{args.p}_T0{args.T0}_Tab{args.Tab}.png", dpi=300)

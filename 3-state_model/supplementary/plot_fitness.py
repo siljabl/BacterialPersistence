@@ -77,4 +77,4 @@ ax[1].xaxis.set_ticks([6, 18],     minor=True)
 
 # saving
 fig.tight_layout(w_pad=0.45)
-fig.savefig(f"3statefitness_optimal_parameters.png", dpi=100)
+fig.savefig(f"3statefitness_optimal_parameters.png", dpi=300)

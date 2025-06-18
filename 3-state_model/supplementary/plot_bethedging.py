@@ -80,4 +80,4 @@ cbformat.set_powerlimits((-2, 2))
 
 #     i += 1
 
-fig.savefig(f"../figs/supplementary/bethedging_heatmaps.png", dpi=100)
+fig.savefig(f"../figs/supplementary/bethedging_heatmaps.png", dpi=300)

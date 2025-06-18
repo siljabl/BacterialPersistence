@@ -76,4 +76,4 @@ ax[1].legend(loc='upper center',
                alignment='center')
 
 sns.despine()
-fig.savefig(f"../figs/supplementary/stochastic_T0_p{args.p}.png")
+fig.savefig(f"../figs/supplementary/stochastic_T0_p{args.p}.png", dpi=300)

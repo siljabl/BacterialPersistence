@@ -82,5 +82,5 @@ fig.legend(loc='upper center',
            frameon=False,
            handlelength=1, 
            title=r"$p$")
-fig.savefig(f"figs/compare_competition_{file}{T_const}_parr_half_dilution_ratio.png")
+fig.savefig(f"figs/compare_competition_{file}{T_const}_parr_half_dilution_ratio.png", dpi=300)
 

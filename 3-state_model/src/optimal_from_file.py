@@ -6,11 +6,9 @@ def identify_optimal_parameters_const_T0(ab_params, config, folder):
     T0  = ab_params['T0']
     Tab = ab_params['Tab']
 
-    file_params = folder.split("constant_")[-1]
-
-    λd_file = np.loadtxt(f"{folder}/single_optimal_λd-{file_params}.txt")
-    λr_file = np.loadtxt(f"{folder}/single_optimal_λr-{file_params}.txt")
-    δ_file  = np.loadtxt(f"{folder}/single_optimal_δ-{file_params}.txt")
+    λd_file = np.loadtxt(f"{folder}/single_optimal_λd-T0_{T0}.txt")
+    λr_file = np.loadtxt(f"{folder}/single_optimal_λr-T0_{T0}.txt")
+    δ_file  = np.loadtxt(f"{folder}/single_optimal_δ-T0_{T0}.txt")
 
     # transform p, Tab to indices
     ab_res  = int(config['ab_res'])
@@ -34,11 +32,9 @@ def identify_optimal_parameters_const_Tab(ab_params, config, folder):
     T0  = ab_params['T0']
     Tab = ab_params['Tab']
 
-    file_params = folder.split("constant_")[-1]
-
-    λd_file = np.loadtxt(f"{folder}/single_optimal_λd-{file_params}.txt")
-    λr_file = np.loadtxt(f"{folder}/single_optimal_λr-{file_params}.txt")
-    δ_file  = np.loadtxt(f"{folder}/single_optimal_δ-{file_params}.txt")
+    λd_file = np.loadtxt(f"{folder}/single_optimal_λd-Tab_{Tab}.txt")
+    λr_file = np.loadtxt(f"{folder}/single_optimal_λr-Tab_{Tab}.txt")
+    δ_file  = np.loadtxt(f"{folder}/single_optimal_δ-Tab_{Tab}.txt")
 
     # transform p, Tab to indices
     ab_res = int(config['ab_res'])

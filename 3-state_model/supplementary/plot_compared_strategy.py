@@ -23,4 +23,4 @@ fig.tight_layout()
 ax[0].legend(loc='best', frameon=False)
 ax[1].legend(loc='best', frameon=False)
 
-fig.savefig(f"../figs/supplementary/strategy_fitness.png")
+fig.savefig(f"../figs/supplementary/strategy_fitness.png", dpi=300)

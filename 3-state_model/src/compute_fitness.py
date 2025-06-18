@@ -34,22 +34,22 @@ def analytical_fitness(bac_params, eq_params, ab_params):
     E1, E2, _  = solve_constants(eq_params, ab_params, stage="post")
     
     # consimption rate prop to \dot{g}(t)
-    # gT0 = C1*exp_bT0 + C2*exp_aT0 + C3*exp_cT0
-    # gT  = E1  + E2  + C3*exp_cT
+    gT0 = C1*exp_bT0 + C2*exp_aT0 + C3*exp_cT0
+    gT  = E1  + E2  + C3*exp_cT
 
-    # Ts   = (1 / b) * np.log(S0 / C1)
-    # Ts_p = (1 / b) * np.log((S0 + gT - gT0) / E1) + T
+    Ts   = (1 / b) * np.log(S0 / C1)
+    Ts_p = (1 / b) * np.log((S0 + gT - gT0) / E1) + T
 
     # consumption rate prop to g(t)
-    G0  = (C1/b) - (C2/a) - (C3/c)
-    GT  = (E1/b) - (E2/a) - (C3/c)*exp_cT
-    GT0 = (C1/b)*exp_bT0 - (C2/a)*exp_aT0 - (C3/c)*exp_cT0
+    #G0  = (C1/b) - (C2/a) - (C3/c)
+    #GT  = (E1/b) - (E2/a) - (C3/c)*exp_cT
+    #GT0 = (C1/b)*exp_bT0 - (C2/a)*exp_aT0 - (C3/c)*exp_cT0
 
     # consumption time without antibiotics
-    Ts   = (1 / b) * np.log((b / C1)*(S0/(1-δ) + G0))
+    #Ts   = (1 / b) * np.log((b / C1)*(S0/(1-δ) + G0))
 
     # consumption time with antibiotics
-    Ts_p = (1 / b) * np.log((b / E1)*(S0/(1-δ) + G0 - GT0 + GT)) + T
+    #Ts_p = (1 / b) * np.log((b / E1)*(S0/(1-δ) + G0 - GT0 + GT)) + T
 
     # solving witout approx.
     # #B,_,_ = solve_constants(eq_params, ab_params, 'post')

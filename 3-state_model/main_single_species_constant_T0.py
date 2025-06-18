@@ -19,8 +19,8 @@ parser.add_argument('folder',          type=str, help="Folder for saving data.")
 parser.add_argument('T0',              type=int, help='Time at which antibiotics are applied.')
 parser.add_argument('Tab_max',         type=int, help='Upper limit on antibiotic duration.')
 parser.add_argument('-Tab_min',        type=int, help='Lower limit on antibiotic duration.', nargs='?', default=0)
-parser.add_argument('-antibiotic_res', type=int, help='resolution on antibiotic parameters', nargs='?', default=41)
-parser.add_argument('-bacterial_res',  type=int, help='resolution on bacterial parameters',  nargs='?', default=100)
+parser.add_argument('-antibiotic_res', type=int, help='resolution on antibiotic parameters', nargs='?', default=200)
+parser.add_argument('-bacterial_res',  type=int, help='resolution on bacterial parameters',  nargs='?', default=200)
 args = parser.parse_args()
 
 folder  = args.folder
@@ -111,4 +111,4 @@ config = {"date"    : datetime.today().strftime('%Y-%m-%d'),
           "δ_min"   : np.min(δ),
           "δ_max"   : np.max(δ)}
 
-save_config(config, folder)
+save_config(config, folder, f"T_{T0}")

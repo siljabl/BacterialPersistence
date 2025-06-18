@@ -19,8 +19,8 @@ p_cmap = sns.color_palette('coolwarm', as_cmap=True)(np.linspace(0,1,5))
 
 
 #importing data
-folderT0  = "peer_review"
-folderTab = "peer_review"
+folderT0  = "high_resolution"
+folderTab = "high_resolution"
 #λd_Tab_low  = np.loadtxt(f'data/{folder_T0}_Tab_6/single_optimal_λd-T0_0.txt')
 λd_Tab = np.loadtxt(f'data/{folderT0}/single_optimal_λd-T0_0.txt')
 λr_Tab = np.loadtxt(f'data/{folderT0}/single_optimal_λr-T0_0.txt')
@@ -99,4 +99,4 @@ for im, axes in zip(ims, ax.flatten()):
 
     i += 1
 
-fig.savefig(f"figs/3state_heatmaps_peer_review.png", dpi=300)
+fig.savefig(f"figs/3state_heatmaps.png", dpi=300)
