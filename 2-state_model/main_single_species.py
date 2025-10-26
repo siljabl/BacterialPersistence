@@ -7,6 +7,7 @@ sys.path.append("src")
 from differential_equations  import lag_min, delta_max
 from analytical_calculations import compute_a_and_b, compute_ap_and_bp
 from single_species_fitness  import compute_optimal_parameters
+import os
 
 
 ###########################
@@ -27,7 +28,7 @@ ic = constant_index['T0']                      # 'T0' or 'Tab'
 T_const = 5                                    # value of the constant parameter
 
 # defining parameter arrays
-T_max = [12, 24]                                # upper bounds on meningful values for T0 and Tab
+T_max = [12, 24]                                # upper bounds on meaningful values for T0 and Tab
 p_arr = np.linspace(0, 1, ab_res)               # probability of antibiotics
 T_arr = np.linspace(0, T_max[1-ic], ab_res)     # time array
 
@@ -65,6 +66,7 @@ toc = time.time()
 print(f'Time: {toc - tic}s')
 
 # saving
+os.makedirs(os.path.join("data", folder), exist_ok=True)
 np.savetxt(f"data/{folder}/optimal_lag-{T_labels[ic]}{T_const}.txt", lag_opt)
 np.savetxt(f"data/{folder}/optimal_delta-{T_labels[ic]}{T_const}.txt", del_opt)
 np.savetxt(f"data/{folder}/optimal_fitness-{T_labels[ic]}{T_const}.txt", fitness)
