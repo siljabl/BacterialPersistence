@@ -114,7 +114,7 @@ def compute_optimal_parameters(bac_args, ab_args):
             lag_opt[ip, it] = lag[0, (F_max.sum(0)).astype(bool)]		# identifying corresponding lag time
             del_opt[ip, it] = delta[(F_max.sum(1)).astype(bool), 0]  	# identifying corresponding persistence
 
-        print(100 * np.round(ip / ab_res, 4), "%")			# printing progress
+        print(f"{100 * ip / ab_res:.4f}%")			# printing progress
 
     return lag_opt, del_opt, F
 
