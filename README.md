@@ -26,6 +26,6 @@ Each model directory typically contains:
 - `supplementary/` – Additional scripts used for analyses and plotting.
 - `check_analytical_calculation/` – Scripts to verify analytical results.
 
-## Links to paper:
+## Links to paper
 - [Paper](https://journals.aps.org/pre/abstract/10.1103/lyfw-zn4j)
 - [Bioarxiv](https://www.biorxiv.org/content/10.1101/2025.02.26.640324v2)
