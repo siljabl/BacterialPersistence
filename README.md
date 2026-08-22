@@ -1,7 +1,10 @@
-# Modelling bacterial persistence in stochastic environments
-Code and data for analysing the optimal growth strategy of bacteria under stochastic application of antibiotics. 
+# BacterialPersistence
 
-Used in _Trgered and Spontaneous Dormancy in Bacteria During Feast-Famine Cycles with Stochastic Antibiotic Application_ [paper](https://journals.aps.org/pre/abstract/10.1103/lyfw-zn4j), [bioarxiv](https://www.biorxiv.org/content/10.1101/2025.02.26.640324v2)
+Code and data for the paper **"Triggered and Spontaneous Dormancy in Bacteria During Feast-Famine Cycles with Stochastic Antibiotic Application"** on bacterial survival strategies in environments with stochastic antibiotics.  
+This repository contains Python implementations of two mathematical models of bacterial growth and persistence.
+
+- **2-state model**: Bacteria switch between two phenotypic states.
+- **3-state model**: Bacteria switch between three phenotypic states.
 
 ![Illustration of 2-state model](2-state_model/figs/example_2state.png)
 
