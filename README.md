@@ -1,6 +1,7 @@
 # BacterialPersistence
 
-Code and data for the paper **"Triggered and Spontaneous Dormancy in Bacteria During Feast-Famine Cycles with Stochastic Antibiotic Application"** on bacterial survival strategies in environments with stochastic antibiotics.  
+Code and data for the paper **"Triggered and Spontaneous Dormancy in Bacteria During Feast-Famine Cycles with Stochastic Antibiotic Application"** on bacterial survival strategies in environments with stochastic antibiotics.
+
 This repository contains Python implementations of two mathematical models of bacterial growth and persistence.
 
 - **2-state model**: Bacteria switch between two phenotypic states.
@@ -24,3 +25,7 @@ Each model directory typically contains:
 - `data/` – Generated simulation data.
 - `supplementary/` – Additional scripts used for analyses and plotting.
 - `check_analytical_calculation/` – Scripts to verify analytical results.
+
+## Links to paper:
+-
+-
