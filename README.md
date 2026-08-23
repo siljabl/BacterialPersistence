@@ -19,7 +19,7 @@ The repository is organized into two main folders:
 - `3-state_model/`  
   Code, data, and supplementary scripts for the three-state persistence model.
 
-Each model directory typically contains:
+Each model directory contains:
 
 - `src/` – Core model and simulation code.
 - `data/` – Generated simulation data.
