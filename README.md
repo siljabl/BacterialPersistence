@@ -4,8 +4,8 @@ Code and data for the paper **"Triggered and Spontaneous Dormancy in Bacteria Du
 
 This repository contains Python implementations of two mathematical models of bacterial growth and persistence.
 
-- **2-state model**: Bacteria switch between two phenotypic states: dormancy and growth.
-- **3-state model**: Bacteria switch between three phenotypic states: triggered dormancy, spontaneous dormancy and growth.
+- **2-state model**: Bacteria switch between two phenotypic states: *dormancy* and *growth*.
+- **3-state model**: Bacteria switch between three phenotypic states: *triggered dormancy*, *spontaneous dormancy* and *growth*.
 
 ![Illustration](illustration.png)
   
