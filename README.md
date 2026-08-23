@@ -27,5 +27,5 @@ Each model directory contains:
 - `check_analytical_calculation/` – Scripts to verify analytical results.
 
 ## Links to paper
-- [Paper](https://doi.org/10.1103/lyfw-zn4j))
-- [Bioarxiv](https://doi.org/10.1101/2025.02.26.640324))
+- [Paper](https://doi.org/10.1103/lyfw-zn4j)
+- [Bioarxiv](https://doi.org/10.1101/2025.02.26.640324)
