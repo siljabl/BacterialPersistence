@@ -7,7 +7,7 @@ This repository contains Python implementations of two mathematical models of ba
 - **2-state model**: Bacteria switch between two phenotypic states.
 - **3-state model**: Bacteria switch between three phenotypic states.
 
-![Illustration](illustration.pdf)
+![Illustration](illustration.svg)
 
 ## Repository structure
 
