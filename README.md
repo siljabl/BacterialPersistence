@@ -7,7 +7,7 @@ This repository contains Python implementations of two mathematical models of ba
 - **2-state model**: Bacteria switch between two phenotypic states: dormancy and growth.
 - **3-state model**: Bacteria switch between three phenotypic states: triggered dormancy, spontaneous dormancy and growth.
 
-<iframe src="illustration.pdf" width="100%" height="500px" style={{ border: 'none', borderRadius: '0.5rem' }} />
+[Illustration](illustration.png)
   
 ## Repository structure
 
